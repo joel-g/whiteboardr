@@ -1,5 +1,13 @@
 <h1>Start an Interview</h1>
 
+<div class='errors'>
+  <% if @interview.errors.any? %>
+    <% @interview.errors.full_messages.each do |error| %>
+      <%= error %>
+    <% end %>
+  <% end %>
+</div>
+  
 <%= form_for @interview do |f| %>
   <%= f.hidden_field :interviewer_id, :value => 1 %>
   <%= f.label "Applicant's username" %>
