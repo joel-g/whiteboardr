@@ -5,18 +5,16 @@ class ChallengesController < ApplicationController
       @challenge = Challenge.new
       render :new
     else
-      redirect_to 'sessions/new'
+      redirect_to '/sessions/new'
     end
   end
 
   def create
-
     @challenge = Challenge.new(challenge_params)
     if @challenge.save
       render 'interviews/index'
     else
       render :new
-      p @challenge.methods
     end
   end
 
