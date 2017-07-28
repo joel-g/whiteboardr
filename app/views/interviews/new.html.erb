@@ -1,8 +1,10 @@
 <h1>Start an Interview</h1>
 
 <%= form_for @interview do |f| %>
+  <%= f.hidden_field :interviewer_id, :value => 1 %>
   <%= f.label "Applicant's username" %>
   <%= f.text_field :applicant_id %>
   <%= f.label :challenge %>
-  <%= f.collection_select :challenge_id, @challenges, :id, :title, :prompt => "Select challenge" %>
+  <%= f.collection_select :challenge_id, @challenges, :id, :title_and_difficulty, :prompt => "Select challenge" %>
+  <%= f.submit "Start Interview" %>
 <% end %>

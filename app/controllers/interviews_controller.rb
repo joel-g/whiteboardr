@@ -11,11 +11,16 @@ class InterviewsController < ApplicationController
 
   def create
 
+
   end
 
 
   def show
    @interview = Interview.find(params[:id])
   end
+
+  private
+
+  # params.require(:interview).permit(:interviewer_id, :applicant_id, :challenge_id)
 
 end
