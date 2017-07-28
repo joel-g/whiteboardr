@@ -1,3 +1,7 @@
+<div class='errors'>
+  <%= flash[:alert] %>
+</div>
+
 <%= form_tag sessions_path, :method => :post do %>
   <%= text_field_tag :email, nil, placeholder:'Email' %>
   <%= password_field_tag :password, nil, placeholder:'Password' %>
