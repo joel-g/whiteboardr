@@ -9,6 +9,16 @@
   </head>
 
   <body>
+    <nav class='nav-bar'>
+      <img src='' alt='Whiteboardr' />
+      <% if logged_in? %>
+        Hi, <%= link_to current_user.first_name, user_path(current_user) %>
+        <%= link_to 'Logout', logout_path, method: :delete %>
+      <% else %>
+        <%= link_to 'Register', new_user_path %> |
+        <%= link_to 'Login', login_path %>
+      <% end %>
+    </nav>
     <%= yield %>
   </body>
 </html>
