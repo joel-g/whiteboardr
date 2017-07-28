@@ -5,6 +5,7 @@
 version: 2
 jobs:
   build:
+    working_directory: ~/whiteboardr
     docker:
       # specify the version you desire here
        - image: circleci/ruby:2.4.1-node-browsers
@@ -23,7 +24,6 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/postgres:9.4
 
-    working_directory: ~/whiteboardr
 
     steps:
       - checkout
