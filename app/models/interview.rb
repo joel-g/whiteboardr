@@ -4,4 +4,8 @@ class Interview < ActiveRecord::Base
   belongs_to :challenge
   has_many :feedbacks
 
+  def applicant_username
+    User.find(self.applicant_id).username
+  end
+
 end

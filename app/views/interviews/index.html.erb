@@ -1,0 +1,13 @@
+<h1>Whiteboardr</h1>
+<div class='buttons'>
+
+</div>
+<div class='interviews-container'>
+  <ul class='interviews-list'>
+    <% @interviews.each do |interview| %>
+      <li>
+        <%= interview.applicant_username %>
+      </li>
+    <% end %>
+  </ul>
+</div>
