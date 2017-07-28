@@ -14,10 +14,11 @@ class InterviewsController < ApplicationController
     applicant = User.find_by(username: params[:interview][:applicant_id])
     if applicant
       params[:interview][:applicant_id] = applicant.id
-      @interview = Interview.new(params[:interview])
+      @interview = Interview.new(interview_params)
       if @interview.save
-        redirect_to show_interview_path(@interview.id)
+        redirect_to interview_path(@interview.id)
       else
+        @challenges = Challenge.all.order(difficulty: 'ASC', title: 'ASC')
         @interview.errors.add(:interview, 'was not started.')
         render :new
       end
