@@ -6,6 +6,12 @@ class ChallengesController < ApplicationController
 
   def create
     @challenge = Challenge.new(challenge_params)
+    if @challenge.save
+      render 'interviews/index'
+    else
+      render :new
+      p @challenge.methods
+    end
   end
 
   private

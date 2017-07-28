@@ -1,9 +1,13 @@
 <h1>Whiteboardr</h1>
-<div class='buttons'>
-  <%= link_to 'Create a Challenge', new_challenge_path %>
-  <br />
-  <%= link_to 'Start an Interview', new_interview_path %>
-</div>
+<% if logged_in? %>
+  <div class='buttons'>
+    <%= link_to 'Create a Challenge', new_challenge_path %>
+    <br />
+    <%= link_to 'Start an Interview', new_interview_path %>
+  </div>
+<% else %>
+  <h4>Log in to create challenges or start interviews.</h4>
+<% end %>
 
 <div class='interviews-container'>
   <ul class='interviews-list'>
