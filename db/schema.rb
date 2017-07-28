@@ -49,14 +49,6 @@ ActiveRecord::Schema.define(version: 20170727232409) do
   end
 
   create_table "users", force: :cascade do |t|
-<<<<<<< HEAD
-    t.string   "username",        null: false
-    t.string   "email",           null: false
-    t.string   "name",            null: false
-    t.string   "hashed_password", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-=======
     t.string   "email",            null: false
     t.string   "crypted_password"
     t.string   "salt"
@@ -66,7 +58,6 @@ ActiveRecord::Schema.define(version: 20170727232409) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
->>>>>>> master
   end
 
 end
