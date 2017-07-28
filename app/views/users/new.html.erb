@@ -1,0 +1,26 @@
+<h1>Welcome to Whiteboardr!</h1>
+<h4>Improving your whiteboarding skills since 2017</h4>
+<div>
+  <%= flash[:alert] %>
+</div>
+<% if @user.errors.any? %>
+  <% @user.errors.full_messages.each do |error| %>
+    <div>
+      <%= error %>
+    </div>
+  <% end %>
+<% end %>
+
+<%= form_for @user do |f| %>
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name %>
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name %>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <%= f.submit 'Register' %>
+<% end %>
