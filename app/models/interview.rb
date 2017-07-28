@@ -4,4 +4,6 @@ class Interview < ActiveRecord::Base
   belongs_to :challenge
   has_many :feedbacks
 
+  validates_presence_of :interviewer_id, :applicant_id, :challenge_id
+
 end

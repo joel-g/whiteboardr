@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :challenges, only: [:create, :new]
-  resources :interviews, only: [:new, :create, :show] do
+  resources :interviews, only: [:index, :new, :create, :show] do
     resources :feedbacks, only: [:create]
   end
 
@@ -11,5 +11,7 @@ Rails.application.routes.draw do
 
   get 'login' => 'sessions#new'
   delete 'logout' => 'sessions#destroy'
+
+  root to: 'interviews#index'
 
 end
