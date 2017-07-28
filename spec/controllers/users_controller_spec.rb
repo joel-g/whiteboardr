@@ -54,7 +54,7 @@ describe UsersController do
         post :create, params: { user: missing_username }
         expect(assigns[:user].errors).not_to be_empty
       end
-      xit 'does not save a user with no password' do
+      it 'does not save a user with no password' do
         missing_password = FactoryGirl.attributes_for(:user, password: '')
         post :create, params: { user: missing_password }
         expect(assigns[:user].errors).not_to be_empty
