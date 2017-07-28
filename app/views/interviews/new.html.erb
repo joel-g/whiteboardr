@@ -1,0 +1,8 @@
+<h1>Start an Interview</h1>
+
+<%= form_for @interview do |f| %>
+  <%= f.label "Applicant's username" %>
+  <%= f.text_field :applicant_id %>
+  <%= f.label :challenge %>
+  <%= f.collection_select :challenge_id, @challenges, :id, :title, :prompt => "Select challenge" %>
+<% end %>
