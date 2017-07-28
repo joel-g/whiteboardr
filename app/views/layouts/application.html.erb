@@ -10,7 +10,7 @@
 
   <body>
     <nav class='nav-bar'>
-      <img src='' alt='Whiteboardr' />
+      <%= link_to image_tag('whiteboardr_logo.png'), '/' %>
       <% if logged_in? %>
         Hi, <%= link_to current_user.first_name, user_path(current_user) %>
         <%= link_to 'Logout', logout_path, method: :delete %>
