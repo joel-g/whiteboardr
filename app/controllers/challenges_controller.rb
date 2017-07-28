@@ -5,14 +5,14 @@ class ChallengesController < ApplicationController
       @challenge = Challenge.new
       render :new
     else
-      redirect_to '/sessions/new'
+      redirect_to login_path
     end
   end
 
   def create
     @challenge = Challenge.new(challenge_params)
     if @challenge.save
-      render 'interviews/index'
+      redirect_to root_path
     else
       render :new
     end
@@ -21,7 +21,7 @@ class ChallengesController < ApplicationController
   private
 
   def challenge_params
-    params.require(:challenge).permit(:title, :body, :difficulty, :input, :output, :solution)
+    params.require(:challenge).permit(:user_id,:title, :body, :difficulty, :input, :output, :solution)
   end
 
 end
