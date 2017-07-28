@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20170727232409) do
     t.string   "output"
     t.string   "body",       null: false
     t.string   "solution"
-    t.integer  "difficulty"
+    t.string   "difficulty"
     t.integer  "user_id",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"

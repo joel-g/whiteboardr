@@ -1,0 +1,43 @@
+<h3>Create a Challenge</h3>
+  <div class='errors'>
+    <% if defined?(@challenge.errors) %>
+      <% @challenge.errors.full_messages.each do |message| %>
+      <%= message %>
+      <% end %>
+    <% end %>
+  </div>
+
+<div class='form-container'>
+  <%= form_for @challenge do |f| %>
+    <p>
+      <%= f.hidden_field current_user.id %>
+    </p>
+    <p>
+      <%= f.label :title %>*<br>
+      <%= f.text_field :title %>
+    </p>
+    <p>
+      <%= f.label :input %><br>
+      <%= f.text_field :input %>
+    </p>
+    <p>
+      <%= f.label :output %><br>
+      <%= f.text_field :output %>
+    </p>
+    <p>
+      <%= f.label :body %>*<br>
+      <%= f.text_area :body %>
+    </p>
+    <p>
+      <%= f.label :solution %><br>
+      <%= f.text_area :solution %>
+    </p>
+    <p>
+      <%= f.label :difficulty %>*<br>
+      <%= f.select :difficulty, ['Easy', 'Medium', 'Hard'] %>
+    </p>
+    <p>
+      <%= f.submit %>
+    </p>
+  <% end %>
+</div>
