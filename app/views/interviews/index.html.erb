@@ -7,7 +7,7 @@
   <ul class='interviews-list'>
     <% @interviews.each do |interview| %>
       <li>
-        <%= interview.applicant_username %>'s interview, ID: <%= interview.id %>
+        <%= interview.applicant.username %>'s interview, ID: <%= interview.id %>
       </li>
     <% end %>
   </ul>
