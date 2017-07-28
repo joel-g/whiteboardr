@@ -1,10 +1,16 @@
 class ChallengesController < ApplicationController
 
   def new
-    @challenge = Challenge.new
+    if logged_in?
+      @challenge = Challenge.new
+      render :new
+    else
+      redirect_to 'sessions/new'
+    end
   end
 
   def create
+
     @challenge = Challenge.new(challenge_params)
     if @challenge.save
       render 'interviews/index'
