@@ -44,39 +44,51 @@ describe InterviewsController do
   end
 
   describe '#create' do
-    let!(:valid_interview_attributes) { FactoryGirl.attributes_for(:interview) }
-    context 'valid interview information' do
-      it 'redirects to interview#show when successful' do
-        post :create, params: { interview: valid_interview_attributes }
-        expect(response).to redirect_to(interview_path)
+    let!(:valid_interview_attributes) { FactoryGirl.attributes_for(:interview, applicant_id: User.first.id, interviewer_id: User.last.id, challenge_id: Challenge.first.id) }
+    # puts "VALID INTERVIEW ATTR ***********************************************"
+    # p valid_interview_attributes
+    context 'when user is logged in' do
+      before(:each) do
+        @user = FactoryGirl.create(:user)
+        login_user
       end
+      context 'valid interview information' do
+        it 'redirects to interview#show when successful' do
+          post :create, params: { interview: valid_interview_attributes }
+          expect(response).to redirect_to interview_path(Interview.last.id)
+        end
 
-      it 'creates a interview' do
-        interview_count = Interview.all.count
-        post :create, params: { interview: valid_interview_attributes }
-        expect(Interview.all.count).to eq(interview_count + 1)
+        it 'creates a interview' do
+          interview_count = Interview.all.count
+          post :create, params: { interview: valid_interview_attributes }
+          expect(Interview.all.count).to eq(interview_count + 1)
+        end
+      end
+      context 'invalid interview information' do
+        it 'does not save a interview with no interviewer_id' do
+          missing_interviewer_id = FactoryGirl.attributes_for(:interview, interviewer_id: nil)
+          post :create, params: { interview: missing_interviewer_id }
+          expect(assigns[:interview].errors).not_to be_empty
+        end
+        it 'does not save a interview with no applicant_id' do
+          missing_applicant_id = FactoryGirl.attributes_for(:interview, applicant_id: nil)
+          post :create, params: { interview: missing_applicant_id }
+          expect(assigns[:interview].errors).not_to be_empty
+        end
+        it 'does not save a interview with no challenge_id' do
+          missing_challenge_id = FactoryGirl.attributes_for(:interview, challenge_id: nil)
+          post :create, params: { interview: missing_challenge_id }
+          expect(assigns[:interview].errors).not_to be_empty
+        end
+        it 'shows the #new view' do
+          post :create, params: { interview: { type: 'blahblah elephant' } }
+          expect(response).to render_template('new')
+        end
       end
     end
-    context 'invalid interview information' do
-      it 'does not save a interview with no interviewer_id' do
-        missing_interviewer_id = FactoryGirl.attributes_for(:interview, interviewer_id: nil)
-        post :create, params: { interview: missing_interviewer_id }
-        expect(assigns[:interview].errors).not_to be_empty
-      end
-      it 'does not save a interview with no applicant_id' do
-        missing_applicant_id = FactoryGirl.attributes_for(:interview, applicant_id: nil)
-        post :create, params: { interview: missing_applicant_id }
-        expect(assigns[:interview].errors).not_to be_empty
-      end
-      it 'does not save a interview with no challenge_id' do
-        missing_challenge_id = FactoryGirl.attributes_for(:interview, challenge_id: nil)
-        post :create, params: { interview: missing_challenge_id }
-        expect(assigns[:interview].errors).not_to be_empty
-      end
-      it 'shows the #new view' do
-        post :create, params: { interview: { type: 'invalid' } }
-        expect(response).to render_template('new')
-      end
+    xcontext 'when a user is not logged in' do
+
+
     end
   end
 
