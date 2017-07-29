@@ -115,6 +115,11 @@ describe InterviewsController do
         expect(response).to render_template('show')
       end
     end
+    context 'when a user is not logged in' do
+      it 'redirects to login' do
+        get :show, {id: interview.id}
+        expect(response).to redirect_to login_path
+      end
+    end
   end
-
 end
