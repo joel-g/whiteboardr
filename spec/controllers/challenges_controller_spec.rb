@@ -24,15 +24,25 @@ describe ChallengesController do
 
   end
 
-  xdescribe '#create' do
-    # new_challenge = FactoryGirl.build :challenge
-    it 'responds with a status of 302' do
-      post :create
-      expect(response.status).to eq 302
+  describe '#create' do
+    before(:each) do
+      @user = FactoryGirl.create(:user)
+      login_user
     end
-  end
+    let!(:valid_challenge){ FactoryGirl.attributes_for(:challenge) }
 
-  xdescribe '#show' do
+    context 'Valid challenge' do
+      it 'redirects to root' do
+        post :create, params: { challenge: valid_challenge }
+        expect(response).to redirect_to root_path
+      end
+      it 'creates a challenge' do
+        expect{ post :create, params: { challenge: valid_challenge } }.to change { Challenge.all.count }.by(1)
+      end
+    end
+
+    context 'Invalid challenge' do
+    end
   end
 
 end
