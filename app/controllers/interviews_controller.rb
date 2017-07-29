@@ -1,4 +1,5 @@
 class InterviewsController < ApplicationController
+  skip_before_action :require_login, only: [:index]
 
   def index
     @interviews = Interview.all.order(created_at: 'DESC')
