@@ -1,12 +1,8 @@
 class ChallengesController < ApplicationController
 
   def new
-    if logged_in?
-      @challenge = Challenge.new
-      render :new
-    else
-      redirect_to login_path
-    end
+    @challenge = Challenge.new
+    render :new
   end
 
   def create
