@@ -13,21 +13,21 @@ describe Interview, type: :model do
     it { is_expected.to belong_to(:challenge)}
   end
   context "helper method" do
-    describe "#gave_feedback?" do
+    describe "#has_feedback_from?" do
       it 'returns true if a user has given feedback' do
         user = FactoryGirl.create(:user)
-        challenge = FactoryGirl.create(:challenge)
+        FactoryGirl.create(:challenge)
         interview = FactoryGirl.create(:interview)
         FactoryGirl.create(:feedback, interview_id: interview.id, user_id: user.id)
-        expect(interview.gave_feedback?(user)).to eq true
+        expect(interview.has_feedback_from?(user)).to eq true
       end
       it 'returns false if a user has not given feedback' do
         user = FactoryGirl.create(:user)
         user2 = FactoryGirl.create(:user)
-        challenge = FactoryGirl.create(:challenge)
+        FactoryGirl.create(:challenge)
         interview = FactoryGirl.create(:interview)
         FactoryGirl.create(:feedback, interview_id: interview.id, user_id: user.id)
-        expect(interview.gave_feedback?(user2)).to eq false
+        expect(interview.has_feedback_from?(user2)).to eq false
       end
     end
   end
