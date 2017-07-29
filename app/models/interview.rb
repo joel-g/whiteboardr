@@ -6,4 +6,8 @@ class Interview < ActiveRecord::Base
 
   validates_presence_of :interviewer_id, :applicant_id, :challenge_id
 
+  def gave_feedback?(user)
+    self.feedbacks.where(user_id: user.id).count > 0
+  end
+
 end

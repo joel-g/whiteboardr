@@ -24,6 +24,7 @@
 <% if current_user == @interview.applicant %>
   see all feedback here
 <% else %>
+  <% if %>
   <div class='form-container'>
     <%= form_for [@interview, @feedback] do |f| %>
       <%= f.hidden_field :user_id, value: current_user.id %>
@@ -33,7 +34,7 @@
       <%= f.select :knowledge_rating, [5,4,3,2,1] %>
       <%= f.select :riot_rating, [5,4,3,2,1] %>
       <%= f.text_area :comments %>
-
+      <%= f.submit 'Give Feedback' %>
     <% end %>
   </div>
 <% end %>
