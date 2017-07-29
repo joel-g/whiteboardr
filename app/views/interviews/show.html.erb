@@ -1,1 +1,9 @@
-<h1>Practice Interview for <%= @interview.applicant.full %> </h1>
+<h1>Practice Interview for <%= @interview.applicant.full_name %></h1>
+<h3>Interviewed by <%= @interview.interviewer.full_name %></h3>
+
+<div>
+  <h2> <%= @interview.challenge.title_and_difficulty %>  </h2>
+  <p>
+    <%= @interview.challenge.body %>
+  </p>
+</div>
