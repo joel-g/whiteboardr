@@ -6,14 +6,18 @@
     <%= link_to 'Start an Interview', new_interview_path %>
   </div>
 <% else %>
-  <h4>Log in to create challenges or start interviews.</h4>
+  <h4> <%= link_to "Log in", login_path %> to create challenges, start interviews or review interviews.</h4>
 <% end %>
 
 <div class='interviews-container'>
   <ul class='interviews-list'>
     <% @interviews.each do |interview| %>
       <li>
-        <%= interview.applicant.username %>'s interview, ID: <%= interview.id %>
+        <% if logged_in? %>
+          <%= link_to "#{interview.applicant.username}'s interview, ID: #{interview.id}", interview %>
+        <% else %>
+          <%= interview.applicant.username %>'s interview, ID: <%= interview.id %>
+        <% end %>
       </li>
     <% end %>
   </ul>
