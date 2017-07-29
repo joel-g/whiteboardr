@@ -1,22 +1,14 @@
 require 'rails_helper'
 
 describe InterviewsController do
-  puts "First challenge to follow"
-  p Challenge.first
   describe '#index' do
-    let!(:user) { FactoryGirl.create(:user, username: 'joel') }
-    let!(:interview) { FactoryGirl.create(:interview, applicant_id: user.id) }
-      it 'responds with a status of 200' do
+    it 'responds with a status of 200' do
       get :index
       expect(response.status).to eq 200
     end
     it 'renders the Interview#index view' do
       get :index
       expect(response).to render_template('index')
-    end
-    it 'should display an interview entry' do
-      get :index
-      expect(last_response.body).to include("joel's")
     end
   end
 
