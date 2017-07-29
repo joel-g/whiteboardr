@@ -13,20 +13,20 @@ describe InterviewsController do
   end
 
   describe '#new' do
-    xcontext 'when user is logged in' do
+    context 'when user is logged in' do
       before(:each) do
-        @user = create(:user)
-        login_user_post(@user.username, 'secret')
+        @user = FactoryGirl.create(:user)
+        login_user
       end
-      xit 'responds with a status of 302' do
+      it 'responds with a status of 200' do
         get :new
-        expect(response.status).to eq 302
+        expect(response.status).to eq 200
       end
-      xit 'renders the Interview#new view' do
+      it 'renders the Interview#new view' do
         get :new
         expect(response).to render_template('new')
       end
-      xit 'assigns @interview to be a new Interview' do
+      it 'assigns @interview to be a new Interview' do
         get :new
         expect(assigns(:interview)).to be_a_new(Interview)
       end
@@ -38,8 +38,6 @@ describe InterviewsController do
       end
       it 'redirects to log in ' do
         get :new
-        puts 'here is the body:'
-        p response.body
         expect(response).to redirect_to login_path
       end
     end

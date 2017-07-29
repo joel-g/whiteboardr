@@ -35,8 +35,8 @@ Shoulda::Matchers.configure do |config|
 end
 
 RSpec.configure do |config|
-  config.include Sorcery::TestHelpers::Rails::Controller
-  config.include Sorcery::TestHelpers::Rails::Integration
+  config.include Sorcery::TestHelpers::Rails::Controller, type: :controller
+  config.include Sorcery::TestHelpers::Rails::Integration, type: :feature
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
