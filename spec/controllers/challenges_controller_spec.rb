@@ -8,7 +8,7 @@ describe ChallengesController do
     end
     it 'redirects to login page if user is not logged in' do
       get :new
-      expect(response).to redirect_to new_session_path
+      expect(response).to redirect_to login_path
     end
     xit 'response with a status of 200 if user is logged in' do
 
