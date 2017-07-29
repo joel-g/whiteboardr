@@ -12,7 +12,16 @@ describe InterviewsController do
     end
   end
 
-  xdescribe '#new' do
+  describe '#new' do
+    it 'renders the Interview#new view' do
+      get :new
+      expect(response).to render_template('new')
+    end
+
+    it 'assigns @interview to be a new Interview' do
+      get :new
+      expect(assigns(:interview)).to be_a_new(Interview)
+    end
   end
 
   xdescribe '#create' do
