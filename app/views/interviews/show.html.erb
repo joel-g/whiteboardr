@@ -1,5 +1,5 @@
 <h1>Practice Interview for <%= @interview.applicant.full_name %></h1>
-<h3>Interviewed by <%= @interview.interviewer.full_name %> on <%= @interview.created_at.strftime('%-m/%-d/%Y') %> </h3>
+<h3>Interviewed by <%= @interview.interviewer.full_name %> on <%= @interview.date %> </h3>
 
 <div class='challenge-container'>
   <h2> <%= @interview.challenge.title_and_difficulty %>  </h2>

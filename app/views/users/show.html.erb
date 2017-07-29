@@ -4,7 +4,7 @@
     <% @user.interviews.each do |interview| %>
     <li>
       <% if logged_in? && current_user == @user %>
-        <%= link_to "#{interview.applicant.username}'s interview, ID: #{interview.id}", interview %> <%= interview.average_knowledge_rating %>
+        <%= link_to "#{interview.challenge.title}", interview %> <%= interview.average_knowledge_rating %>
       <% else %>
         <%= interview.applicant.username %>'s interview, ID: <%= interview.id %>
       <% end %>

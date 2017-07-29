@@ -46,4 +46,8 @@ class Interview < ActiveRecord::Base
     end
   end
 
+  def date
+    self.created_at.strftime('%-m/%-d/%Y')
+  end
+
 end
