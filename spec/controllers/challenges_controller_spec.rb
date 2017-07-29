@@ -29,9 +29,10 @@ describe ChallengesController do
       @user = FactoryGirl.create(:user)
       login_user
     end
-    let!(:valid_challenge){ FactoryGirl.attributes_for(:challenge) }
 
     context 'Valid challenge' do
+      let!(:valid_challenge){ FactoryGirl.attributes_for(:challenge) }
+
       it 'redirects to root' do
         post :create, params: { challenge: valid_challenge }
         expect(response).to redirect_to root_path
@@ -42,6 +43,22 @@ describe ChallengesController do
     end
 
     context 'Invalid challenge' do
+      it 'does not save a challenge with no title' do
+        no_title = FactoryGirl.attributes_for(:challenge, title: nil)
+        expect{ post :create, params: { challenge: no_title } }.not_to change { Challenge.all.count }
+      end
+      it 'does not save a challenge with no body' do
+        no_body = FactoryGirl.attributes_for(:challenge, body: nil)
+        expect{ post :create, params: { challenge: no_body } }.not_to change { Challenge.all.count }
+      end
+      it 'does not save a challenge with no difficulty' do
+        no_difficulty = FactoryGirl.attributes_for(:challenge, difficulty: nil)
+        expect{ post :create, params: { challenge: no_difficulty } }.not_to change { Challenge.all.count }
+      end
+      it 'renders the challenges#new view' do
+        post :create, params: { challenge: { type: 'invalid' } }
+        expect(response).to render_template :new
+      end
     end
   end
 
