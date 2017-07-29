@@ -1,5 +1,5 @@
 <h1>Practice Interview for <%= @interview.applicant.full_name %></h1>
-<h3>Interviewed by <%= @interview.interviewer.full_name %></h3>
+<h3>Interviewed by <%= @interview.interviewer.full_name %> on <%= @interview.created_at.strftime('%-m/%-d/%Y') %> </h3>
 
 <div class='challenge-container'>
   <h2> <%= @interview.challenge.title_and_difficulty %>  </h2>
@@ -7,13 +7,13 @@
     <%= @interview.challenge.body %>
   </p>
   <p>
-    <% if @interview.challenge.input %>
+    <% if @interview.challenge.input && @interview.challenge.input.length > 0%>
       <h4>Input:</h4> <%= @interview.challenge.input %>
     <% end %>
-    <% if @interview.challenge.output %>
+    <% if @interview.challenge.output && @interview.challenge.output.length > 0%>
       <h4>Output:</h4> <%= @interview.challenge.output %>
     <% end %>
-    <% if @interview.challenge.solution %>
+    <% if @interview.challenge.solution && @interview.challenge.solution.length  > 0 %>
       <h4>Solution:</h4>
       <pre>
         <%= simple_format(@interview.challenge.solution) %>
@@ -22,7 +22,19 @@
   </p>
 </div>
 <% if current_user == @interview.applicant %>
-  see all feedback here
+  <div class='feedback-container'>
+    <h2>Your Feedback</h2>
+    <% @interview.feedbacks.each do |feedback| %>
+      <ul>
+        <li>Reviewer: <%= feedback.user.full_name %></li>
+        <li>Board: <%= feedback.board_rating %></li>
+        <li>Presence: <%= feedback.presence_rating %></li>
+        <li>Knowledge: <%= feedback.knowledge_rating %></li>
+        <li>RIOT: <%= feedback.riot_rating %></li>
+        <li>Comments: <%= simple_format(feedback.comments) %></li>
+      </ul>
+    <% end %>
+  </div>
 <% else %>
   <% if @interview.has_feedback_from?(current_user)%>
     <h5>Thank you for your <i>actionable, specific & kind</i> feedback.</h5>
