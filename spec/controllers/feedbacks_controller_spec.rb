@@ -8,9 +8,8 @@ describe FeedbacksController do
   let!(:interview){FactoryGirl.create(:interview, applicant_id: applicant.id, interviewer_id: interviewer.id)}
 
   before(:each) do
-    @controller = SessionsController.new
-    post :create, params: { email: interviewer.email, password: "pw"}
-    @controller = FeedbacksController.new
+    @user = interviewer
+    login_user
   end
 
   describe '#create' do
