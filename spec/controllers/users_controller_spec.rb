@@ -75,6 +75,10 @@ describe UsersController do
         post :create, params: { user: { type: 'invalid' } }
         expect(response).to render_template('new')
       end
+      it 'assigns @user with errors' do
+        post :create, params: { user: { type: 'invalid' } }
+        expect(assigns[:user].errors).not_to be_empty
+      end
     end
   end
 end

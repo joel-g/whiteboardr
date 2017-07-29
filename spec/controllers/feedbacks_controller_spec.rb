@@ -34,6 +34,10 @@ describe FeedbacksController do
           post :create, params: { interview_id: interview.id, feedback: FactoryGirl.attributes_for(:feedback, riot_rating: nil) }
         }.not_to change { Feedback.all.count}
       end
+      it 'assigns @feedback with errors' do
+        post :create, params: { interview_id: interview.id, feedback: { type: 'invalid' } }
+        expect(assigns[:feedback].errors).not_to be_empty
+      end
     end
   end
 end

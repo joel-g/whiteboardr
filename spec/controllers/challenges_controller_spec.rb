@@ -59,6 +59,10 @@ describe ChallengesController do
         post :create, params: { challenge: { type: 'invalid' } }
         expect(response).to render_template :new
       end
+      it 'assigns @challenge with errors' do
+        post :create, params: { challenge: { type: 'invalid' } }
+        expect(assigns[:challenge].errors).not_to be_empty
+      end
     end
   end
 
