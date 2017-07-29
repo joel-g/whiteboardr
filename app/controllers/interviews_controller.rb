@@ -33,7 +33,8 @@ class InterviewsController < ApplicationController
   end
 
   def show
-   @interview = Interview.find(params[:id])
+    @interview = Interview.find(params[:id])
+    @feedback = Feedback.new
   end
 
   private

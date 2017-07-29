@@ -21,6 +21,19 @@
     <% end %>
   </p>
 </div>
-<div>
-  
-</div>
+<% if current_user == @interview.applicant %>
+  see all feedback here
+<% else %>
+  <div class='form-container'>
+    <%= form_for [@interview, @feedback] do |f| %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.hidden_field :interview_id, value: @interview.id %>
+      <%= f.select :board_rating, [5,4,3,2,1] %>
+      <%= f.select :presence_rating, [5,4,3,2,1] %>
+      <%= f.select :knowledge_rating, [5,4,3,2,1] %>
+      <%= f.select :riot_rating, [5,4,3,2,1] %>
+      <%= f.text_area :comments %>
+
+    <% end %>
+  </div>
+<% end %>
