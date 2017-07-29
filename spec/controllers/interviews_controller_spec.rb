@@ -44,9 +44,9 @@ describe InterviewsController do
   end
 
   describe '#create' do
-    let!(:challenge) { FactoryGirl.create(:challenge) }
     let!(:applicant) { FactoryGirl.create(:user) }
     let!(:interviewer) { FactoryGirl.create(:user) }
+    let!(:challenge) { FactoryGirl.create(:challenge) }
     let!(:valid_interview_attributes) { FactoryGirl.attributes_for(:interview, applicant_id: applicant.username) }
 
     context 'when user is logged in' do
