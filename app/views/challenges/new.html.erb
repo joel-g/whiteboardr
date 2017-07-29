@@ -10,7 +10,7 @@
 <div class='form-container'>
   <%= form_for @challenge do |f| %>
     <p>
-      <%= f.hidden_field current_user.id %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
     </p>
     <p>
       <%= f.label :title %>*<br>
