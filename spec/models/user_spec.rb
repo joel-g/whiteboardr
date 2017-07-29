@@ -16,4 +16,12 @@ describe User, type: :model do
     it { is_expected.to have_many(:interviews)}
     it { is_expected.to have_many(:feedbacks)}
   end
+
+  context 'virtual attributes' do
+    it 'has a full name' do
+      user = FactoryGirl.build(:user)
+      expect(user.full_name).to eq "#{user.first_name} #{user.last_name}"      
+    end
+  end
+
 end
