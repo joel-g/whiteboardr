@@ -44,9 +44,11 @@ describe InterviewsController do
   end
 
   describe '#create' do
-    let!(:valid_interview_attributes) { FactoryGirl.attributes_for(:interview, applicant_id: User.first.id, interviewer_id: User.last.id, challenge_id: Challenge.first.id) }
-    # puts "VALID INTERVIEW ATTR ***********************************************"
-    # p valid_interview_attributes
+    let!(:challenge) { FactoryGirl.create(:challenge) }
+    let!(:applicant) { FactoryGirl.create(:user) }
+    let!(:interviewer) { FactoryGirl.create(:user) }
+    let!(:valid_interview_attributes) { FactoryGirl.attributes_for(:interview, applicant_id: applicant.username) }
+
     context 'when user is logged in' do
       before(:each) do
         @user = FactoryGirl.create(:user)
@@ -55,13 +57,11 @@ describe InterviewsController do
       context 'valid interview information' do
         it 'redirects to interview#show when successful' do
           post :create, params: { interview: valid_interview_attributes }
-          expect(response).to redirect_to interview_path(Interview.last.id)
+          expect(response).to redirect_to interview_path(assigns(:interview))
         end
 
         it 'creates a interview' do
-          interview_count = Interview.all.count
-          post :create, params: { interview: valid_interview_attributes }
-          expect(Interview.all.count).to eq(interview_count + 1)
+          expect{post :create, params: { interview: valid_interview_attributes }}.to change { Interview.all.count }.by 1
         end
       end
       context 'invalid interview information' do
@@ -81,7 +81,7 @@ describe InterviewsController do
           expect(assigns[:interview].errors).not_to be_empty
         end
         it 'shows the #new view' do
-          post :create, params: { interview: { type: 'blahblah elephant' } }
+          post :create, params: { interview: { type: 'invalid' } }
           expect(response).to render_template('new')
         end
       end
