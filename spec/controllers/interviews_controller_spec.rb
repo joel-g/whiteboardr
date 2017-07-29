@@ -86,13 +86,35 @@ describe InterviewsController do
         end
       end
     end
-    xcontext 'when a user is not logged in' do
-
-
+    context 'when a user is not logged in' do
+      it 'redirects to login' do
+        post :create, params: { interview: valid_interview_attributes }
+        expect(response).to redirect_to login_path
+      end
     end
   end
 
-  xdescribe '#show' do
+  describe '#show' do
+    let!(:challenge) { FactoryGirl.create(:challenge) }
+    let!(:applicant) { FactoryGirl.create(:user) }
+    let!(:interviewer) { FactoryGirl.create(:user) }
+    let!(:valid_interview_attributes) { FactoryGirl.attributes_for(:interview, applicant_id: applicant.username) }
+    let!(:interview) {FactoryGirl.create(:interview)}
+
+    context 'when user is logged in' do
+      before(:each) do
+        @user = FactoryGirl.create(:user)
+        login_user
+      end
+      it 'responds with a status of 200' do
+        get :show, {id: interview.id}
+        expect(response.status).to eq 200
+      end
+      it 'renders the show view' do
+        get :show, {id: interview.id}
+        expect(response).to render_template('show')
+      end
+    end
   end
 
 end
