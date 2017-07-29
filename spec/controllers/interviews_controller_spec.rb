@@ -24,7 +24,20 @@ describe InterviewsController do
     end
   end
 
-  xdescribe '#create' do
+  describe '#create' do
+    let!(:valid_interview_attributes) { FactoryGirl.attributes_for(:interview) }
+    context 'valid interview information' do
+      it 'redirects to interview#show when successful' do
+        post :create, params: { interview: valid_interview_attributes }
+        expect(response).to redirect_to(interview_path)
+      end
+
+      it 'creates a interview' do
+        interview_count = Interview.all.count
+        post :create, params: { interview: valid_interview_attributes }
+        expect(Interview.all.count).to eq(interview_count + 1)
+      end
+    end
   end
 
   xdescribe '#show' do
