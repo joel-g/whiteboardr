@@ -1,0 +1,23 @@
+<h1><%= @user.username %>'s Interviews</h1>
+<div class='interviews-container'>
+  <ul class='interviews-list'>
+    <% @user.interviews.each do |interview| %>
+    <li>
+      <% if logged_in? && current_user == @user %>
+        <%= link_to "#{interview.challenge.title}", interview %> on <%= interview.date %>
+        <% if interview.feedbacks.length > 0 %>
+          <p class='ratings'>
+            <div class='avg-ratings'>Average Ratings</div>
+            Board: <%= interview.average_board_rating %><br />
+            Presence: <%= interview.average_presence_rating %><br />
+            Knowledge: <%= interview.average_knowledge_rating %><br />
+            RIOT: <%= interview.average_riot_rating %>
+          </p>
+        <% end %>
+      <% else %>
+        <%= link_to "#{interview.challenge.title}", interview %> on <%= interview.date %>
+      <% end %>
+    </li>
+    <% end %>
+  </ul>
+</div>

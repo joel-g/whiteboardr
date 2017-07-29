@@ -10,4 +10,44 @@ class Interview < ActiveRecord::Base
     self.feedbacks.where(user_id: user.id).count > 0
   end
 
+  def average_knowledge_rating
+    if self.feedbacks.length > 0
+      total = self.feedbacks.reduce(0) { |sum, feedback| sum + feedback.knowledge_rating }
+      total.to_f / self.feedbacks.length.to_f
+    else
+      nil
+    end
+  end
+
+  def average_presence_rating
+    if self.feedbacks.length > 0
+      total = self.feedbacks.reduce(0) { |sum, feedback| sum + feedback.presence_rating }
+      total.to_f / self.feedbacks.length.to_f
+    else
+      nil
+    end
+  end
+
+  def average_riot_rating
+    if self.feedbacks.length > 0
+      total = self.feedbacks.reduce(0) { |sum, feedback| sum + feedback.riot_rating }
+      total.to_f / self.feedbacks.length.to_f
+    else
+      nil
+    end
+  end
+
+  def average_board_rating
+    if self.feedbacks.length > 0
+      total = self.feedbacks.reduce(0) { |sum, feedback| sum + feedback.board_rating }
+      total.to_f / self.feedbacks.length.to_f
+    else
+      nil
+    end
+  end
+
+  def date
+    self.created_at.strftime('%-m/%-d/%Y')
+  end
+
 end
