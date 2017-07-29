@@ -28,14 +28,16 @@
     <h5>Thank you for your <i>actionable, specific & kind</i> feedback.</h5>
   <% else %>
     <div class='form-container'>
+      <h2>Give Feedback</h2>
       <%= form_for [@interview, @feedback] do |f| %>
         <%= f.hidden_field :user_id, value: current_user.id %>
         <%= f.hidden_field :interview_id, value: @interview.id %>
-        <%= f.select :board_rating, [5,4,3,2,1] %>
-        <%= f.select :presence_rating, [5,4,3,2,1] %>
-        <%= f.select :knowledge_rating, [5,4,3,2,1] %>
-        <%= f.select :riot_rating, [5,4,3,2,1] %>
-        <%= f.text_area :comments %>
+        <%= f.label "Board Rating: " %><%= f.select :board_rating, [5,4,3,2,1] %><br />
+        <%= f.label "Presence Rating: " %><%= f.select :presence_rating, [5,4,3,2,1] %><br />
+        <%= f.label "Knowledge Rating: " %><%= f.select :knowledge_rating, [5,4,3,2,1] %><br />
+        <%= f.label "RIOT Rating: " %><%= f.select :riot_rating, [5,4,3,2,1] %><br />
+        <%= f.label "Comments: " %><br />
+        <%= f.text_area :comments, size: "80x10", placeholder: "Make sure your feedback is actionable, specific, and kind." %><br />
         <%= f.submit 'Give Feedback' %>
       <% end %>
     </div>
