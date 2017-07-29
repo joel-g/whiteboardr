@@ -1,7 +1,7 @@
 <h1>Practice Interview for <%= @interview.applicant.full_name %></h1>
 <h3>Interviewed by <%= @interview.interviewer.full_name %></h3>
 
-<div>
+<div class='challenge-container'>
   <h2> <%= @interview.challenge.title_and_difficulty %>  </h2>
   <p>
     <%= @interview.challenge.body %>
@@ -20,4 +20,7 @@
       </pre>
     <% end %>
   </p>
+</div>
+<div>
+  
 </div>
