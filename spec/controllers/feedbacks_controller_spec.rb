@@ -8,9 +8,8 @@ describe FeedbacksController do
   let!(:interview){FactoryGirl.create(:interview, applicant_id: applicant.id, interviewer_id: interviewer.id)}
 
   before(:each) do
-    @controller = SessionsController.new
-    post :create, params: { email: interviewer.email, password: "pw"}
-    @controller = FeedbacksController.new
+    @user = interviewer
+    login_user
   end
 
   describe '#create' do
@@ -34,6 +33,10 @@ describe FeedbacksController do
         expect{
           post :create, params: { interview_id: interview.id, feedback: FactoryGirl.attributes_for(:feedback, riot_rating: nil) }
         }.not_to change { Feedback.all.count}
+      end
+      it 'assigns @feedback with errors' do
+        post :create, params: { interview_id: interview.id, feedback: { type: 'invalid' } }
+        expect(assigns[:feedback].errors).not_to be_empty
       end
     end
   end

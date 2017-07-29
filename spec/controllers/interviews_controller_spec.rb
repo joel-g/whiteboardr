@@ -66,23 +66,24 @@ describe InterviewsController do
       end
       context 'invalid interview information' do
         it 'does not save a interview with no interviewer_id' do
-          missing_interviewer_id = FactoryGirl.attributes_for(:interview, interviewer_id: nil)
-          post :create, params: { interview: missing_interviewer_id }
-          expect(assigns[:interview].errors).not_to be_empty
+          missing_interviewer_id = FactoryGirl.attributes_for(:interview, interviewer_id: nil, applicant_id: applicant.username)
+          expect { post :create, params: { interview: missing_interviewer_id } }.not_to change { Interview.all.count }
         end
         it 'does not save a interview with no applicant_id' do
           missing_applicant_id = FactoryGirl.attributes_for(:interview, applicant_id: nil)
-          post :create, params: { interview: missing_applicant_id }
-          expect(assigns[:interview].errors).not_to be_empty
+          expect { post :create, params: { interview: missing_applicant_id } }.not_to change { Interview.all.count }
         end
         it 'does not save a interview with no challenge_id' do
-          missing_challenge_id = FactoryGirl.attributes_for(:interview, challenge_id: nil)
-          post :create, params: { interview: missing_challenge_id }
-          expect(assigns[:interview].errors).not_to be_empty
+          missing_challenge_id = FactoryGirl.attributes_for(:interview, challenge_id: nil, applicant_id: applicant.username)
+          expect { post :create, params: { interview: missing_challenge_id } }.not_to change { Interview.all.count }
         end
         it 'shows the #new view' do
           post :create, params: { interview: { type: 'invalid' } }
           expect(response).to render_template('new')
+        end
+        it 'assigns @interview with errors' do
+          post :create, params: { interview: { type: 'invalid' } }
+          expect(assigns[:interview].errors).not_to be_empty
         end
       end
     end
@@ -107,17 +108,17 @@ describe InterviewsController do
         login_user
       end
       it 'responds with a status of 200' do
-        get :show, {id: interview.id}
+        get :show, params: {id: interview.id}
         expect(response.status).to eq 200
       end
       it 'renders the show view' do
-        get :show, {id: interview.id}
+        get :show, params: {id: interview.id}
         expect(response).to render_template('show')
       end
     end
     context 'when a user is not logged in' do
       it 'redirects to login' do
-        get :show, {id: interview.id}
+        get :show, params: {id: interview.id}
         expect(response).to redirect_to login_path
       end
     end
