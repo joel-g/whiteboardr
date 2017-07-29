@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :interview do
-    interviewer_id {User.all.sample.id}
-    applicant_id {User.all.sample.id}
-    challenge_id {Challenge.all.sample.id}
+    challenge_id { Challenge.first.id }
+    applicant_id { User.first.id }
+    interviewer_id { User.last.id }
   end
 end
