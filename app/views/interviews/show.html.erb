@@ -6,4 +6,18 @@
   <p>
     <%= @interview.challenge.body %>
   </p>
+  <p>
+    <% if @interview.challenge.input %>
+      <h4>Input:</h4> <%= @interview.challenge.input %>
+    <% end %>
+    <% if @interview.challenge.output %>
+      <h4>Output:</h4> <%= @interview.challenge.output %>
+    <% end %>
+    <% if @interview.challenge.solution %>
+      <h4>Solution:</h4>
+      <pre>
+        <%= simple_format(@interview.challenge.solution) %>
+      </pre>
+    <% end %>
+  </p>
 </div>
