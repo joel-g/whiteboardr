@@ -28,8 +28,10 @@ class ChallengesController < ApplicationController
   end
 
   def create
-    tag_string = params[:challenge][:tag][:name]
-    isolate_tags(tag_string).each {|tag| Tag.create(name: tag)}
+    if params[:challenge][:tag]
+      tag_string = params[:challenge][:tag][:name]
+      isolate_tags(tag_string).each {|tag| Tag.create(name: tag)}
+    end
     @challenge = Challenge.new(challenge_params)
     if @challenge.save
       redirect_to root_path

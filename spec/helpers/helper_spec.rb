@@ -1,4 +1,4 @@
-require_relative "../app/helpers/application_helper.rb"
+require 'rails_helper'
 
 describe ApplicationHelper do
   context '#isolate_tags' do
@@ -6,7 +6,7 @@ describe ApplicationHelper do
       expect(isolate_tags('hello, hi , , , , how, are, you')).to eq ['hello', 'hi', 'how', 'are', 'you']
     end
     it 'takes of a string of a single tag and returns an array of a single tag' do
-      expect(isolate_tags('muggle')).to eq ['muggle']
+      expect(helper.isolate_tags('muggle')).to eq ['muggle']
     end
   end
 end
