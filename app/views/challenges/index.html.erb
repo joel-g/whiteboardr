@@ -1,3 +1,12 @@
+<div class='challenge-filters'>
+  <%= form_tag url_for(controller: 'challenges', action: 'index'), method: 'get' do %>
+    Easy<%= check_box_tag 'difficulty[]', 'Easy', false, {multiple: true} %>
+    Medium<%= check_box_tag  'difficulty[]', 'Medium', false, {multiple: true} %>
+    Hard<%= check_box_tag  'difficulty[]', 'Hard', false, {multiple: true} %>
+    <%= submit_tag 'Filter' %>
+  <% end %>
+</div>
+
 <div class='challenges-container'>
   <ul class='challenges-list'>
     <% @challenges.each do |challenge| %>

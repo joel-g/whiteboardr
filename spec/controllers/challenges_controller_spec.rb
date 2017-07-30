@@ -84,15 +84,15 @@ describe ChallengesController do
     end
     context 'difficulty filter specified' do
       it 'renders the index view' do
-        get :index, params: {difficulty: 'easy,hard'}
+        get :index, params: {difficulty: ['easy','hard']}
         expect(response).to render_template :index
       end
       it 'assigns @challenges to challenges matching the specified difficulties' do
-        get :index, params: {difficulty: 'easy,hard'}
+        get :index, params: {difficulty: ['easy','hard']}
         expect(assigns[:challenges]).to match_array([challenge_easy,challenge_hard])
       end
       it 'assigns @challenges to challenges matching one specified difficulties' do
-        get :index, params: {difficulty: 'medium'}
+        get :index, params: {difficulty: ['medium']}
         expect(assigns[:challenges]).to match_array([challenge_medium])
       end
     end

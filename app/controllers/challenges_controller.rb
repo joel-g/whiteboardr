@@ -1,12 +1,12 @@
 class ChallengesController < ApplicationController
   skip_before_action :require_login, only: [:index]
-  
+
   def index
     where_query = 'true '
     where_params = []
     if (params[:difficulty])
-      where_query << ' AND lower(difficulty) in (?) '
-      where_params = params[:difficulty].split(',')
+      where_query << ' AND difficulty in (?) '
+      where_params = params[:difficulty]
     end
     @challenges = Challenge.where(where_query, where_params)
     render :index
