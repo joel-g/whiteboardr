@@ -17,7 +17,7 @@ describe UsersController do
     let!(:valid_user_attributes) { FactoryGirl.attributes_for(:user) }
     context 'valid user information' do
       it 'redirects to root when login successful' do
-        post :create, params: { user: valid_user_attributes }
+        post :create, params: { user: valid_user_attributes, password_confirmation: 'pwd'}
         expect(response).to redirect_to(root_path)
       end
 
@@ -37,8 +37,9 @@ describe UsersController do
         post :create, params: { user: missing_email }
         expect(assigns[:user].errors).not_to be_empty
       end
-      missing_first_name = FactoryGirl.attributes_for(:user, first_name: '')
+
       it 'does not save a user with no first_name' do
+        missing_first_name = FactoryGirl.attributes_for(:user, first_name: '')
         post :create, params: { user: missing_first_name }
         expect(assigns[:user].errors).not_to be_empty
       end
@@ -54,7 +55,20 @@ describe UsersController do
       end
       it 'does not save a user with no password' do
         missing_password = FactoryGirl.attributes_for(:user, password: '')
+        missing_password[:password_confirmation] = ''
         post :create, params: { user: missing_password }
+        expect(assigns[:user].errors).not_to be_empty
+      end
+      it 'does not save a user with a password_confirmation that differs from password' do
+        missing_password = FactoryGirl.attributes_for(:user)
+        missing_password[:password_confirmation] = 'not_password'
+        post :create, params: { user: missing_password }
+        expect(assigns[:user].errors).not_to be_empty
+      end
+      it 'does not save a user with a password that is less than three characters' do
+        short_password = FactoryGirl.attributes_for(:user, password: 'pw')
+        short_password[:password_confirmation] = 'pw'
+        post :create, params: { user: short_password }
         expect(assigns[:user].errors).not_to be_empty
       end
       it 'does not save a user with a duplicate username' do
