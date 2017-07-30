@@ -13,6 +13,38 @@ describe Interview, type: :model do
     it { is_expected.to belong_to(:challenge)}
   end
   context "helper method" do
+    before(:each) do
+      user = FactoryGirl.create(:user)
+      FactoryGirl.create(:challenge)
+      @interview = FactoryGirl.create(:interview)
+      FactoryGirl.create(:feedback, knowledge_rating: 4, presence_rating: 4, board_rating: 4, riot_rating: 4, interview_id: @interview.id, user_id: user.id)
+      FactoryGirl.create(:feedback, knowledge_rating: 5, presence_rating: 5, board_rating: 5, riot_rating: 5, interview_id: @interview.id, user_id: user.id)
+    end
+    describe "#average_knowledge_rating" do
+      it 'returns the average knowledge rating' do
+        expect(@interview.average_knowledge_rating).to eq 4.5
+      end
+    end
+    describe "#average_presence_rating" do
+      it 'returns the average presence rating' do
+        expect(@interview.average_presence_rating).to eq 4.5
+      end
+    end
+    describe "#average_riot_rating" do
+      it 'returns the average riot rating' do
+        expect(@interview.average_riot_rating).to eq 4.5
+      end
+    end
+    describe "#average_board_rating" do
+      it 'returns the average board rating' do
+        expect(@interview.average_board_rating).to eq 4.5
+      end
+    end
+    describe "#date" do
+      it 'returns the date the interview was created in standard format' do
+        expect(@interview.date).to eq  DateTime.now.strftime("%-m/%-d/%Y")
+      end
+    end
     describe "#has_feedback_from?" do
       it 'returns true if a user has given feedback' do
         user = FactoryGirl.create(:user)
