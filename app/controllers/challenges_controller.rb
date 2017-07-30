@@ -1,4 +1,6 @@
 class ChallengesController < ApplicationController
+  include ApplicationHelper
+
   skip_before_action :require_login, only: [:index]
 
   def index
@@ -12,7 +14,7 @@ class ChallengesController < ApplicationController
       where_query << ' AND difficulty in (?) '
       where_params = params[:difficulty]
       where_params.each do |difficulty|
-        @difficulty_checked[difficulty] = true 
+        @difficulty_checked[difficulty] = true
       end
     end
     @challenges = Challenge.where(where_query, where_params)
@@ -20,6 +22,7 @@ class ChallengesController < ApplicationController
   end
 
   def new
+    @tag = Tag.new
     @challenge = Challenge.new
     render :new
   end
@@ -27,6 +30,13 @@ class ChallengesController < ApplicationController
   def create
     @challenge = Challenge.new(challenge_params)
     if @challenge.save
+      if params[:challenge][:tag]
+        tag_string = params[:challenge][:tag][:name]
+        isolate_tags(tag_string).each do |tag|
+          tag_id = Tag.find_or_create_by(name: tag).id
+          ChallengeTag.create(challenge_id: @challenge.id, tag_id: tag_id)
+        end
+      end
       redirect_to root_path
     else
       render :new
@@ -36,7 +46,7 @@ class ChallengesController < ApplicationController
   private
 
   def challenge_params
-    params.require(:challenge).permit(:user_id,:title, :body, :difficulty, :input, :output, :solution)
+    params.require(:challenge).permit(:user_id, :title, :body, :difficulty, :notes)
   end
 
 end

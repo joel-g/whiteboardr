@@ -10,17 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170727232409) do
+ActiveRecord::Schema.define(version: 20170730182906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "challenge_tags", force: :cascade do |t|
+    t.integer  "tag_id",       null: false
+    t.integer  "challenge_id", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "challenges", force: :cascade do |t|
     t.string   "title",      null: false
-    t.string   "input"
-    t.string   "output"
     t.string   "body",       null: false
-    t.string   "solution"
+    t.string   "notes"
     t.string   "difficulty"
     t.integer  "user_id",    null: false
     t.datetime "created_at"
@@ -46,6 +51,12 @@ ActiveRecord::Schema.define(version: 20170727232409) do
     t.integer  "run_time_minutes"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

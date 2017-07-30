@@ -32,13 +32,20 @@ describe ChallengesController do
 
     context 'Valid challenge' do
       let!(:valid_challenge){ FactoryGirl.attributes_for(:challenge) }
-
+      let!(:valid_tag){ FactoryGirl.attributes_for(:tag) }
+      let!(:challenge){ FactoryGirl.create(:challenge) }
       it 'redirects to root' do
         post :create, params: { challenge: valid_challenge }
         expect(response).to redirect_to root_path
       end
       it 'creates a challenge' do
         expect{ post :create, params: { challenge: valid_challenge } }.to change { Challenge.all.count }.by(1)
+      end
+      it 'creates a tag, if tag was entered and does not exist' do
+        valid_challenge[:tag] = valid_tag
+        p valid_tag
+        p valid_challenge
+        expect{ post :create, params: { challenge: valid_challenge }  }.to change { Tag.all.count }.by(1)
       end
     end
 
