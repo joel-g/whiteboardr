@@ -22,9 +22,7 @@ describe UsersController do
       end
 
       it 'creates a user' do
-        user_count = User.all.count
-        post :create, params: { user: valid_user_attributes }
-        expect(User.all.count).to eq(user_count + 1)
+        expect{ post :create, params: { user: valid_user_attributes } }.to change{ User.all.count }.by 1
       end
 
       it 'logs in the user' do
