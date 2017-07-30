@@ -1,0 +1,2 @@
+class ChallengeTag < ApplicationRecord
+end
