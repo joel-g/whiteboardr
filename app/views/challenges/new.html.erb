@@ -29,8 +29,10 @@
       <%= f.select :difficulty, ['Easy', 'Medium', 'Hard'] %>
     </p>
     <p>
-      <%= f.label :tags %><br>
-      <%= f.text_field :tags %>
+      <%= form_for @tag do |ff| %>
+        <%= ff.label 'Tags:' %><br />
+        <%= ff.text_field :name %>
+      <% end %>
     </p>
     <p>
       <%= f.submit %>

@@ -1,6 +1,7 @@
 class ChallengesController < ApplicationController
 
   def new
+    @tag = Tag.new
     @challenge = Challenge.new
     render :new
   end
