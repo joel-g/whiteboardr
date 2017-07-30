@@ -3,7 +3,7 @@ require 'rails_helper'
 describe FeedbacksController do
 
   let!(:applicant){FactoryGirl.create(:user)}
-  let!(:interviewer){FactoryGirl.create(:user, password: "pw")}
+  let!(:interviewer){FactoryGirl.create(:user)}
   let!(:challenge){FactoryGirl.create(:challenge)}
   let!(:interview){FactoryGirl.create(:interview, applicant_id: applicant.id, interviewer_id: interviewer.id)}
 
