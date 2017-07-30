@@ -1,0 +1,9 @@
+<div class='challenges-container'>
+  <ul class='challenges-list'>
+    <% @challenges.each do |challenge| %>
+      <li>
+        <%= challenge.title_and_difficulty %><br />
+      </li>
+    <% end %>
+  </ul>
+</div>

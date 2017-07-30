@@ -1,5 +1,10 @@
 class ChallengesController < ApplicationController
 
+  def index
+    @challenges = Challenge.all
+    render :index
+  end
+
   def new
     @challenge = Challenge.new
     render :new
