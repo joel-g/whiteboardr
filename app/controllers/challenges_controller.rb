@@ -1,7 +1,11 @@
 class ChallengesController < ApplicationController
 
   def index
-    @challenges = Challenge.all
+    if (params[:difficulty])
+      @challenges = Challenge.where('lower(difficulty) = ?', params[:difficulty].downcase)
+    else
+      @challenges = Challenge.all
+    end
     render :index
   end
 
