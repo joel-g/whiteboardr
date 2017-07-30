@@ -1,5 +1,5 @@
 class Challenge < ActiveRecord::Base
-  validates :title, presence: true, uniqueness: true
+  validates :title, presence: true, uniqueness: { case_sensitive: false }
   validates :body, presence: true, uniqueness: true
   validates :difficulty, presence: true
   belongs_to :user

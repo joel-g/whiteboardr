@@ -1,3 +1,7 @@
+Interview.destroy_all
+Challenge.destroy_all
+User.destroy_all
+
 user_data = [
     {first_name: 'Commander', last_name: 'Shephard', username: 'earthsaver1', email: 'commander@normandy.com', password: 'pw'},
     {first_name: 'Master', last_name: 'Chief', username: 'ih8covenant', email: 'john@unsc.gov', password: 'pw'},

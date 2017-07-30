@@ -43,8 +43,6 @@ describe ChallengesController do
       end
       it 'creates a tag, if tag was entered and does not exist' do
         valid_challenge[:tag] = valid_tag
-        p valid_tag
-        p valid_challenge
         expect{ post :create, params: { challenge: valid_challenge }  }.to change { Tag.all.count }.by(1)
       end
     end
