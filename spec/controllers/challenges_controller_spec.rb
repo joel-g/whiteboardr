@@ -66,4 +66,36 @@ describe ChallengesController do
     end
   end
 
+  context '#index' do
+    let! (:user) {FactoryGirl.create(:user)}
+    let! (:challenge_easy) {FactoryGirl.create(:challenge, difficulty: 'easy')}
+    let! (:challenge_medium) {FactoryGirl.create(:challenge, difficulty: 'medium')}
+    let! (:challenge_hard) {FactoryGirl.create(:challenge, difficulty: 'hard')}
+    context 'no filters specified' do
+      before(:each) do
+        get :index
+      end
+      it 'renders the index view' do
+        expect(response).to render_template :index
+      end
+      it 'assigns @challenges to all challenges' do
+        expect(assigns[:challenges]).to match_array(Challenge.all)
+      end
+    end
+    context 'difficulty filter specified' do
+      it 'renders the index view' do
+        get :index, params: {difficulty: ['easy','hard']}
+        expect(response).to render_template :index
+      end
+      it 'assigns @challenges to challenges matching the specified difficulties' do
+        get :index, params: {difficulty: ['easy','hard']}
+        expect(assigns[:challenges]).to match_array([challenge_easy,challenge_hard])
+      end
+      it 'assigns @challenges to challenges matching one specified difficulties' do
+        get :index, params: {difficulty: ['medium']}
+        expect(assigns[:challenges]).to match_array([challenge_medium])
+      end
+    end
+  end
+
 end
