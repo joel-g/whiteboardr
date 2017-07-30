@@ -1,5 +1,6 @@
 class ChallengesController < ApplicationController
-
+  skip_before_action :require_login, only: [:index]
+  
   def index
     where_query = 'true '
     where_params = []

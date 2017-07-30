@@ -66,4 +66,21 @@ describe ChallengesController do
     end
   end
 
+  context '#index' do
+    let! (:user) {FactoryGirl.create(:user)}
+    let! (:challenge_easy) {FactoryGirl.create(:challenge, difficulty: 'easy')}
+    let! (:challenge_hard) {FactoryGirl.create(:challenge, difficulty: 'hard')}
+    context 'no filters specified' do
+      before(:each) do
+        get :index
+      end
+      it 'renders the index view' do
+        expect(response).to render_template :index
+      end
+      it 'assigns @challenges to all challanges' do
+        expect(assigns[:challenges].count).to eq(Challenge.all.count)
+      end
+    end
+  end
+
 end
