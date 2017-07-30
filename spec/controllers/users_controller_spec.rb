@@ -81,4 +81,19 @@ describe UsersController do
       end
     end
   end
+
+  context '#show' do
+    before(:each) do
+      @user = FactoryGirl.create(:user)
+      login_user
+    end
+    it 'assigns @user' do
+      get :show, params: { id: @user.id }
+      expect(assigns[:user]).to eq @user
+    end
+    it 'renders the #show view' do
+      get :show, params: { id: @user.id }
+      expect(response).to render_template :show
+    end
+  end
 end
