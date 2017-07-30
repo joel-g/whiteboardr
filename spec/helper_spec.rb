@@ -1,6 +1,6 @@
-require_relative "../app/helpers/helpers.rb"
+require_relative "../app/helpers/application_helper.rb"
 
-describe 'helpers' do
+describe ApplicationHelper do
   context '#isolate_tags' do
     it 'takes of a string of commma seperated tags and returns an array of tags' do
       expect(isolate_tags('hello, hi , , , , how, are, you')).to eq ['hello', 'hi', 'how', 'are', 'you']
