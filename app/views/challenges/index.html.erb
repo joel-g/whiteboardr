@@ -1,0 +1,24 @@
+<div class='challenge-filters'>
+  <%= form_tag url_for(controller: 'challenges', action: 'index'), method: 'get' do %>
+    Filter by difficulty level:
+    Easy<%= check_box_tag 'difficulty[]', 'Easy', @difficulty_checked['Easy'], {multiple: true} %>
+    Medium<%= check_box_tag  'difficulty[]', 'Medium', @difficulty_checked['Medium'], {multiple: true} %>
+    Hard<%= check_box_tag  'difficulty[]', 'Hard', @difficulty_checked['Hard'], {multiple: true} %>
+    <%= submit_tag 'Filter' %>
+  <% end %>
+</div>
+
+<div class='challenges-container'>
+  <ul class='challenges-list'>
+    <% @challenges.each do |challenge| %>
+      <li>
+        <%= challenge.title_and_difficulty %>
+        <% if challenge.tags.length > 0 %><br />(Tags:
+          <% challenge.tags.each do |t| %>
+          <%= t.name %>
+          <% end %>)
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

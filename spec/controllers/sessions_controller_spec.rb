@@ -9,14 +9,14 @@ describe SessionsController do
   end
 
   context '#create' do
-    let!(:user) { FactoryGirl.create(:user, password: 'bob') }
+    let!(:user) { FactoryGirl.create(:user) }
     context 'valid user' do
       it 'redirects to root when login successful' do
-        post :create, params: { email: user.email, password: 'bob' }
+        post :create, params: { email: user.email, password: 'pwd' }
         expect(response).to redirect_to(root_path)
       end
       it 'logs in the user' do
-        post :create, params: { email: user.email, password: 'bob' }
+        post :create, params: { email: user.email, password: 'pwd' }
         expect(logged_in?).to be true
       end
     end
@@ -38,8 +38,8 @@ describe SessionsController do
 
   context '#destroy' do
     before(:each) do
-      user = FactoryGirl.create(:user, password: 'bob')
-      post :create, params: { email: user.email, password: 'bob' }
+      @user = FactoryGirl.create(:user)
+      login_user
     end
     it 'redirects to root' do
       delete :destroy, params: { id: 1 }
