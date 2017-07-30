@@ -4,6 +4,7 @@ FactoryGirl.define do
     email {"#{Faker::Internet.safe_email}#{rand(999999)}"}
     first_name {Faker::Name.first_name}
     last_name {Faker::Name.last_name}
-    password {Faker::Internet.password}
+    password {'pwd'}
+    password_confirmation {'pwd'}
   end
 end
