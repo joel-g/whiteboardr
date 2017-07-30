@@ -30,7 +30,7 @@
     </p>
     <p>
       <%= f.fields_for @tag do |ff| %>
-        <%= ff.label 'Tags:' %><br />
+        <%= ff.label 'Tags:' %><br />Separate with commas and pluralize when appropriate, e.g. <i>algorithms, strings, arrays</i><br />
         <%= ff.text_field :name %>
       <% end %>
     </p>
