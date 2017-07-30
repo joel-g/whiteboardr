@@ -1,11 +1,13 @@
 class ChallengesController < ApplicationController
 
   def index
+    where_query = 'true '
+    where_params = []
     if (params[:difficulty])
-      @challenges = Challenge.where('lower(difficulty) = ?', params[:difficulty].downcase)
-    else
-      @challenges = Challenge.all
+      where_query << ' AND lower(difficulty) in (?) '
+      where_params = params[:difficulty].split(',')
     end
+    @challenges = Challenge.where(where_query, where_params)
     render :index
   end
 
