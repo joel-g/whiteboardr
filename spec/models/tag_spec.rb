@@ -8,5 +8,6 @@ describe Tag, type: :model do
   end
   context 'associations' do
     it { is_expected.to have_many(:challenge_tags)}
+    it { is_expected.to have_many(:challenges)}
   end
 end

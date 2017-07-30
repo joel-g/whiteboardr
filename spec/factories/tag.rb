@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :tag do
-    name {Faker::StarWars.character}
+    name {Faker::Lorem.word + Faker::Lorem.word + Faker::Lorem.word}
   end
 end
