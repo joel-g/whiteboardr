@@ -7,16 +7,10 @@
     <%= @interview.challenge.body %>
   </p>
   <p>
-    <% if @interview.challenge.input && @interview.challenge.input.length > 0%>
-      <h4>Input:</h4> <%= @interview.challenge.input %>
-    <% end %>
-    <% if @interview.challenge.output && @interview.challenge.output.length > 0%>
-      <h4>Output:</h4> <%= @interview.challenge.output %>
-    <% end %>
-    <% if @interview.challenge.solution && @interview.challenge.solution.length  > 0 %>
-      <h4>Solution:</h4>
+      <% if @interview.challenge.notes && @interview.challenge.notes.length > 0 %>
+      <h4>Notes:</h4>
       <pre>
-        <%= simple_format(@interview.challenge.solution) %>
+        <%= simple_format(@interview.challenge.notes) %>
       </pre>
     <% end %>
   </p>
