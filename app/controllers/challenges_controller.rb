@@ -7,6 +7,7 @@ class ChallengesController < ApplicationController
   end
 
   def create
+    tag_string = params[:challenge][:tag][:name]
     @challenge = Challenge.new(challenge_params)
     if @challenge.save
       redirect_to root_path
@@ -18,7 +19,7 @@ class ChallengesController < ApplicationController
   private
 
   def challenge_params
-    params.require(:challenge).permit(:user_id,:title, :body, :difficulty, :input, :output, :solution)
+    params.require(:challenge).permit(:user_id, :title, :body, :difficulty, :notes, :solution)
   end
 
 end
