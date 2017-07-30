@@ -10,5 +10,4 @@ class Challenge < ActiveRecord::Base
     "#{self.title} - #{self.difficulty}"
   end
 
-
 end
