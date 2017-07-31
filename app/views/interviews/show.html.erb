@@ -2,7 +2,16 @@
 <h3>Interviewed by <%= @interview.interviewer.full_name %> on <%= @interview.date %> </h3>
 
 <%= render partial: '/challenges/challenge', locals: { challenge: @interview.challenge } %>
-
+<div class='form-container'>
+  <%= form_for @interview do |f| %>
+    Whiteboard image:
+    <%= f.file_field :image %>
+    <%= f.submit 'Upload' %>
+  <% end %>
+</div>
+<div>
+  <%= image_tag @interview.image.url if @interview.image_stored? %>
+</div>
 <% if current_user == @interview.applicant %>
   <div class='feedback-container'>
     <h2>Your Feedback</h2>
