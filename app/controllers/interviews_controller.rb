@@ -7,10 +7,11 @@ class InterviewsController < ApplicationController
 
   def new
     @interview = Interview.new
-    populate_challenges
+    @challenge = Challenge.find(params[:challenge_id])
   end
 
   def create
+    @challenge = Challenge.find(params[:interview][:challenge_id])
     @interview = Interview.new
     entered_applicant_name = params[:interview][:applicant_id]
     applicant = User.find_by(username: params[:interview][:applicant_id])
