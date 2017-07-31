@@ -28,6 +28,7 @@ class ChallengesController < ApplicationController
   end
 
   def create
+    @tag = Tag.new
     @challenge = Challenge.new(challenge_params)
     if @challenge.save
       if params[:challenge][:tag]
