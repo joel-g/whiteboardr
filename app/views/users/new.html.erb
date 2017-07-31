@@ -4,7 +4,7 @@
   <%= flash[:alert] %>
 </div>
 <% if @user.errors.any? %>
-<div class="alert alert-danger" role="alert">
+<div class="alert alert-danger signup" role="alert">
   <% @user.errors.full_messages.each do |error| %>
       <p><%= error %></p>
   <% end %>
@@ -17,55 +17,48 @@
 'form-horizontal' } do |f| %>
 
     <div class="form-group">
-      <label class="col-md-4 control-label" for="textinput">First Name</label>
       <div class="col-md-4">
-      <%= f.text_field :first_name, class: "form-control input-md" %>
+      <%= f.text_field :first_name, class: "form-control input-md", placeholder:'First Name' %>
       <span class="help-block"> </span>
     </div>
     </div>
 
     <div class="form-group">
-      <label class="col-md-4 control-label" for="textinput">Last Name</label>
       <div class="col-md-4">
-      <%= f.text_field :last_name, class: "form-control input-md" %>
+      <%= f.text_field :last_name, class: "form-control input-md", placeholder:'Last Name' %>
       <span class="help-block"> </span>
     </div>
     </div>
 
     <div class="form-group">
-      <label class="col-md-4 control-label" for="textinput">Email</label>
       <div class="col-md-4">
-      <%= f.text_field :email, class: "form-control input-md" %>
+      <%= f.text_field :email, class: "form-control input-md", placeholder:'Email' %>
       <span class="help-block"> </span>
     </div>
     </div>
 
     <div class="form-group">
-      <label class="col-md-4 control-label" for="textinput">Username</label>
       <div class="col-md-4">
-      <%= f.text_field :username, class: "form-control input-md" %>
+      <%= f.text_field :username, class: "form-control input-md", placeholder:'Username' %>
       <span class="help-block"> </span>
     </div>
     </div>
 
     <div class="form-group">
-      <label class="col-md-4 control-label" for="textinput">Password</label>
       <div class="col-md-4">
-      <%= f.password_field :password, class: "form-control input-md" %>
+      <%= f.password_field :password, class: "form-control input-md", placeholder:'Password' %>
       <span class="help-block"> </span>
     </div>
     </div>
 
     <div class="form-group">
-      <label class="col-md-4 control-label" for="textinput">Confirm Password</label>
       <div class="col-md-4">
-      <%= f.password_field :password_confirmation, class: "form-control input-md" %>
+      <%= f.password_field :password_confirmation, class: "form-control input-md", placeholder:'Confirm Password' %>
       <span class="help-block"> </span>
     </div>
     </div>
 
     <div class="form-group">
-      <label class="col-md-4 control-label" for="singlebutton"> </label>
       <div class="col-md-4">
       <%= f.submit 'Register', id: 'singlebutton', name: 'singlebutton', class: 'btn btn-primary' %>
     </div>

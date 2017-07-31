@@ -1,10 +1,16 @@
 <div class='challenge-filters'>
   <%= form_tag url_for(controller: 'challenges', action: 'index'), method: 'get' do %>
     Filter by difficulty level:
-    Easy<%= check_box_tag 'difficulty[]', 'Easy', @difficulty_checked['Easy'], {multiple: true} %>
-    Medium<%= check_box_tag  'difficulty[]', 'Medium', @difficulty_checked['Medium'], {multiple: true} %>
-    Hard<%= check_box_tag  'difficulty[]', 'Hard', @difficulty_checked['Hard'], {multiple: true} %>
-    <%= submit_tag 'Filter' %>
+    <p>
+    Easy <%= check_box_tag 'difficulty[]', 'Easy', @difficulty_checked['Easy'], {multiple: true} %>
+    </p>
+    <p>
+    Medium <%= check_box_tag  'difficulty[]', 'Medium', @difficulty_checked['Medium'], {multiple: true} %>
+    </p>
+    <p>
+    Hard <%= check_box_tag  'difficulty[]', 'Hard', @difficulty_checked['Hard'], {multiple: true} %>
+    </p>
+    <%= submit_tag 'Filter', id: 'singlebutton', name: 'singlebutton', class: 'btn btn-primary' %>
   <% end %>
 </div>
 

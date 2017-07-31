@@ -3,6 +3,7 @@
 
 body {
   padding-top: 10px;
+  font-family: "Helvetica Neue";
 }
 
 section {
@@ -39,11 +40,16 @@ textarea {
   color: #2F88D3;
 }
 
-.alert {
+.signup {
   margin-left: 25px;
   width: 25%;
-  margin: 0 auto;
   margin-bottom: 10px;
+}
+
+.login {
+  margin-left: 25px;
+  width: 25%;
+  margin-bottom: 5px;
 }
 
 h1, h4 {

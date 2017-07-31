@@ -26,8 +26,8 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="/">Home</a></li>
-            <li><a href="/challenges/index">Challenges</a></li>
+            <li><%= link_to 'Home', root_path %></li>
+            <li><%= link_to 'Challenges', challenges_path %></li>
             <% if logged_in? %>
               <li><%= link_to 'My Profile', user_path(current_user) %></li>
               <li><%= link_to 'Logout', logout_path, method: :delete %></li>
