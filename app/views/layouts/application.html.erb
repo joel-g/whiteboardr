@@ -9,16 +9,34 @@
   </head>
 
   <body>
-    <nav class='nav-bar'>
-      <%= link_to image_tag('wb_banner_logo.png'), '/' %>
-      <%= link_to 'Home', root_path %>
-      <% if logged_in? %>
-        Hi, <%= link_to current_user.first_name, user_path(current_user) %>
-        <%= link_to 'Logout', logout_path, method: :delete %>
-      <% else %>
-        <%= link_to 'Register', new_user_path %> |
-        <%= link_to 'Login', login_path %>
-      <% end %>
+    <%= link_to image_tag('wb_banner_logo.png'), '/' %>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><%= link_to 'Home', root_path %></li>
+            <% if logged_in? %>
+              <li><%= link_to 'My Profile', user_path(current_user) %></li>
+              <li><%= link_to 'Logout', logout_path, method: :delete %></li>
+              <li><%= link_to "Hi " + current_user.first_name+ "!", user_path(current_user) %></li>
+            <% else %>
+              <li><%= link_to 'Register', new_user_path %></li>
+              <li><%= link_to 'Login', login_path %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
     </nav>
     <%= yield %>
   </body>
