@@ -21,7 +21,23 @@ describe ChallengesController do
         expect(response).to redirect_to login_path
       end
     end
+  end
 
+  describe '#show' do
+    before(:each) do
+      FactoryGirl.create(:user)
+      @challenge = FactoryGirl.create(:challenge)
+      get :show, params: {id: @challenge.id}
+    end
+    it 'renders the show view' do
+      expect(response).to render_template :show
+    end
+    it 'responds with a 200 status' do
+      expect(response.status).to eq 200
+    end
+    it 'assigns @challenge' do
+      expect(assigns[:challenge]).to eq @challenge
+    end
   end
 
   describe '#create' do
