@@ -122,6 +122,11 @@ describe UsersController do
       get :edit, params: { id: @user.id }
       expect(response).to render_template :edit
     end
+    it 'redirects to root if the currently logged in user isn\'t the user being editted' do
+      user = FactoryGirl.create(:user)
+      get :edit, params: { id: user.id }
+      expect(response).to redirect_to root_path
+    end
   end
 
   context '#update' do
@@ -186,6 +191,11 @@ describe UsersController do
         missing_last_name = FactoryGirl.attributes_for(:user, last_name: '')
         patch :update, params: { user: missing_last_name, id: @user.id }
         expect(assigns[:user].errors).not_to be_empty
+      end
+      it 'redirects to root if the currently logged in user isn\'t the user being editted' do
+        user = FactoryGirl.create(:user)
+        get :update, params: { user: FactoryGirl.attributes_for(:user), id: user.id }
+        expect(response).to redirect_to root_path
       end
     end
   end
