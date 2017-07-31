@@ -12,25 +12,39 @@ user_data = [
 User.create(user_data)
 
 challenge_data = [
-  {title: 'Sum an array', notes: 'Sample input: [1, 7, 9, 3, 4, 2, 6, -1] /n Sample output: 31', difficulty: 'Easy', user_id: 1, body: 'Take an array of numbers (any length) and return a single number that is the sum of all the numbers'}, {title: 'Fizz Buzz', notes: "Sample Input: 1, 3, 4, 5, 15 /n Sample output: 1, Fizz, 4, Buzz, FizzBuzz", difficulty: 'Medium', user_id: 1, body: 'Write a method that takes a single integer as an argument and returns Fizz is the number is divisible by 3, Buzz if the number is divisible by 5 and FizzBuzz if the number is divisible by both'}
+  {title: 'Sum an array', notes: 'Sample input: [1, 7, 9, 3, 4, 2, 6, -1] /n Sample output: 31', difficulty: 'Easy', user_id: User.all.sample.id, body: 'Take an array of numbers (any length) and return a single number that is the sum of all the numbers'},
+  {title: 'Fizz Buzz', notes: "Sample Input: 1, 3, 4, 5, 15 /n Sample output: 1, Fizz, 4, Buzz, FizzBuzz", difficulty: 'Medium', user_id: User.all.sample.id, body: 'Write a method that takes a single integer as an argument and returns Fizz is the number is divisible by 3, Buzz if the number is divisible by 5 and FizzBuzz if the number is divisible by both'},
+  {title: 'Reverse a String', notes: 'Take a string and reverse it', difficulty: 'Easy', user_id: User.all.sample.id, body: 'Do as stated above'}
 ]
-
 Challenge.create(challenge_data)
 
+Tag.create([{name: 'algorithm'}, {name: 'data structures'}, {name: 'arrays'}])
+tags = []
+Tag.all.each do |tag|
+  tags << tag.id
+end
+
+challenges = []
+Challenge.all.each do |challenge|
+  challenges << challenge.id
+end
+
 ChallengeTag.create([
-  {challenge_id: 1, tag_id: 1},
-  {challenge_id: 1, tag_id: 2},
-  {challenge_id: 1, tag_id: 3},
-  {challenge_id: 2, tag_id: 1}
+  {challenge_id: challenges[0], tag_id: tags[0]},
+  {challenge_id: challenges[0], tag_id: tags[1]},
+  {challenge_id: challenges[1], tag_id: tags[0]},
+  {challenge_id: challenges[0], tag_id: tags[1]}
   ])
 
-Tag.create([{name: 'algorithm'}, {name: 'data structures'}, {name: 'arrays'}])
+users = []
+User.all.each do |user|
+  users << user.id
+end
 
 interview_data = [
-  {challenge_id: rand(1..2), interviewer_id: 3, applicant_id: 5},
-  {challenge_id: rand(1..2), interviewer_id: 1, applicant_id: 2},
-  {challenge_id: rand(1..2), interviewer_id: 5, applicant_id: 4},
-  {challenge_id: rand(1..2), interviewer_id: 3, applicant_id: 2}
+  {challenge_id: challenges[rand(0..2)], interviewer_id: users[0], applicant_id: users[1]},
+  {challenge_id: challenges[rand(0..2)], interviewer_id: users[1], applicant_id: users[0]},
+  {challenge_id: challenges[rand(0..2)], interviewer_id: users[2], applicant_id: users[3]},
+  {challenge_id: challenges[rand(0..2)], interviewer_id: users[4], applicant_id: users[5]},
 ]
-
 Interview.create(interview_data)
