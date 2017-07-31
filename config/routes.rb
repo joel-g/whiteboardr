@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :feedbacks, only: [:create]
   end
 
-  resources :users, only: [:new, :create, :show]
+  resources :users, except: [:destroy]
   resources :sessions, only: [:new, :create, :destroy]
 
   get 'login' => 'sessions#new'

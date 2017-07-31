@@ -1,4 +1,7 @@
 <h1><%= @user.username %>'s Interviews</h1>
+<% if current_user == @user %>
+  <%= link_to 'Edit Profile', edit_user_path(current_user) %>
+<% end %>
 <div class='interviews-container'>
   <ul class='interviews-list'>
     <% @user.interviews.each do |interview| %>
