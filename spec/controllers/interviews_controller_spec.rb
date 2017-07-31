@@ -75,6 +75,10 @@ describe InterviewsController do
           missing_applicant_id = FactoryGirl.attributes_for(:interview, applicant_id: nil)
           expect { post :create, params: { interview: missing_applicant_id } }.not_to change { Interview.all.count }
         end
+        it 'does not save a interview where the applicant is the interviewer' do
+          applicant_is_interviewer = FactoryGirl.attributes_for(:interview, interviewer_id: @user.id, applicant_id: @user.username)
+          expect { post :create, params: { interview: applicant_is_interviewer } }.not_to change { Interview.all.count }
+        end
         it 'shows the #new view' do
           post :create, params: { interview: { type: 'invalid', challenge_id: challenge.id } }
           expect(response).to render_template('new')
