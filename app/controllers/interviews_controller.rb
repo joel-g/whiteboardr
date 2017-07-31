@@ -21,13 +21,11 @@ class InterviewsController < ApplicationController
       if @interview.save
         redirect_to interview_path(@interview.id)
       else
-        populate_challenges
         @interview.errors.add(:interview, 'was not started.')
         @interview.applicant_id = entered_applicant_name
         render :new
       end
     else
-      populate_challenges
       @interview.errors.add(:applicant, 'username not found.')
       render :new
     end
@@ -39,10 +37,6 @@ class InterviewsController < ApplicationController
   end
 
   private
-
-  def populate_challenges
-    @challenges = Challenge.all.order(difficulty: 'ASC', title: 'ASC')
-  end
 
   def interview_params
     params.require(:interview).permit(:interviewer_id, :applicant_id, :challenge_id)
