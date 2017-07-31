@@ -3,11 +3,11 @@ Challenge.destroy_all
 User.destroy_all
 
 user_data = [
-    {first_name: 'Commander', last_name: 'Shephard', username: 'earthsaver1', email: 'commander@normandy.com', password: 'pw'},
-    {first_name: 'Master', last_name: 'Chief', username: 'ih8covenant', email: 'john@unsc.gov', password: 'pw'},
-    {first_name: 'Darth', last_name: 'Vader', username: 'sithlord83', email: 'darklord@empire.com', password: 'pw'},
-    {first_name: 'Lara', last_name: 'Croft', username: 'tombraider', email: 'tombraider@gmail.com', password: 'pw'},
-    {first_name: 'Leslie', last_name: 'Knope', username: 'iluvpawnee', email: 'hillary4evah@gmail.com', password: 'pw'}
+    {first_name: 'Commander', last_name: 'Shephard', username: 'earthsaver1', email: 'commander@normandy.com', password: 'pwd', password_confirmation: 'pwd'},
+    {first_name: 'Master', last_name: 'Chief', username: 'ih8covenant', email: 'john@unsc.gov', password: 'pwd', password_confirmation: 'pwd'},
+    {first_name: 'Darth', last_name: 'Vader', username: 'sithlord83', email: 'darklord@empire.com', password: 'pwd', password_confirmation: 'pwd'},
+    {first_name: 'Lara', last_name: 'Croft', username: 'tombraider', email: 'tombraider@gmail.com', password: 'pwd', password_confirmation: 'pwd'},
+    {first_name: 'Leslie', last_name: 'Knope', username: 'iluvpawnee', email: 'hillary4evah@gmail.com', password: 'pwd', password_confirmation: 'pwd'}
 ]
 User.create(user_data)
 
