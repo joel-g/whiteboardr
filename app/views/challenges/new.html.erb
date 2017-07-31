@@ -2,7 +2,9 @@
   <div class='errors'>
     <% if defined?(@challenge.errors) %>
       <% @challenge.errors.full_messages.each do |message| %>
-      <%= message %>
+      <div>
+        <%= message %>
+      </div>
       <% end %>
     <% end %>
   </div>
