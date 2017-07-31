@@ -137,7 +137,7 @@ describe InterviewsController do
       expect(assigns[:interview].image_uid).not_to be nil
     end
     it 'doesn\'t save a non-image' do
-      not_image = fixture_file_upload('files/text.txt', 'text/text')
+      not_image = fixture_file_upload('files/text.txt', 'text/xml')
       patch :update, params: { id: interview.id, interview: { image: not_image } }
       expect(assigns[:interview].image_uid).to be nil
     end

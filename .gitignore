@@ -19,3 +19,4 @@
 Gemfile.lock
 
 /public/system/dragonfly/development
+/public/system/dragonfly/test
