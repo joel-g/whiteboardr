@@ -12,11 +12,7 @@
   <ul class='challenges-list'>
     <% @challenges.each do |challenge| %>
       <li>
-        <% if logged_in? %>
-          <%= link_to challenge.title_and_difficulty, challenge_path(challenge) %>
-        <% else %>
-          <%= challenge.title_and_difficulty %>
-        <% end %>
+        <%= link_to challenge.title_and_difficulty, challenge_path(challenge) %>
         <% if challenge.tags.length > 0 %> <br />(Tags:
           <% challenge.tags.each do |t| %>
           <%= t.name %>
