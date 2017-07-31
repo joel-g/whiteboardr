@@ -1,0 +1,9 @@
+<%= render partial: 'challenge', locals: { challenge: @challenge } %>
+
+
+<% if logged_in? %>
+  <%= form_tag url_for(controller: 'interviews', action: 'new'), method: 'get' do %>
+    <%= hidden_field_tag :challenge_id, @challenge.id %>
+    <%= submit_tag 'Start Interview' %>
+  <% end %>
+<% end %>

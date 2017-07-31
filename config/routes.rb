@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :challenges, only: [:index, :create, :new]
+  resources :challenges, only: [:index, :create, :new, :show]
   resources :interviews, only: [:index, :new, :create, :show] do
     resources :feedbacks, only: [:create]
   end
