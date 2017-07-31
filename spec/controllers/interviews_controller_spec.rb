@@ -121,4 +121,25 @@ describe InterviewsController do
       end
     end
   end
+
+  describe '#update' do
+    let!(:applicant) { FactoryGirl.create(:user) }
+    let!(:interviewer) { FactoryGirl.create(:user) }
+    let!(:challenge) { FactoryGirl.create(:challenge) }
+    let!(:interview) {FactoryGirl.create(:interview)}
+    before(:each) do
+      @user = interviewer
+      login_user
+    end
+    it 'assigns a image_uid' do
+      image = fixture_file_upload('files/wb_icon.png', 'image/png')
+      patch :update, params: { id: interview.id, interview: { image: image } }
+      expect(assigns[:interview].image_uid).not_to be nil
+    end
+    it 'doesn\'t save a non-image' do
+      not_image = fixture_file_upload('files/text.txt', 'text/xml')
+      patch :update, params: { id: interview.id, interview: { image: not_image } }
+      expect(assigns[:interview].image_uid).to be nil
+    end
+  end
 end

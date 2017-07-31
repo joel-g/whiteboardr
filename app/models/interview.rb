@@ -1,4 +1,16 @@
 class Interview < ActiveRecord::Base
+  dragonfly_accessor :image do
+    after_assign :resize_image
+  end
+
+  def resize_image
+    if image.image?
+      image.process!(:thumb, '800x600>')
+    end
+  end
+
+  validates_property :format, of: :image, in: ['jpeg', 'png', 'gif']
+
   belongs_to :interviewer, class_name: 'User', foreign_key: 'interviewer_id'
   belongs_to :applicant, class_name: 'User', foreign_key: 'applicant_id'
   belongs_to :challenge
