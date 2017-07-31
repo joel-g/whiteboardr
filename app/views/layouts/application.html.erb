@@ -9,7 +9,8 @@
   </head>
 
   <body>
-    <%= link_to image_tag('wb_banner_logo.png'), '/' %>
+
+
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -20,12 +21,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
+          <a class="navbar-brand" href="/"><%= image_tag('wb_banner_logo.png', class: 'wb-log') %></a>
         </div>
-
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li class="active"><%= link_to 'Home', root_path %></li>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">Home</a></li>
+            <li><a href="/challenges/index">Challenges</a></li>
             <% if logged_in? %>
               <li><%= link_to 'My Profile', user_path(current_user) %></li>
               <li><%= link_to 'Logout', logout_path, method: :delete %></li>
@@ -35,8 +37,8 @@
               <li><%= link_to 'Login', login_path %></li>
             <% end %>
           </ul>
-        </div>
-      </div>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
     </nav>
     <%= yield %>
   </body>

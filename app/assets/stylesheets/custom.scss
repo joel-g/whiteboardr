@@ -1,0 +1,68 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+  padding-top: 10px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+}
+
+.center h1 {
+  margin-bottom: 10px;
+}
+
+.wb-log {
+  height: 280%;
+  width: auto;
+  margin-top: -16px;
+  margin-right: -10px;
+  margin-left: -20px;
+}
+
+.navbar {
+  margin-left: 10px;
+  margin-right: 30px;
+  font-size: 130%;
+}
+
+.nav {
+  color: #2F88D3;
+}
+
+.alert {
+  margin-left: 25px;
+  width: 25%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+h1, h4 {
+  font-family: "Helvetica Neue";
+  margin-left: 25px;
+}
+
+.centered-form{
+	margin-top: 60px;
+}
+
+.centered-form .panel{
+	background: rgba(255, 255, 255, 0.8);
+}
+
+.btn-block {
+  width: 80%;
+}
+
+h4 {
+  margin-bottom: 15px;
+}
