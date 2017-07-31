@@ -4,8 +4,12 @@ class Interview < ActiveRecord::Base
   end
 
   def resize_image
-    image.process!(:thumb, '800x600>')
+    if image.image?
+      image.process!(:thumb, '800x600>')
+    end
   end
+
+  validates_property :format, of: :image, in: ['jpeg', 'png', 'gif']
 
   belongs_to :interviewer, class_name: 'User', foreign_key: 'interviewer_id'
   belongs_to :applicant, class_name: 'User', foreign_key: 'applicant_id'
