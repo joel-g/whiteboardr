@@ -1,20 +1,8 @@
 <h1>Practice Interview for <%= link_to "#{@interview.applicant.full_name}", user_path(@interview.applicant_id) %></h1>
 <h3>Interviewed by <%= @interview.interviewer.full_name %> on <%= @interview.date %> </h3>
 
-<div class='challenge-container'>
-  <h2> <%= @interview.challenge.title_and_difficulty %>  </h2>
-  <p>
-    <%= @interview.challenge.body %>
-  </p>
-  <p>
-      <% if @interview.challenge.notes && @interview.challenge.notes.length > 0 %>
-      <h4>Notes:</h4>
-      <pre>
-        <%= simple_format(@interview.challenge.notes) %>
-      </pre>
-    <% end %>
-  </p>
-</div>
+<%= render partial: '/challenges/challenge', locals: { challenge: @interview.challenge } %>
+
 <% if current_user == @interview.applicant %>
   <div class='feedback-container'>
     <h2>Your Feedback</h2>

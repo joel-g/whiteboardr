@@ -1,7 +1,7 @@
 class ChallengesController < ApplicationController
   include ApplicationHelper
 
-  skip_before_action :require_login, only: [:index]
+  skip_before_action :require_login, only: [:index, :show]
 
   def index
     @difficulty_checked = { 'Easy' => false,
@@ -19,6 +19,11 @@ class ChallengesController < ApplicationController
     end
     @challenges = Challenge.where(where_query, where_params)
     render :index
+  end
+
+  def show
+    @challenge = Challenge.find(params[:id])
+    render :show
   end
 
   def new
