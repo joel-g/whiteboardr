@@ -211,14 +211,17 @@ body {
   padding-left: 3px;
 }
 
-footer {
-  position: fixed;
-  left: 0px;
-  bottom: 0px;
-  height: 55px;
-  width: 100%;
-  background: white;
+.marketing {
   text-align: center;
   font-family: "Helvetica Neue";
-  padding-top: 15px;
+  position: fixed;
+  left: 0px;
+  height: 20px;
+  width: 100%;
+  margin-top: 210px;
+}
+
+.featurette-divider {
+  margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+  margin-bottom: 20px;
 }
