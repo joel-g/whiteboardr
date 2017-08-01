@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
 
+# delete when done
   get 'password_resets/create'
-
   get 'password_resets/edit'
-
   get 'password_resets/update'
+
+  resources :password_resets
 
   resources :challenges, only: [:index, :create, :new, :show]
   resources :interviews, except: [:destroy, :edit] do
