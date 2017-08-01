@@ -1,4 +1,3 @@
-<%= link_to 'Create a New Challenge', new_challenge_path %>
 
 
 
@@ -15,21 +14,10 @@
   </label>
 </div>
 </div> -->
+
 <div class='table-container'>
   <div class='challenge-filters container'>
-    <%= form_tag url_for(controller: 'challenges', action: 'index'), method: 'get' do %>
-      Filter by difficulty level: <br />
-
-      Easy <%= check_box_tag 'difficulty[]', 'Easy', @difficulty_checked['Easy'], {multiple: true} %><br />
-
-      Medium <%= check_box_tag  'difficulty[]', 'Medium', @difficulty_checked['Medium'], {multiple: true} %><br />
-
-      Hard <%= check_box_tag  'difficulty[]', 'Hard', @difficulty_checked['Hard'], {multiple: true} %><br />
-
-      <%= submit_tag 'Filter', id: 'singlebutton', name: 'singlebutton', class: 'btn btn-primary' %>
-    <% end %>
-  </div>
-  <table class="table table-striped">
+  <table class="table table-bordered table-hover table-responsive">
   <thead>
     <tr>
       <th scope="row">Title</th>
@@ -53,4 +41,29 @@
     <% end %>
   </tbody>
 </table>
+</div>
+</div>
+
+<div class='sidebar'>
+  <div class='create-button'>
+  <%= link_to 'New Challenge', new_challenge_path, name: 'singlebutton', class: 'btn btn-primary' %>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Filter By Difficulty Level</h3>
+   </div>
+  <div class="panel-body">
+<%= form_tag url_for(controller: 'challenges', action: 'index'), method: 'get' do %>
+
+  <div class='easy-box'>Easy <%= check_box_tag 'difficulty[]', 'Easy', @difficulty_checked['Easy'], {multiple: true} %></div><br />
+
+  <div class='medium-box'>Medium <%= check_box_tag  'difficulty[]', 'Medium', @difficulty_checked['Medium'], {multiple: true} %></div><br />
+
+  <div class='hard-box'>Hard <%= check_box_tag  'difficulty[]', 'Hard', @difficulty_checked['Hard'], {multiple: true} %></div><br />
+
+  <div class='filter-button'><%= submit_tag 'Filter', id: 'singlebutton', name: 'singlebutton', class: 'btn btn-primary' %></div>
+<% end %>
+</div>
+</div>
 </div>
