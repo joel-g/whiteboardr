@@ -28,7 +28,7 @@ class Interview < ActiveRecord::Base
     matching_interviews = TokenHelper.get_matches(todays_interviews, possible_token)
     fail_count = 0
     while matching_interviews.count > 0 && fail_count < 10
-      possible_token = TokenHelper.create_token(self.interviewer_id, self.applicant_id, self.challenge_id, Time.now)
+      possible_token = TokenHelper.create_token(self.interviewer_id, self.applicant_id, self.challenge_id, Time.now + fail_count)
       matching_interviews = TokenHelper.get_matches(todays_interviews, possible_token)
       fail_count += 1
     end
