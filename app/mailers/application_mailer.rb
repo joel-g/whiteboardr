@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'Whiteboardrhelp@gmail.com'
+  default from: 'whiteboardrhelp@gmail.com'
   layout 'mailer'
 
   def default_url_options
