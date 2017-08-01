@@ -86,4 +86,8 @@ class Interview < ActiveRecord::Base
     self.created_at.getlocal.strftime('%-m/%-d/%Y')
   end
 
+  def was_today?
+    self.created_at.to_date == Date.today
+  end
+
 end
