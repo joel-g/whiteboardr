@@ -2,6 +2,11 @@
   <% if !logged_in? %>
     <div class='login-jumbo'>
       <div class="container">
+        <% if flash[:alert] %>
+          <div class='errors'>
+            <%= flash[:alert] %>
+          </div>
+        <% end %>
         <div class="jumbotron">
           <div class="jumbotron-content">
             <h1>Welcome to Whiteboardr!</h1>
@@ -17,6 +22,7 @@
               </div>
               <%= submit_tag 'Sign In', class: 'btn btn-primary btn-large' %>
             <% end %>
+            <%= link_to 'Forgot Password?', new_password_reset_path %>
           </div>
         </div>
       </div>
