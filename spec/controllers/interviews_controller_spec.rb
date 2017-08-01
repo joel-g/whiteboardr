@@ -104,9 +104,9 @@ describe InterviewsController do
     let!(:valid_interview_attributes) { FactoryGirl.attributes_for(:interview, applicant_id: applicant.username) }
     let!(:interview) {FactoryGirl.create(:interview)}
 
-    context 'when user is logged in' do
+    context 'when correct user is logged in' do
       before(:each) do
-        @user = FactoryGirl.create(:user)
+        @user = interview.applicant
         login_user
       end
       it 'responds with a status of 200' do
@@ -116,6 +116,16 @@ describe InterviewsController do
       it 'renders the show view' do
         get :show, params: {id: interview.id}
         expect(response).to render_template('show')
+      end
+    end
+    context 'when incorrect user is logged in' do
+      before(:each) do
+        @user = FactoryGirl.create(:user)
+        login_user
+      end
+      it 'redirects to root' do
+        get :show, params: { id: interview.id }
+        expect(response).to redirect_to root_path
       end
     end
     context 'when a user is not logged in' do
