@@ -1,18 +1,5 @@
-<%= link_to 'Create a New Challenge', new_challenge_path %>
 
-<div class='challenge-filters container'>
-  <%= form_tag url_for(controller: 'challenges', action: 'index'), method: 'get' do %>
-    Filter by difficulty level: <br />
 
-    Easy <%= check_box_tag 'difficulty[]', 'Easy', @difficulty_checked['Easy'], {multiple: true} %>
-
-    Medium <%= check_box_tag  'difficulty[]', 'Medium', @difficulty_checked['Medium'], {multiple: true} %>
-
-    Hard <%= check_box_tag  'difficulty[]', 'Hard', @difficulty_checked['Hard'], {multiple: true} %>
-
-    <%= submit_tag 'Filter', id: 'singlebutton', name: 'singlebutton', class: 'btn btn-primary' %>
-  <% end %>
-</div>
 
 <!-- <div class="container">
 <div class="btn-group btn-group" data-toggle="buttons">
@@ -28,17 +15,55 @@
 </div>
 </div> -->
 
-<div class='challenges-container'>
-  <ul class='challenges-list'>
+<div class='table-container'>
+  <div class='challenge-filters container'>
+  <table class="table table-bordered table-hover table-responsive">
+  <thead>
+    <tr>
+      <th scope="row">Title</th>
+      <th>Difficulty</th>
+      <th>Tags</th>
+    </tr>
+  </thead>
+  <tbody>
     <% @challenges.each do |challenge| %>
-      <li>
-        <%= link_to challenge.title_and_difficulty, challenge_path(challenge) %>
-        <% if challenge.tags.length > 0 %> <br />(Tags:
-          <% challenge.tags.each do |t| %>
+    <tr>
+      <td>  <%= link_to challenge.title, challenge_path(challenge) %> </th>
+      <td>  <%= challenge.difficulty %> </td>
+      <td>
+        <% if challenge.tags.length > 0 %>
+        <% challenge.tags.each do |t| %>
           <%= t.name %>
-          <% end %>)
+          <% end %>
         <% end %>
-      </li>
+      </td>
+    </tr>
     <% end %>
-  </ul>
+  </tbody>
+</table>
+</div>
+</div>
+
+<div class='sidebar'>
+  <div class='create-button'>
+  <%= link_to 'New Challenge', new_challenge_path, name: 'singlebutton', class: 'btn btn-primary' %>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Filter By Difficulty Level</h3>
+   </div>
+  <div class="panel-body">
+<%= form_tag url_for(controller: 'challenges', action: 'index'), method: 'get' do %>
+
+  <div class='easy-box'>Easy <%= check_box_tag 'difficulty[]', 'Easy', @difficulty_checked['Easy'], {multiple: true} %></div><br />
+
+  <div class='medium-box'>Medium <%= check_box_tag  'difficulty[]', 'Medium', @difficulty_checked['Medium'], {multiple: true} %></div><br />
+
+  <div class='hard-box'>Hard <%= check_box_tag  'difficulty[]', 'Hard', @difficulty_checked['Hard'], {multiple: true} %></div><br />
+
+  <div class='filter-button'><%= submit_tag 'Filter', id: 'singlebutton', name: 'singlebutton', class: 'btn btn-primary' %></div>
+<% end %>
+</div>
+</div>
 </div>
