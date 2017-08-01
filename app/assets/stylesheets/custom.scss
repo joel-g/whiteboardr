@@ -210,5 +210,14 @@ body {
   padding-left: 3px;
 }
 
-.container-fluid {
+footer {
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  height: 55px;
+  width: 100%;
+  background: white;
+  text-align: center;
+  font-family: "Helvetica Neue";
+  padding-top: 15px;
 }
