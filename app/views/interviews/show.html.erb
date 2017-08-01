@@ -35,17 +35,6 @@
   <% end %>
   <div>
     <%= render partial: '/feedbacks/ask_guidelines' %>
-    <% if @feedback.errors.any? %>
-      <div class='errors'>
-        <% @feedback.errors.full_messages.each do |error| %>
-          <div>
-            <%= error %>
-          </div>
-        <% end %>
-      </div>
-      <br />
-    <% end %>
-    <br />
   </div>
 <% end %>
 <div>
