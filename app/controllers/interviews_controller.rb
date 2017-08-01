@@ -34,6 +34,11 @@ class InterviewsController < ApplicationController
   def show
     @interview = Interview.find(params[:id])
     @feedback = Feedback.new
+    if current_user == @interview.applicant || current_user == @interview.interviewer
+      render :show
+    else
+      redirect_to root_path
+    end
   end
 
   def update
@@ -41,6 +46,18 @@ class InterviewsController < ApplicationController
     @feedback = Feedback.new
     @interview.update(image_params)
     render :show
+  end
+
+  def find
+    matching_interviews = TokenHelper.get_matches(TokenHelper.todays_interviews, params[:token])
+    if matching_interviews.count == 1
+      @interview = matching_interviews.first
+      @feedback = Feedback.new
+      render :show
+    else
+      flash[:alert] = "Could not find that interview"
+      redirect_to root_path
+    end
   end
 
   private
