@@ -20,6 +20,21 @@ class Interview < ActiveRecord::Base
 
   validates_presence_of :interviewer_id, :applicant_id, :challenge_id
 
+  after_create :generate_unique_token_per_day
+
+  def generate_unique_token_per_day
+    possible_token = TokenHelper.create_token(self.interviewer_id, self.applicant_id, self.challenge_id, self.created_at)
+    matching_interviews = Interview.where(created_at: Date.today.beginning_of_day..Date.today.end_of_day).where(token: possible_token)
+    fail_count = 0
+    while matching_interviews.count > 0 && fail_count < 4
+      possible_token = TokenHelper.create_token(self.interviewer_id, self.applicant_id, self.challenge_id, Time.now)
+      matching_interviews = Interview.where(created_at: Date.today.beginning_of_day..Date.today.end_of_day).where(token: possible_token)
+      fail_count += 1
+    end
+    self.token = possible_token
+    self.save
+  end
+
   def cannot_interview_self
     if self.interviewer_id == self.applicant_id
       self.errors.add(:interviewer, 'cannot be the applicant')
