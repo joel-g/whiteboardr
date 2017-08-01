@@ -17,6 +17,7 @@
 .byebug_history
 /coverage
 Gemfile.lock
+.env
 
 /public/system/dragonfly/development
 /public/system/dragonfly/test
