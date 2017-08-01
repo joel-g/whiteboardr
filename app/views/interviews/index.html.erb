@@ -42,16 +42,5 @@
         </span>
       <% end %>
     </div>
-    <div id="main">
-      <div class='interviews-container'>
-        <ul class='interviews-list'>
-          <% @interviews.each do |interview| %>
-            <li>
-                <%= link_to "#{interview.applicant.username}'s interview, ID: #{interview.id}", interview %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
   <% end %>
 </body>

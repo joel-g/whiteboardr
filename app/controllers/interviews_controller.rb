@@ -34,6 +34,11 @@ class InterviewsController < ApplicationController
   def show
     @interview = Interview.find(params[:id])
     @feedback = Feedback.new
+    if current_user == @interview.applicant || current_user == @interview.interviewer
+      render :show
+    else
+      redirect_to root_path
+    end
   end
 
   def update
