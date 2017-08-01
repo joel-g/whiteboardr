@@ -36,10 +36,21 @@ class InterviewsController < ApplicationController
     @feedback = Feedback.new
   end
 
+  def update
+    @interview = Interview.find(params[:id])
+    @feedback = Feedback.new
+    @interview.update(image_params)
+    render :show
+  end
+
   private
 
   def interview_params
     params.require(:interview).permit(:interviewer_id, :applicant_id, :challenge_id)
+  end
+
+  def image_params
+    params.require(:interview).permit(:image)
   end
 
 end

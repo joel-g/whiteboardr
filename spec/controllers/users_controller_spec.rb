@@ -17,7 +17,7 @@ describe UsersController do
     let!(:valid_user_attributes) { FactoryGirl.attributes_for(:user) }
     context 'valid user information' do
       it 'redirects to root when login successful' do
-        post :create, params: { user: valid_user_attributes, password_confirmation: 'pwd'}
+        post :create, params: { user: valid_user_attributes }
         expect(response).to redirect_to(root_path)
       end
 
@@ -106,6 +106,97 @@ describe UsersController do
     it 'renders the #show view' do
       get :show, params: { id: @user.id }
       expect(response).to render_template :show
+    end
+  end
+
+  context '#edit' do
+    before(:each) do
+      @user = FactoryGirl.create(:user)
+      login_user
+    end
+    it 'assigns @user' do
+      get :edit, params: { id: @user.id }
+      expect(assigns[:user]).to eq @user
+    end
+    it 'renders the #edit view' do
+      get :edit, params: { id: @user.id }
+      expect(response).to render_template :edit
+    end
+    it 'redirects to root if the currently logged in user isn\'t the user being editted' do
+      user = FactoryGirl.create(:user)
+      get :edit, params: { id: user.id }
+      expect(response).to redirect_to root_path
+    end
+  end
+
+  context '#update' do
+    before(:each) do
+      @user = FactoryGirl.create(:user)
+      login_user
+    end
+    let!(:valid_user_attributes) { FactoryGirl.attributes_for(:user) }
+    context 'valid user information' do
+      it 'redirects to user page when login successful' do
+        patch :update, params: { user: valid_user_attributes, id: @user.id }
+        expect(response).to redirect_to(user_path(@user))
+      end
+      it 'updates the user attribute' do
+        username = @user.username
+        patch :update, params: { user: valid_user_attributes, id: @user.id  }
+        @user.reload
+        expect(@user.username).not_to eq username
+      end
+    end
+
+    context 'invalid user information' do
+      it 'does not save a user with no email' do
+        missing_email = FactoryGirl.attributes_for(:user, email: '')
+        patch :update, params: { user: missing_email, id: @user.id  }
+        expect(assigns[:user].errors).not_to be_empty
+      end
+
+      it 'does not save a user with no first_name' do
+        missing_first_name = FactoryGirl.attributes_for(:user, first_name: '')
+        patch :update, params: { user: missing_first_name, id: @user.id  }
+        expect(assigns[:user].errors).not_to be_empty
+      end
+      it 'does not save a user with no last_name' do
+        missing_last_name = FactoryGirl.attributes_for(:user, last_name: '')
+        patch :update, params: { user: missing_last_name, id: @user.id  }
+        expect(assigns[:user].errors).not_to be_empty
+      end
+      it 'does not save a user with no username' do
+        missing_username = FactoryGirl.attributes_for(:user, username: '')
+        patch :update, params: { user: missing_username, id: @user.id  }
+        expect(assigns[:user].errors).not_to be_empty
+      end
+      it 'does not save a user with a duplicate username' do
+        user = FactoryGirl.create(:user)
+        duplicate_username = FactoryGirl.attributes_for(:user, username: user.username)
+        patch :update, params: { user: duplicate_username, id: @user.id  }
+        expect(assigns[:user].errors).not_to be_empty
+      end
+      it 'does not save a user with a duplicate email' do
+        user = FactoryGirl.create(:user)
+        duplicate_email = FactoryGirl.attributes_for(:user, email: user.email)
+        patch :update, params: { user: duplicate_email, id: @user.id  }
+        expect(assigns[:user].errors).not_to be_empty
+      end
+      it 'shows the #edit view' do
+        missing_last_name = FactoryGirl.attributes_for(:user, last_name: '')
+        patch :update, params: { user: missing_last_name, id: @user.id }
+        expect(response).to render_template('edit')
+      end
+      it 'assigns @user with errors' do
+        missing_last_name = FactoryGirl.attributes_for(:user, last_name: '')
+        patch :update, params: { user: missing_last_name, id: @user.id }
+        expect(assigns[:user].errors).not_to be_empty
+      end
+      it 'redirects to root if the currently logged in user isn\'t the user being editted' do
+        user = FactoryGirl.create(:user)
+        get :update, params: { user: FactoryGirl.attributes_for(:user), id: user.id }
+        expect(response).to redirect_to root_path
+      end
     end
   end
 end

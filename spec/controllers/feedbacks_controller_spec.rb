@@ -14,9 +14,9 @@ describe FeedbacksController do
 
   describe '#create' do
     context 'Valid feedback' do
-      it 'redirects to root' do
+      it 'redirects to interview' do
         post :create, params: { interview_id: interview.id, feedback: FactoryGirl.attributes_for(:feedback) }
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to interview_path(interview)
       end
       it 'creates a new feedback' do
         expect{

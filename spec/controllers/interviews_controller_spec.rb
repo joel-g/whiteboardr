@@ -75,6 +75,10 @@ describe InterviewsController do
           missing_applicant_id = FactoryGirl.attributes_for(:interview, applicant_id: nil)
           expect { post :create, params: { interview: missing_applicant_id } }.not_to change { Interview.all.count }
         end
+        it 'does not save a interview where the applicant is the interviewer' do
+          applicant_is_interviewer = FactoryGirl.attributes_for(:interview, interviewer_id: @user.id, applicant_id: @user.username)
+          expect { post :create, params: { interview: applicant_is_interviewer } }.not_to change { Interview.all.count }
+        end
         it 'shows the #new view' do
           post :create, params: { interview: { type: 'invalid', challenge_id: challenge.id } }
           expect(response).to render_template('new')
@@ -119,6 +123,27 @@ describe InterviewsController do
         get :show, params: {id: interview.id}
         expect(response).to redirect_to login_path
       end
+    end
+  end
+
+  describe '#update' do
+    let!(:applicant) { FactoryGirl.create(:user) }
+    let!(:interviewer) { FactoryGirl.create(:user) }
+    let!(:challenge) { FactoryGirl.create(:challenge) }
+    let!(:interview) {FactoryGirl.create(:interview)}
+    before(:each) do
+      @user = interviewer
+      login_user
+    end
+    it 'assigns a image_uid' do
+      image = fixture_file_upload('files/wb_icon.png', 'image/png')
+      patch :update, params: { id: interview.id, interview: { image: image } }
+      expect(assigns[:interview].image_uid).not_to be nil
+    end
+    it 'doesn\'t save a non-image' do
+      not_image = fixture_file_upload('files/text.txt', 'text/xml')
+      patch :update, params: { id: interview.id, interview: { image: not_image } }
+      expect(assigns[:interview].image_uid).to be nil
     end
   end
 end

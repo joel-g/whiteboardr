@@ -4,7 +4,7 @@ class FeedbacksController < ApplicationController
     @interview = Interview.find(params[:interview_id])
     @feedback = @interview.feedbacks.new(feedback_params)
     if @feedback.save
-      redirect_to root_path
+      redirect_to @interview
     else
       render "interviews/show"
     end
