@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   resources :challenges, only: [:index, :create, :new, :show]
   resources :interviews, except: [:destroy, :edit] do
-    resources :feedbacks, only: [:create]
+    resources :feedbacks, only: [:create,:edit,:update]
   end
 
   resources :users, except: [:destroy]
