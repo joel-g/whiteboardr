@@ -5,17 +5,17 @@
     <div class="jumbotron">
       <div class="jumbotron-content">
         <h1>Welcome to Whiteboardr!</h1>
-        <p class="jumbotron-lg-only">Join our community or login now</p>
-        <%= form_tag sessions_path, :method => :post do %>
-          <div class="form-group">
+        <p class="jumbotron-lg-only">Join our community and start practicing!</p>
+        <%= form_tag sessions_path, :method => :post, :html => {class: 'signin-block'} do %>
+          <div class="form-group login-group">
             <label for="email">Email:</label>
             <%= text_field_tag :email, nil, placeholder:'Email', class: "form-control" %>
           </div>
-          <div class="form-group">
+          <div class="form-group login-group">
             <label for="password">Password:</label>
             <%= password_field_tag :password, nil, placeholder:'Password', class: "form-control" %>
           </div>
-          <%= submit_tag 'Sign In', class: 'btn btn-primary btn-large' %>
+          <%= submit_tag 'Sign In', class: 'btn btn-primary btn-large', style: '' %>
         <% end %>
       </div>
       <p class="img-credit">Image Dynamically Provided by <a href="http://lorempixel.com">LoremPixel</a></p>
@@ -24,7 +24,8 @@
 </div>
 <% end %>
 <% if logged_in? %>
-<div class='interviews-container'>
+<div id="main">
+  <div class='interviews-container'>
   <ul class='interviews-list'>
     <% @interviews.each do |interview| %>
       <li>
@@ -32,6 +33,7 @@
         <% end %>
       </li>
   </ul>
+</div>
 </div>
 <% end %>
 </body>

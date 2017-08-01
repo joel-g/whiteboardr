@@ -1,10 +1,31 @@
-<h1>Log In</h1>
-
 <div>
   <%= flash[:alert] %>
 </div>
 
+<div class='login-jumbo'>
 <div class="container">
+<div class="jumbotron">
+  <div class="jumbotron-content">
+    <h1>Welcome to Whiteboardr!</h1>
+    <p class="jumbotron-lg-only">Join our community and start practicing!</p>
+    <%= form_tag sessions_path, :method => :post, :html => {class: 'signin-block'} do %>
+      <div class="form-group login-group">
+        <label for="email">Email:</label>
+        <%= text_field_tag :email, nil, placeholder:'Email', class: "form-control" %>
+      </div>
+      <div class="form-group login-group">
+        <label for="password">Password:</label>
+        <%= password_field_tag :password, nil, placeholder:'Password', class: "form-control" %>
+      </div>
+      <%= submit_tag 'Sign In', class: 'btn btn-primary btn-large', style: '' %>
+    <% end %>
+  </div>
+  <p class="img-credit">Image Dynamically Provided by <a href="http://lorempixel.com">LoremPixel</a></p>
+</div>
+</div>
+</div>
+
+<!-- <div class="container">
 <%= form_tag sessions_path, :method => :post, :html => { :class =>
 'form-horizontal' } do %>
 <div class="form-group new-session">
@@ -26,4 +47,4 @@
 </div>
 </div>
 <% end %>
-</div>
+</div> -->
