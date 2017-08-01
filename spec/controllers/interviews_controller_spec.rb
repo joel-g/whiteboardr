@@ -146,4 +146,37 @@ describe InterviewsController do
       expect(assigns[:interview].image_uid).to be nil
     end
   end
+
+  describe '#find' do
+    let!(:applicant) { FactoryGirl.create(:user) }
+    let!(:interviewer) { FactoryGirl.create(:user) }
+    let!(:challenge) { FactoryGirl.create(:challenge) }
+    let!(:interview) {FactoryGirl.create(:interview)}
+    before(:each) do
+      @user = interviewer
+      login_user
+    end
+    context 'Valid token' do
+      before(:each) do
+        post :find, params: { token: interview.token }
+      end
+      it 'assigns the correct interview' do
+        expect(assigns[:interview]).to eq interview
+      end
+      it 'renders the interview show page' do
+        expect(response).to render_template :show
+      end
+    end
+    context 'Invalid token' do
+      before(:each) do
+        post :find, params: { token: 'bad-token' }
+      end
+      it 'redirects to root' do
+        expect(response).to redirect_to root_path
+      end
+      it 'sets a flash alert' do
+        expect(flash[:alert]).not_to be nil
+      end
+    end
+  end
 end
