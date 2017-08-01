@@ -1,9 +1,26 @@
-<% if logged_in? %>
-  <div class='buttons'>
-    <%= link_to 'Create a Challenge', new_challenge_path %>
+<body>
+  <% if !logged_in? %>
+    <div class='login-jumbo'>
+    <div class="container">
+    <div class="jumbotron">
+      <div class="jumbotron-content">
+        <h1>Welcome to Whiteboardr!</h1>
+        <p class="jumbotron-lg-only">Join our community and start practicing!</p>
+        <%= form_tag sessions_path, :method => :post, :html => {class: 'signin-block'} do %>
+          <div class="form-group login-group">
+            <label for="email">Email:</label>
+            <%= text_field_tag :email, nil, placeholder:'Email', class: "form-control" %>
+          </div>
+          <div class="form-group login-group">
+            <label for="password">Password:</label>
+            <%= password_field_tag :password, nil, placeholder:'Password', class: "form-control" %>
+          </div>
+          <%= submit_tag 'Sign In', class: 'btn btn-primary btn-large' %>
+        <% end %>
+      </div>
+    </div>
   </div>
-<% else %>
-  <h4> <%= link_to "Log in", login_path %> to create challenges, start interviews or review interviews.</h4>
+</div>
 <% end %>
 <% if logged_in? %>
   <div class="container">
@@ -26,16 +43,16 @@
     <% end %>
   </div>
 <% end %>
-<div class='interviews-container'>
+<div id="main">
+  <div class='interviews-container'>
   <ul class='interviews-list'>
     <% @interviews.each do |interview| %>
       <li>
-        <% if logged_in? %>
           <%= link_to "#{interview.applicant.username}'s interview, ID: #{interview.id}", interview %>
-        <% else %>
-          <%= interview.applicant.username %>'s interview, ID: <%= interview.id %>
         <% end %>
       </li>
-    <% end %>
-  </ul>
+    </ul>
+  </div>
 </div>
+<% end %>
+</body>

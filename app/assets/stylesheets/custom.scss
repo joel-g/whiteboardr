@@ -52,11 +52,6 @@ textarea {
   margin-bottom: 5px;
 }
 
-h1, h4 {
-  font-family: "Helvetica Neue";
-  margin-left: 25px;
-}
-
 .centered-form{
 	margin-top: 60px;
 }
@@ -73,76 +68,156 @@ h4 {
   margin-bottom: 15px;
 }
 
-
-
-label.btn span {
-  font-size: 1.5em ;
+.registration {
+  padding: 0px;
+  margin: 0px;
 }
 
-label input[type="radio"] ~ i.fa.fa-circle-o{
-    color: #c8c8c8;    display: inline;
+.form-horizontal {
+  margin-left: 25px;
 }
-label input[type="radio"] ~ i.fa.fa-dot-circle-o{
+
+h1, h4 {
+  font-family: "Helvetica Neue";
+}
+
+.jumbotron {
+  margin-top: 50px;
+  position: relative;
+  background: url('http://lorempixel.com/900/500/nature') bottom left no-repeat;
+  min-height: 400px;
+  background-size: 100%;
+  padding: 10px;
+}
+
+.jumbotron-content {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 0px 15px;
+  width: 25%;
+  height: 100%;
+  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.66);
+  border-radius: 5px;
+}
+
+.jumbotron-content h1 {
+  text-align: center;
+  color: #fff;
+  font-size: 1.75em;
+  margin-bottom: 0.5em;
+}
+
+.jumbotron p {
+  margin-top: 0;
+  color: #fff;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.jumbotron-content label {
+  color: #fff;
+}
+
+.jumbotron .img-credit {
+  color: #bbb;
+  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 10px;
+  margin: 5px;
+  padding: 3px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.jumbotron .img-credit a, .jumbotron .img-credit a:hover {
+  color: #fff;
+}
+
+.jumbotron .btn {
+  padding: 5px 5%;
+  margin: 0 3%;
+}
+
+@media(min-width: 992px) {
+  .jumbotron .btn {
+    padding: 5px 10%;
+  }
+}
+
+@media(max-width: 991px) {
+  .jumbotron-content {
+    position: absolute;
+    height: 100%;
+  }
+
+  .jumbotron-lg-only {
     display: none;
-}
-label input[type="radio"]:checked ~ i.fa.fa-circle-o{
-    display: none;
-}
-label input[type="radio"]:checked ~ i.fa.fa-dot-circle-o{
-    color: #7AA3CC;    display: inline;
-}
-label:hover input[type="radio"] ~ i.fa {
-color: #7AA3CC;
+  }
 }
 
-label input[type="checkbox"] ~ i.fa.fa-square-o{
-    color: #c8c8c8;    display: inline;
-}
-label input[type="checkbox"] ~ i.fa.fa-check-square-o{
-    display: none;
-}
-label input[type="checkbox"]:checked ~ i.fa.fa-square-o{
-    display: none;
-}
-label input[type="checkbox"]:checked ~ i.fa.fa-check-square-o{
-    color: #7AA3CC;    display: inline;
-}
-label:hover input[type="checkbox"] ~ i.fa {
-color: #7AA3CC;
+@media(max-width: 768px) {
+  .jumbotron {
+    background-size: 100% 100%;
+  }
+
+  .jumbotron-content {
+    top: 0;
+    height: 100%;
+    width: 37%;
+  }
+
+  .jumbotron .btn {
+    font-size: 0.85em;
+    padding: 8px 5%;
+    max-width: 65px;
+  }
 }
 
-div[data-toggle="buttons"] label.active{
-    color: #7AA3CC;
+@media(min-device-width: 320px) and (max-device-width: 568px) {
+  .jumbotron {
+    background: #3667A6;
+    min-height: 275px;
+  }
+
+  .jumbotron-content {
+    width: 100%;
+    height: 100%;
+  }
+
+  .form-group {
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
 }
 
-div[data-toggle="buttons"] label {
-display: inline-block;
-padding: 6px 12px;
-margin-bottom: 0;
-font-size: 10px;
-font-weight: normal;
-line-height: 2em;
-text-align: left;
-white-space: nowrap;
-vertical-align: top;
-cursor: pointer;
-background-color: none;
-border: 0px solid
-#c8c8c8;
-border-radius: 3px;
-color: #c8c8c8;
--webkit-user-select: none;
--moz-user-select: none;
--ms-user-select: none;
--o-user-select: none;
-user-select: none;
+body {
+  background-color: hsla(216, 98%, 80%, 0.4);
 }
 
-div[data-toggle="buttons"] label:hover {
-color: #7AA3CC;
+.signin-block {
+  padding-bottom: 10px;
 }
 
-div[data-toggle="buttons"] label:active, div[data-toggle="buttons"] label.active {
--webkit-box-shadow: none;
-box-shadow: none;
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+  padding: 2px 0;
+}
+
+.login-group {
+  padding: 0px;
+  padding-left: 3px;
+}
+
+footer {
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  height: 55px;
+  width: 100%;
+  background: white;
+  text-align: center;
+  font-family: "Helvetica Neue";
+  padding-top: 15px;
 }
