@@ -28,9 +28,11 @@
     <% end %>
   </div>
 <% else %>
-  <div class='form-container'>
+  <% if @interview.has_feedback_from?(current_user)%>
     <%= render partial: '/feedbacks/edit', locals: { interview: @interview } %>
-  </div>
+  <% else %>
+    <%= render partial: '/feedbacks/new', locals: { interview: @interview } %>
+  <% end %>
   <div>
     <%= render partial: '/feedbacks/ask_guidelines' %>
     <% if @feedback.errors.any? %>
