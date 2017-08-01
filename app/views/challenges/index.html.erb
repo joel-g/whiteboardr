@@ -1,18 +1,6 @@
 
 
-<div class='challenge-filters container'>
-  <%= form_tag url_for(controller: 'challenges', action: 'index'), method: 'get' do %>
-    Filter by difficulty level: <br />
 
-    Easy <%= check_box_tag 'difficulty[]', 'Easy', @difficulty_checked['Easy'], {multiple: true} %>
-
-    Medium <%= check_box_tag  'difficulty[]', 'Medium', @difficulty_checked['Medium'], {multiple: true} %>
-
-    Hard <%= check_box_tag  'difficulty[]', 'Hard', @difficulty_checked['Hard'], {multiple: true} %>
-
-    <%= submit_tag 'Filter', id: 'singlebutton', name: 'singlebutton', class: 'btn btn-primary' %>
-  <% end %>
-</div>
 
 <!-- <div class="container">
 <div class="btn-group btn-group" data-toggle="buttons">
@@ -27,18 +15,42 @@
   </label>
 </div>
 </div> -->
+<div class='table-container'>
+  <div class='challenge-filters container'>
+    <%= form_tag url_for(controller: 'challenges', action: 'index'), method: 'get' do %>
+      Filter by difficulty level: <br />
 
-<div class='challenges-container'>
-  <ul class='challenges-list'>
-    <% @challenges.each do |challenge| %>
-      <li>
-        <%= link_to challenge.title_and_difficulty, challenge_path(challenge) %>
-        <% if challenge.tags.length > 0 %> <br />(Tags:
-          <% challenge.tags.each do |t| %>
-          <%= t.name %>
-          <% end %>)
-        <% end %>
-      </li>
+      Easy <%= check_box_tag 'difficulty[]', 'Easy', @difficulty_checked['Easy'], {multiple: true} %><br />
+
+      Medium <%= check_box_tag  'difficulty[]', 'Medium', @difficulty_checked['Medium'], {multiple: true} %><br />
+
+      Hard <%= check_box_tag  'difficulty[]', 'Hard', @difficulty_checked['Hard'], {multiple: true} %><br />
+
+      <%= submit_tag 'Filter', id: 'singlebutton', name: 'singlebutton', class: 'btn btn-primary' %>
     <% end %>
-  </ul>
+  </div>
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="row">Title</th>
+      <th>Difficulty</th>
+      <th>Tags</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @challenges.each do |challenge| %>
+    <tr>
+      <td>  <%= link_to challenge.title, challenge_path(challenge) %> </th>
+      <td>  <%= challenge.difficulty %> </td>
+      <td>
+        <% if challenge.tags.length > 0 %>
+        <% challenge.tags.each do |t| %>
+          <%= t.name %>
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
 </div>
