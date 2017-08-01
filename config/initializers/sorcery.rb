@@ -188,6 +188,7 @@ Rails.application.config.sorcery.configure do |config|
 
   # --- user config ---
   config.user_config do |user|
+    user.reset_password_mailer = UserMailer
     # -- core --
     # specify username attributes, for example: [:username, :email].
     # Default: `[:email]`
