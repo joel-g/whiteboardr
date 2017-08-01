@@ -10,11 +10,12 @@
 
 <div class='form-container'>
   <%= form_for @interview do |f| %>
-    <%= f.hidden_field :interviewer_id, :value => current_user.id %>
+    <%= f.hidden_field :interviewer_id, value: current_user.id %>
     <%= f.label "Applicant's username" %>
     <%= f.text_field :applicant_id %>
-    <%= f.label :challenge %>
-    <%= f.collection_select :challenge_id, @challenges, :id, :title_and_difficulty, :prompt => "Select challenge" %>
+    Challenge:
+    <%= @challenge.title %>
+    <%= f.hidden_field :challenge_id, value: @challenge.id %>
     <%= f.submit "Start Interview" %>
   <% end %>
 </div>
