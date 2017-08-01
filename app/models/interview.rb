@@ -24,11 +24,12 @@ class Interview < ActiveRecord::Base
 
   def generate_unique_token_per_day
     possible_token = TokenHelper.create_token(self.interviewer_id, self.applicant_id, self.challenge_id, self.created_at)
-    matching_interviews = Interview.where(created_at: Date.today.beginning_of_day..Date.today.end_of_day).where(token: possible_token)
+    todays_interviews = TokenHelper.todays_interviews
+    matching_interviews = TokenHelper.get_matches(todays_interviews, possible_token)
     fail_count = 0
     while matching_interviews.count > 0 && fail_count < 4
       possible_token = TokenHelper.create_token(self.interviewer_id, self.applicant_id, self.challenge_id, Time.now)
-      matching_interviews = Interview.where(created_at: Date.today.beginning_of_day..Date.today.end_of_day).where(token: possible_token)
+      matching_interviews = TokenHelper.get_matches(todays_interviews, possible_token)
       fail_count += 1
     end
     self.token = possible_token

@@ -43,6 +43,18 @@ class InterviewsController < ApplicationController
     render :show
   end
 
+  def find
+    matching_interviews = TokenHelper.get_matches(TokenHelper.todays_interviews, params[:token])
+    if matching_interviews.count == 1
+      @interview = matching_interviews.first
+      @feedback = Feedback.new
+      render :show
+    else
+      flash[:alert] = "Could not find that interview"
+      redirect_to root_path
+    end
+  end
+
   private
 
   def interview_params

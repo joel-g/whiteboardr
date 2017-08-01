@@ -10,4 +10,12 @@ module TokenHelper
     token << digest.hexdigest(created_at.strftime('%m%d%Y%H%M%S')).to_i(16) % 26
     token.map { |i| (65 + i).chr }.join()
   end
+
+  def self.todays_interviews
+    Interview.where(created_at: Date.today.beginning_of_day..Date.today.end_of_day)
+  end
+
+  def self.get_matches(interviews, possible_token)
+    interviews.where(token: possible_token)
+  end
 end
