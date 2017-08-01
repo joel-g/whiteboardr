@@ -1,7 +1,11 @@
 <h1>Practice Interview for <%= link_to "#{@interview.applicant.full_name}", user_path(@interview.applicant_id) %></h1>
 <h3>Interviewed by <%= @interview.interviewer.full_name %> on <%= @interview.date %> </h3>
 <% if current_user == @interview.interviewer || current_user == @interview.applicant %>
-  The token to join this interview is: <%= @interview.token %>
+  <% if @interview.was_today? %>
+    The token to join this interview is: <%= @interview.token %>. This token is only valid today (<%= @interview.date %>).
+  <% else %>
+    This interview is closed to further feedback.
+  <% end %>
 <% end %>
 <%= render partial: '/challenges/challenge', locals: { challenge: @interview.challenge } %>
 <% if current_user == @interview.interviewer || current_user == @interview.applicant %>
