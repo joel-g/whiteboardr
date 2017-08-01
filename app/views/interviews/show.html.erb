@@ -14,13 +14,32 @@
 <% if current_user == @interview.applicant %>
   <div class='feedback-container'>
     <h2>Your Feedback</h2>
+    <div>
+      <h4>Feedback Legend</h4>
+    </div>
+    <div>
+      Whiteboard Neatness and Clarity:  Was printing neat and readable? Did candidate start at the top left or right of the board? Did candidate leave some space between lines of code or psuedo-code? Did candidate run out of room on the board?
+    </div>
+    <br />
+    <div>
+      Poise and Presence: Did candidate greet the interviewer and shake hands? Was candidate friendly and personable? Did the candidate's body language communicate confidence and ease? Was candidate's volume appropriate?
+    </div>
+    <br />
+    <div>
+      Demonstration of Knowledge: Did candidate ask questions that showed thinking process and knowledge of issues to consider? Did the candidate appear to understand the subject matter or show ability to reason while working through a solution?
+    </div>
+    <br />
+    <div>
+      RIOT Rating: RIOT = REPEAT the challenge description, clarify INPUTs and OUTPUTs, consider TESTS (edge cases)
+    </div>
+    <br />
     <% @interview.feedbacks.each do |feedback| %>
       <ul>
         <li>Reviewer: <%= feedback.user.full_name %></li>
-        <li>Board: <%= feedback.board_rating %></li>
-        <li>Presence: <%= feedback.presence_rating %></li>
-        <li>Knowledge: <%= feedback.knowledge_rating %></li>
-        <li>RIOT: <%= feedback.riot_rating %></li>
+        <li>Whiteboard Neatness and Clarity: <%= feedback.board_rating %></li>
+        <li>Poise and Presence: <%= feedback.presence_rating %></li>
+        <li>Demonstration of Knowledge: <%= feedback.knowledge_rating %></li>
+        <li>RIOT Rating: <%= feedback.riot_rating %></li>
         <li>Comments: <%= simple_format(feedback.comments) %></li>
       </ul>
     <% end %>
@@ -31,27 +50,83 @@
   <% else %>
     <div class='form-container'>
       <h2>Give Feedback</h2>
-      <% if @feedback.errors.any? %>
-        <div class='errors'>
-          <% @feedback.errors.full_messages.each do |error| %>
-            <div>
-              <%= error %>
-            </div>
-          <% end %>
-        </div>
-        <br />
-      <% end %>
+      <h4>Please rate the candidate's performance using a scale of 1 (needs improvement) to 5 (knocked it out of the park).</h4>
       <%= form_for [@interview, @feedback] do |f| %>
         <%= f.hidden_field :user_id, value: current_user.id %>
         <%= f.hidden_field :interview_id, value: @interview.id %>
-        <%= f.label "Board Rating: " %><%= f.select :board_rating, [5,4,3,2,1], prompt: "-" %><br />
-        <%= f.label "Presence Rating: " %><%= f.select :presence_rating, [5,4,3,2,1], prompt: "-" %><br />
-        <%= f.label "Knowledge Rating: " %><%= f.select :knowledge_rating, [5,4,3,2,1], prompt: "-" %><br />
-        <%= f.label "RIOT Rating: " %><%= f.select :riot_rating, [5,4,3,2,1], prompt: "-" %><br />
-        <%= f.label "Comments: " %><br />
-        <%= f.text_area :comments, size: "80x10", placeholder: "Make sure your feedback is actionable, specific, and kind." %><br />
+        <div class= "form-group">
+          <%= f.label "Whiteboard Neatness and Clarity: " %>
+          <%= f.select :board_rating, [5,4,3,2,1], prompt: "-" %>
+          <br />
+          Was printing neat and readable? Did candidate start at the top left or right of the board? Did candidate leave some space between lines of code or psuedo-code? Did candidate run out of room on the board?
+        </div>
+        <div class= "form-group">
+          <%= f.label "Poise and Presence: " %>
+          <%= f.select :presence_rating, [5,4,3,2,1], prompt: "-" %>
+          <br />
+          Did candidate greet the interviewer and shake hands? Was candidate friendly and personable? Did the candidate's body language communicate confidence and ease? Was candidate's volume appropriate?
+        </div>
+        <div class= "form-group">
+          <%= f.label "Demonstration of Knowledge: " %>
+          <%= f.select :knowledge_rating, [5,4,3,2,1], prompt: "-" %>
+          <br />
+          Did candidate ask questions that showed thinking process and knowledge of issues to consider? Did the candidate appear to understand the subject matter or show ability to reason while working through a solution?
+        </div>
+        <div class = "form-group">
+          <%= f.label( :riot_rating, "RIOT Rating: ") %>
+          <%= f.select :riot_rating, [5,4,3,2,1], prompt: "-" %>
+          <br />
+          RIOT = REPEAT the challenge description, clarify INPUTs and OUTPUTs, consider TESTS (edge cases)
+        </div>
+        <div class = "form-group">
+          <%= f.label "Comments: " %>
+          <br />
+          <%= f.text_area :comments, size: "80x10", placeholder: "Make sure your feedback is actionable, specific, and kind." %>
+        </div>
         <%= f.submit 'Give Feedback' %>
       <% end %>
+      <div>
+        <br />
+        What is ASK feedback?
+        <div>
+          A = actionable (give feedback that the candidate can use to take actionable steps to improve)
+        </div>
+        <div>
+          S = specific (be as specific as possible about what the candidate did well or needs improvement on)
+        </div>
+        <div>
+          K = kind (be encouraging and not mean; give positive feedback with negative feedback)
+        </div>
+        <br />
+        <h5>Example of ASK feedback (good):</h5>
+        "Nice, neat printing on the whiteboard."
+        <br />
+        "Good job vocalizing your thought process."
+        <br />
+        "It would be helpful if you could make more eye contact with the interviewer."
+        <br />
+        "Consider writing the expected input/output on the left or right side of the whiteboard."
+        <h5>Example of non-ASK feedback (not the best):</h5>
+        "You did well." (not specific)
+        <br />
+        "Your coding skills are terrible; you are not very smart" (not kind)
+        <br />
+        <br />
+        "You should be taller." (not actionable)
+        <br />
+        <br />
+        <% if @feedback.errors.any? %>
+          <div class='errors'>
+            <% @feedback.errors.full_messages.each do |error| %>
+              <div>
+                <%= error %>
+              </div>
+            <% end %>
+          </div>
+          <br />
+        <% end %>
+        <br />
+      </div>
     </div>
   <% end %>
 <% end %>
