@@ -75,5 +75,20 @@ describe Interview, type: :model do
         expect(interview.has_feedback_from?(user2)).to eq false
       end
     end
+    describe '#was_today?' do
+      before(:each) do
+        FactoryGirl.create(:user)
+        FactoryGirl.create(:user)
+        FactoryGirl.create(:challenge)
+      end
+      it 'returns true for an interview created today' do
+        interview = FactoryGirl.create(:interview)
+        expect(interview.was_today?).to be true
+      end
+      it 'returns false for an interview not created today' do
+        interview = FactoryGirl.create(:interview, created_at: Date.today - 1)
+        expect(interview.was_today?).to be false
+      end
+    end
   end
 end
