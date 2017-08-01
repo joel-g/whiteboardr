@@ -5,7 +5,7 @@
   <%= f.hidden_field :interview_id, value: @interview.id %>
   <div class= "form-group">
     <%= f.label "Whiteboard Neatness and Clarity: " %>
-    <%= f.select :board_rating, [5,4,3,2,1], prompt: "-" %>
+    <%= f.select :board_rating, [5,4,3,2,1], prompt: "-"  %>
     <br />
     Was printing neat and readable? Did candidate start at the top left or right of the board? Did candidate leave some space between lines of code or psuedo-code? Did candidate run out of room on the board?
   </div>
@@ -32,5 +32,9 @@
     <br />
     <%= f.text_area :comments, size: "80x10", placeholder: "Make sure your feedback is actionable, specific, and kind." %>
   </div>
-  <%= f.submit 'Give Feedback' %>
+  <% if @interview.has_feedback_from?(current_user)%>
+    <%= f.submit 'Edit Feedback' %>
+  <% else %>
+    <%= f.submit 'Submit Feedback' %>
+  <% end %>
 <% end %>

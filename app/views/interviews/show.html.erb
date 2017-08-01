@@ -28,27 +28,23 @@
     <% end %>
   </div>
 <% else %>
-  <% if @interview.has_feedback_from?(current_user)%>
-    <h5>Thank you for your <i>actionable, specific & kind</i> feedback.</h5>
-  <% else %>
-    <div class='form-container'>
-      <%= render partial: '/feedbacks/edit', locals: { interview: @interview} %>
-    <div>
-      <%= render partial: '/feedbacks/ask_guidelines' %>
-        <% if @feedback.errors.any? %>
-          <div class='errors'>
-            <% @feedback.errors.full_messages.each do |error| %>
-              <div>
-                <%= error %>
-              </div>
-            <% end %>
+  <div class='form-container'>
+    <%= render partial: '/feedbacks/edit', locals: { interview: @interview } %>
+  </div>
+  <div>
+    <%= render partial: '/feedbacks/ask_guidelines' %>
+    <% if @feedback.errors.any? %>
+      <div class='errors'>
+        <% @feedback.errors.full_messages.each do |error| %>
+          <div>
+            <%= error %>
           </div>
-          <br />
         <% end %>
-        <br />
       </div>
-    </div>
-  <% end %>
+      <br />
+    <% end %>
+    <br />
+  </div>
 <% end %>
 <div>
   <%= image_tag @interview.image.url if @interview.image_stored? %>
