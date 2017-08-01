@@ -50,25 +50,25 @@
         <%= f.hidden_field :interview_id, value: @interview.id %>
         <div class= "form-group">
           <%= f.label "Whiteboard Neatness and Clarity: " %>
-          <%= f.select :board_rating, [5,4,3,2,1], prompt: "-" %>
+          <%= f.select :board_rating, options_for_select([5,4,3,2,1]), { prompt: "-" }, {class: 'form-control'} %>
           <br />
           Was printing neat and readable? Did candidate start at the top left or right of the board? Did candidate leave some space between lines of code or psuedo-code? Did candidate run out of room on the board?
         </div>
         <div class= "form-group">
           <%= f.label "Poise and Presence: " %>
-          <%= f.select :presence_rating, [5,4,3,2,1], prompt: "-" %>
+          <%= f.select :presence_rating, options_for_select([5,4,3,2,1]), { prompt: "-" }, {class: 'form-control'}  %>
           <br />
           Did candidate greet the interviewer and shake hands? Was candidate friendly and personable? Did the candidate's body language communicate confidence and ease? Was candidate's volume appropriate?
         </div>
         <div class= "form-group">
           <%= f.label "Demonstration of Knowledge: " %>
-          <%= f.select :knowledge_rating, [5,4,3,2,1], prompt: "-" %>
+          <%= f.select :knowledge_rating, options_for_select([5,4,3,2,1]), { prompt: "-" }, {class: 'form-control'}  %>
           <br />
           Did candidate ask questions that showed thinking process and knowledge of issues to consider? Did the candidate appear to understand the subject matter or show ability to reason while working through a solution?
         </div>
         <div class = "form-group">
           <%= f.label( :riot_rating, "RIOT Rating: ") %>
-          <%= f.select :riot_rating, [5,4,3,2,1], prompt: "-" %>
+          <%= f.select :riot_rating, options_for_select([5,4,3,2,1]), { prompt: "-" }, {class: 'form-control'}  %>
           <br />
           <div>R = REPEAT the challenge description</div>
           <div>I = clarify INPUTs</div>
