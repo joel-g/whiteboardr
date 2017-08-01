@@ -50,9 +50,9 @@ describe ChallengesController do
       let!(:valid_challenge){ FactoryGirl.attributes_for(:challenge) }
       let!(:valid_tag){ FactoryGirl.attributes_for(:tag) }
       let!(:challenge){ FactoryGirl.create(:challenge) }
-      it 'redirects to root' do
+      it 'redirects to challenge#show' do
         post :create, params: { challenge: valid_challenge }
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to challenge_path(assigns(:challenge))
       end
       it 'creates a challenge' do
         expect{ post :create, params: { challenge: valid_challenge } }.to change { Challenge.all.count }.by(1)
