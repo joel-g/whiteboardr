@@ -43,7 +43,7 @@ class ChallengesController < ApplicationController
           ChallengeTag.create(challenge_id: @challenge.id, tag_id: tag_id)
         end
       end
-      redirect_to root_path
+      redirect_to challenge_path(@challenge.id)
     else
       render :new
     end
