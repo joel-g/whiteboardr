@@ -5,6 +5,11 @@ describe Interview, type: :model do
     it { is_expected.to validate_presence_of(:interviewer_id) }
     it { is_expected.to validate_presence_of(:applicant_id) }
     it { is_expected.to validate_presence_of(:challenge_id) }
+    it 'does not allow a applicant to interview themself' do
+      interview = FactoryGirl.build(:interview)
+      interview.applicant_id = interview.interviewer_id
+      expect(interview.valid?).to be false
+    end
   end
   context 'associations' do
     it { is_expected.to have_many(:feedbacks)}

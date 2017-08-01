@@ -1,11 +1,6 @@
-<h1>Whiteboardr</h1>
-<%= link_to 'View Challenges', challenges_path %>
-<br />
 <% if logged_in? %>
   <div class='buttons'>
     <%= link_to 'Create a Challenge', new_challenge_path %>
-    <br />
-    <%= link_to 'Start an Interview', new_interview_path %>
   </div>
 <% else %>
   <h4> <%= link_to "Log in", login_path %> to create challenges, start interviews or review interviews.</h4>

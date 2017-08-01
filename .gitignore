@@ -17,3 +17,6 @@
 .byebug_history
 /coverage
 Gemfile.lock
+
+/public/system/dragonfly/development
+/public/system/dragonfly/test

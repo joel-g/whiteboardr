@@ -1,19 +1,39 @@
-<div class='challenge-filters'>
+
+
+<div class='challenge-filters container'>
   <%= form_tag url_for(controller: 'challenges', action: 'index'), method: 'get' do %>
-    Filter by difficulty level:
-    Easy<%= check_box_tag 'difficulty[]', 'Easy', @difficulty_checked['Easy'], {multiple: true} %>
-    Medium<%= check_box_tag  'difficulty[]', 'Medium', @difficulty_checked['Medium'], {multiple: true} %>
-    Hard<%= check_box_tag  'difficulty[]', 'Hard', @difficulty_checked['Hard'], {multiple: true} %>
-    <%= submit_tag 'Filter' %>
+    Filter by difficulty level: <br />
+
+    Easy <%= check_box_tag 'difficulty[]', 'Easy', @difficulty_checked['Easy'], {multiple: true} %>
+
+    Medium <%= check_box_tag  'difficulty[]', 'Medium', @difficulty_checked['Medium'], {multiple: true} %>
+
+    Hard <%= check_box_tag  'difficulty[]', 'Hard', @difficulty_checked['Hard'], {multiple: true} %>
+
+    <%= submit_tag 'Filter', id: 'singlebutton', name: 'singlebutton', class: 'btn btn-primary' %>
   <% end %>
 </div>
+
+<!-- <div class="container">
+<div class="btn-group btn-group" data-toggle="buttons">
+  <label class="btn active">
+    <input type="checkbox" name='email1' checked><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i><span> Easy
+  </label>
+  <label class="btn">
+    <input type="checkbox" name='email2'><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i><span> Medium</span>
+  </label>
+  <label class="btn">
+    <input type="checkbox" name='email3'><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i><span> Hard</span>
+  </label>
+</div>
+</div> -->
 
 <div class='challenges-container'>
   <ul class='challenges-list'>
     <% @challenges.each do |challenge| %>
       <li>
-        <%= challenge.title_and_difficulty %>
-        <% if challenge.tags.length > 0 %><br />(Tags:
+        <%= link_to challenge.title_and_difficulty, challenge_path(challenge) %>
+        <% if challenge.tags.length > 0 %> <br />(Tags:
           <% challenge.tags.each do |t| %>
           <%= t.name %>
           <% end %>)

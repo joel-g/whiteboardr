@@ -13,21 +13,23 @@ describe InterviewsController do
   end
 
   describe '#new' do
+    let!(:user){ FactoryGirl.create(:user) }
+    let!(:challenge){ FactoryGirl.create(:challenge) }
     context 'when user is logged in' do
       before(:each) do
         @user = FactoryGirl.create(:user)
         login_user
       end
       it 'responds with a status of 200' do
-        get :new
+        get :new, params: { challenge_id: challenge.id }
         expect(response.status).to eq 200
       end
       it 'renders the Interview#new view' do
-        get :new
+        get :new, params: { challenge_id: challenge.id }
         expect(response).to render_template('new')
       end
       it 'assigns @interview to be a new Interview' do
-        get :new
+        get :new, params: { challenge_id: challenge.id }
         expect(assigns(:interview)).to be_a_new(Interview)
       end
     end
@@ -73,16 +75,16 @@ describe InterviewsController do
           missing_applicant_id = FactoryGirl.attributes_for(:interview, applicant_id: nil)
           expect { post :create, params: { interview: missing_applicant_id } }.not_to change { Interview.all.count }
         end
-        it 'does not save a interview with no challenge_id' do
-          missing_challenge_id = FactoryGirl.attributes_for(:interview, challenge_id: nil, applicant_id: applicant.username)
-          expect { post :create, params: { interview: missing_challenge_id } }.not_to change { Interview.all.count }
+        it 'does not save a interview where the applicant is the interviewer' do
+          applicant_is_interviewer = FactoryGirl.attributes_for(:interview, interviewer_id: @user.id, applicant_id: @user.username)
+          expect { post :create, params: { interview: applicant_is_interviewer } }.not_to change { Interview.all.count }
         end
         it 'shows the #new view' do
-          post :create, params: { interview: { type: 'invalid' } }
+          post :create, params: { interview: { type: 'invalid', challenge_id: challenge.id } }
           expect(response).to render_template('new')
         end
         it 'assigns @interview with errors' do
-          post :create, params: { interview: { type: 'invalid' } }
+          post :create, params: { interview: { type: 'invalid', challenge_id: challenge.id } }
           expect(assigns[:interview].errors).not_to be_empty
         end
       end
@@ -121,6 +123,27 @@ describe InterviewsController do
         get :show, params: {id: interview.id}
         expect(response).to redirect_to login_path
       end
+    end
+  end
+
+  describe '#update' do
+    let!(:applicant) { FactoryGirl.create(:user) }
+    let!(:interviewer) { FactoryGirl.create(:user) }
+    let!(:challenge) { FactoryGirl.create(:challenge) }
+    let!(:interview) {FactoryGirl.create(:interview)}
+    before(:each) do
+      @user = interviewer
+      login_user
+    end
+    it 'assigns a image_uid' do
+      image = fixture_file_upload('files/wb_icon.png', 'image/png')
+      patch :update, params: { id: interview.id, interview: { image: image } }
+      expect(assigns[:interview].image_uid).not_to be nil
+    end
+    it 'doesn\'t save a non-image' do
+      not_image = fixture_file_upload('files/text.txt', 'text/xml')
+      patch :update, params: { id: interview.id, interview: { image: not_image } }
+      expect(assigns[:interview].image_uid).to be nil
     end
   end
 end
