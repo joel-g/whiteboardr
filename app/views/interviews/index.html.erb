@@ -6,15 +6,25 @@
   <h4> <%= link_to "Log in", login_path %> to create challenges, start interviews or review interviews.</h4>
 <% end %>
 <% if logged_in? %>
-  <% if flash[:alert] %>
-    <div class='error'>
-      <%= flash[:alert] %>
-    </div>
-  <% end %>
-  <%= form_tag 'i' do %>
-    <%= text_field_tag :token %>
-    <%= submit_tag "Join Interview" %>
-  <% end %>
+  <div class="container">
+    <% if flash[:alert] %>
+      <div class='errors'>
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+    <%= form_tag 'i' do %>
+      <span class="form-group">
+        <span class="col-md-4">
+          <%= text_field_tag :token, nil, class: "form-control input-md" %>
+        </span>
+      </span>
+      <span class="form-group">
+        <span class="col-md-4">
+          <%= submit_tag "Join Interview", class: "btn btn-primary" %>
+        </span>
+      </span>
+    <% end %>
+  </div>
 <% end %>
 <div class='interviews-container'>
   <ul class='interviews-list'>
