@@ -10,6 +10,14 @@ describe Interview, type: :model do
       interview.applicant_id = interview.interviewer_id
       expect(interview.valid?).to be false
     end
+    it 'doesn\'t create the same token for two interviews with all other attributes the same' do
+      FactoryGirl.create(:user)
+      FactoryGirl.create(:user)
+      FactoryGirl.create(:challenge)
+      interview1 = FactoryGirl.create(:interview)
+      interview2 = Interview.create(interviewer_id: interview1.interviewer_id, applicant_id: interview1.applicant_id, challenge_id: interview1.challenge_id, created_at: interview1.created_at, updated_at: interview1.updated_at)
+      expect(interview1.token).not_to eq interview2.token
+    end
   end
   context 'associations' do
     it { is_expected.to have_many(:feedbacks)}

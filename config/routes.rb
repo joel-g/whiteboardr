@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new'
   delete 'logout' => 'sessions#destroy'
 
+  post 'i' => 'interviews#find'
+
   root to: 'interviews#index'
 
 end
