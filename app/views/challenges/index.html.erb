@@ -35,6 +35,9 @@
           <th scope="row">Title</th>
           <th>Difficulty</th>
           <th>Tags</th>
+          <% if logged_in? %>
+            <th> </th>
+          <% end %>
         </tr>
       </thead>
       <tbody>
@@ -49,6 +52,14 @@
                 <% end %>
               <% end %>
             </td>
+            <% if logged_in? %>
+              <td>
+                <%= form_tag url_for(controller: 'interviews', action: 'new'), method: 'get' do %>
+                  <%= hidden_field_tag :challenge_id, challenge.id %>
+                  <%= submit_tag 'Start Interview', class: 'btn-link' %>
+                <% end %>
+              </td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>

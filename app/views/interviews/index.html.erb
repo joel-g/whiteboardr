@@ -1,32 +1,14 @@
 <% if !logged_in? %>
   <%= render partial:'/sessions/form' %>
 <% else %>
-  <div class="sidebar">
+  <div class='main-content'>
     <% if flash.alert %>
       <div class='alert alert-danger'>
         <%= flash.alert %>
       </div>
     <% end %>
-    <div class='panel panel-default'>
-      <div class='panel-heading'>
-        <h3 class='panel-title'>My Recent Interviews</h3>
-      </div>
-      <div class='container panel-body'>
-        <% if @applicant_interviews.empty? %>
-          You have no interviews.
-        <% else %>
-          <% @applicant_interviews.each do |interview| %>
-            <div>
-              <%= link_to "#{interview.challenge.title}", interview %>
-              - Interviewed by
-              <%= link_to interview.interviewer.username, interview.interviewer %>
-              on
-              <%= interview.date %>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
+    <h1>I want to...</h1>
+    <h2>Be The Interviewer</h2>
     <div class='panel panel-default'>
       <div class='panel-heading'>
         <h3 class='panel-title'>Interviews I'm Leading Today</h3>
@@ -47,10 +29,11 @@
         <span class='help-block'> </span><br />
         <span class='help-block'> </span>
         <div class='create-button'>
-          <%= link_to 'Choose a challenge to start a new interview', challenges_path, class: 'btn btn-primary' %>
+          <%= link_to 'Choose a Challenge to Start a New Interview', challenges_path, class: 'btn btn-primary' %>
         </div>
       </div>
     </div>
+    <h2>Give Feedback</h2>
     <div class='panel panel-default'>
       <div class='panel-heading'>
         <h3 class='panel-title'>Join an Interview as a Reviewer</h3>
@@ -69,6 +52,27 @@
                 <%= submit_tag "Join Interview", class: "btn btn-primary" %>
               </span>
             </span>
+        <% end %>
+      </div>
+    </div>
+    <h2>See My Feedback</h2>
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        <h3 class='panel-title'>My Interviews</h3>
+      </div>
+      <div class='container panel-body'>
+        <% if @applicant_interviews.empty? %>
+          You have no interviews.
+        <% else %>
+          <% @applicant_interviews.each do |interview| %>
+            <div>
+              <%= link_to "#{interview.challenge.title}", interview %>
+              - Interviewed by
+              <%= link_to interview.interviewer.username, interview.interviewer %>
+              on
+              <%= interview.date %>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>
