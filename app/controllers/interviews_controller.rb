@@ -3,7 +3,7 @@ class InterviewsController < ApplicationController
 
   def index
     if logged_in?
-      @applicant_interviews = Interview.where(applicant_id: current_user.id).order(created_at: 'DESC').limit(5)
+      @applicant_interviews = Interview.where(applicant_id: current_user.id).order(created_at: 'DESC')
       @interviewer_interviews = InterviewHelper.todays_interviews.where(interviewer_id: current_user.id)
     end
     render :index
