@@ -35,57 +35,7 @@
     <%= button_to "Edit Feedback", edit_interview_feedback_path( @interview, @feedback.first ), method: :get, class: 'button' %>
   <% else %>
     <h1>Give Feedback</h1>
-    <div class='form-container'>
-      <% if @feedback.errors.any? %>
-        <div class='errors'>
-          <% @feedback.errors.full_messages.each do |error| %>
-            <div>
-              <%= error %>
-            </div>
-          <% end %>
-        </div>
-        <br />
-      <% end %>
-      <br />
-      <h4>Please rate the candidate's performance using a scale of 1 (needs improvement) to 5 (knocked it out of the park).</h4>
-      <%= form_for [@interview, @feedback] do |f| %>
-        <%= f.hidden_field :user_id, value: current_user.id %>
-        <%= f.hidden_field :interview_id, value: @interview.id %>
-        <div class= "form-group">
-          <%= f.label "Whiteboard Neatness and Clarity: " %>
-          <%= f.select :board_rating, [5,4,3,2,1], prompt: "-" %>
-          <br />
-          Was printing neat and readable? Did candidate start at the top left or right of the board? Did candidate leave some space between lines of code or psuedo-code? Did candidate run out of room on the board?
-        </div>
-        <div class= "form-group">
-          <%= f.label "Poise and Presence: " %>
-          <%= f.select :presence_rating, [5,4,3,2,1], prompt: "-" %>
-          <br />
-          Did candidate greet the interviewer and shake hands? Was candidate friendly and personable? Did the candidate's body language communicate confidence and ease? Was candidate's volume appropriate?
-        </div>
-        <div class= "form-group">
-          <%= f.label "Demonstration of Knowledge: " %>
-          <%= f.select :knowledge_rating, [5,4,3,2,1], prompt: "-" %>
-          <br />
-          Did candidate ask questions that showed thinking process and knowledge of issues to consider? Did the candidate appear to understand the subject matter or show ability to reason while working through a solution?
-        </div>
-        <div class = "form-group">
-          <%= f.label( :riot_rating, "RIOT Rating: ") %>
-          <%= f.select :riot_rating, [5,4,3,2,1], prompt: "-" %>
-          <br />
-          <div>R = REPEAT the challenge description</div>
-          <div>I = clarify INPUTs</div>
-          <div>O = clarify OUTPUTs</div>
-          <div>T = consider TESTS (edge cases)</div>
-        </div>
-        <div class = "form-group">
-          <%= f.label "Comments: " %>
-          <br />
-          <%= f.text_area :comments, size: "80x10", placeholder: "Make sure your feedback is actionable, specific, and kind." %>
-        </div>
-        <%= f.submit 'Submit Feedback' %>
-      <% end %>
-    </div>
+    <%= render partial: '/feedbacks/feedback_form' %>
   <% end %>
   <div>
     <%= render partial: '/feedbacks/ask_guidelines' %>
