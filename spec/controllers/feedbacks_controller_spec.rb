@@ -6,6 +6,7 @@ describe FeedbacksController do
   let!(:interviewer){FactoryGirl.create(:user)}
   let!(:challenge){FactoryGirl.create(:challenge)}
   let!(:interview){FactoryGirl.create(:interview, applicant_id: applicant.id, interviewer_id: interviewer.id)}
+  let!(:feedback){FactoryGirl.create(:feedback, interview_id: interview.id)}
 
   before(:each) do
     @user = interviewer
@@ -38,6 +39,13 @@ describe FeedbacksController do
         post :create, params: { interview_id: interview.id, feedback: { type: 'invalid' } }
         expect(assigns[:feedback].errors).not_to be_empty
       end
+    end
+  end
+
+  describe '#edit' do
+    it 'renders the feedback#edit page' do
+      get :edit, params: {id: feedback.id, interview_id: interview.id}
+      expect(response).to render_template 'feedbacks/edit'
     end
   end
 end
