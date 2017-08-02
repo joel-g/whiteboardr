@@ -10,6 +10,14 @@ describe Interview, type: :model do
       interview.applicant_id = interview.interviewer_id
       expect(interview.valid?).to be false
     end
+    it 'doesn\'t create the same token for two interviews with all other attributes the same' do
+      FactoryGirl.create(:user)
+      FactoryGirl.create(:user)
+      FactoryGirl.create(:challenge)
+      interview1 = FactoryGirl.create(:interview)
+      interview2 = Interview.create(interviewer_id: interview1.interviewer_id, applicant_id: interview1.applicant_id, challenge_id: interview1.challenge_id, created_at: interview1.created_at, updated_at: interview1.updated_at)
+      expect(interview1.token).not_to eq interview2.token
+    end
   end
   context 'associations' do
     it { is_expected.to have_many(:feedbacks)}
@@ -65,6 +73,21 @@ describe Interview, type: :model do
         interview = FactoryGirl.create(:interview)
         FactoryGirl.create(:feedback, interview_id: interview.id, user_id: user.id)
         expect(interview.has_feedback_from?(user2)).to eq false
+      end
+    end
+    describe '#was_today?' do
+      before(:each) do
+        FactoryGirl.create(:user)
+        FactoryGirl.create(:user)
+        FactoryGirl.create(:challenge)
+      end
+      it 'returns true for an interview created today' do
+        interview = FactoryGirl.create(:interview)
+        expect(interview.was_today?).to be true
+      end
+      it 'returns false for an interview not created today' do
+        interview = FactoryGirl.create(:interview, created_at: Date.today - 1)
+        expect(interview.was_today?).to be false
       end
     end
   end

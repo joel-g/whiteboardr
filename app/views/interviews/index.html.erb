@@ -1,21 +1,78 @@
-<% if logged_in? %>
-  <div class='buttons'>
-    <%= link_to 'Create a Challenge', new_challenge_path %>
-  </div>
-<% else %>
-  <h4> <%= link_to "Log in", login_path %> to create challenges, start interviews or review interviews.</h4>
-<% end %>
-
-<div class='interviews-container'>
-  <ul class='interviews-list'>
-    <% @interviews.each do |interview| %>
-      <li>
-        <% if logged_in? %>
-          <%= link_to "#{interview.applicant.username}'s interview, ID: #{interview.id}", interview %>
-        <% else %>
-          <%= interview.applicant.username %>'s interview, ID: <%= interview.id %>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
-</div>
+<body>
+  <% if !logged_in? %>
+    <%= render partial:'/sessions/form' %>
+  <% else %>
+    <div class="container">
+      <% if flash.alert %>
+        <div class='alert alert-danger'>
+          <%= flash.alert %>
+        </div>
+      <% end %>
+      <div class='panel panel-default'>
+        <div class='panel-heading'>
+          <h3 class='panel-title'>My Recent Interviews</h3>
+        </div>
+        <div class='container panel-body'>
+          <% if @applicant_interviews.empty? %>
+            You have no interviews.
+          <% else %>
+            <% @applicant_interviews.each do |interview| %>
+              <div>
+                <%= link_to "#{interview.challenge.title}", interview %>
+                - Interviewed by
+                <%= link_to interview.interviewer.username, interview.interviewer %>
+                on
+                <%= interview.date %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class='panel panel-default'>
+        <div class='panel-heading'>
+          <h3 class='panel-title'>Interviews I'm Leading Today</h3>
+        </div>
+        <div class='container panel-body'>
+          <% if @interviewer_interviews.empty? %>
+            You are not leading any interviews today.
+          <% else %>
+            <% @interviewer_interviews.each do |interview| %>
+              <div>
+                Interviewing
+                <%= link_to interview.applicant.username, interview.applicant %>
+                on
+                <%= link_to "#{interview.challenge.title}", interview %>
+              </div>
+            <% end %>
+          <% end %>
+          <span class='help-block'> </span><br />
+          <span class='help-block'> </span>
+          <div class='create-button'>
+            <%= link_to 'Choose a challenge to start a new interview', challenges_path, class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+      <div class='panel panel-default'>
+        <div class='panel-heading'>
+          <h3 class='panel-title'>Join an Interview as a Reviewer</h3>
+        </div>
+        <div class='panel-body'>
+          <%= form_tag 'i' do %>
+              Ask the interviewer for the access code
+              <span class='help-block'> </span>
+              <span class="form-group">
+                <span class="col-md-4">
+                  <%= text_field_tag :token, nil, class: "form-control input-md", placeholder: 'Eg. LSAL' %>
+                </span>
+              </span>
+              <span class="form-group">
+                <span class="col-md-4">
+                  <%= submit_tag "Join Interview", class: "btn btn-primary" %>
+                </span>
+              </span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</body>

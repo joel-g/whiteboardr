@@ -1,0 +1,17 @@
+<h1>Reset Password</h1>
+
+<div class="container">
+<%= form_tag password_resets_path, :method => :post, :html => { :class =>
+'form-horizontal' } do %>
+  <div class="form-group">
+    <div class="col-md-4">
+      <%= text_field_tag :email, nil, placeholder: 'Email', class: "form-control input-md" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-4">
+      <%= submit_tag "Reset Password", class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
+</div>

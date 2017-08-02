@@ -2,13 +2,53 @@ require 'rails_helper'
 
 describe InterviewsController do
   describe '#index' do
-    it 'responds with a status of 200' do
-      get :index
-      expect(response.status).to eq 200
+    context 'logged out' do
+      it 'responds with a status of 200' do
+        get :index
+        expect(response.status).to eq 200
+      end
+      it 'renders the Interview#index view' do
+        get :index
+        expect(response).to render_template :index
+      end
     end
-    it 'renders the Interview#index view' do
-      get :index
-      expect(response).to render_template('index')
+    context 'logged in' do
+      before(:each) do
+        @user = FactoryGirl.create(:user)
+        login_user
+      end
+      it 'renders index view' do
+        get :index
+        expect(response).to render_template :index
+      end
+      it 'assigns @applicant_interviews' do
+        get :index
+        expect(assigns[:applicant_interviews]).not_to be nil
+      end
+      it 'gets a maximum of 5 applicant_interviews' do
+        user2 = FactoryGirl.create(:user)
+        FactoryGirl.create(:challenge)
+        FactoryGirl.create(:interview, applicant_id: @user.id, interviewer_id: user2.id)
+        FactoryGirl.create(:interview, applicant_id: @user.id, interviewer_id: user2.id)
+        FactoryGirl.create(:interview, applicant_id: @user.id, interviewer_id: user2.id)
+        FactoryGirl.create(:interview, applicant_id: @user.id, interviewer_id: user2.id)
+        FactoryGirl.create(:interview, applicant_id: @user.id, interviewer_id: user2.id)
+        FactoryGirl.create(:interview, applicant_id: @user.id, interviewer_id: user2.id)
+        get :index
+        expect(assigns[:applicant_interviews].count).to eq 5
+      end
+      it 'assigns @interviewer_interviews' do
+        get :index
+        expect(assigns[:interviewer_interviews]).not_to be nil
+      end
+      it 'only assigns interviews created today' do
+        user2 = FactoryGirl.create(:user)
+        FactoryGirl.create(:challenge)
+        interview1 = FactoryGirl.create(:interview, applicant_id: user2.id, interviewer_id: @user.id)
+        FactoryGirl.create(:interview, applicant_id: user2.id, interviewer_id: @user.id, created_at: Date.today - 1)
+        get :index
+        expect(assigns[:interviewer_interviews]).to match_array([interview1])
+      end
     end
   end
 
@@ -104,9 +144,9 @@ describe InterviewsController do
     let!(:valid_interview_attributes) { FactoryGirl.attributes_for(:interview, applicant_id: applicant.username) }
     let!(:interview) {FactoryGirl.create(:interview)}
 
-    context 'when user is logged in' do
+    context 'when correct user is logged in' do
       before(:each) do
-        @user = FactoryGirl.create(:user)
+        @user = interview.applicant
         login_user
       end
       it 'responds with a status of 200' do
@@ -116,6 +156,16 @@ describe InterviewsController do
       it 'renders the show view' do
         get :show, params: {id: interview.id}
         expect(response).to render_template('show')
+      end
+    end
+    context 'when incorrect user is logged in' do
+      before(:each) do
+        @user = FactoryGirl.create(:user)
+        login_user
+      end
+      it 'redirects to root' do
+        get :show, params: { id: interview.id }
+        expect(response).to redirect_to root_path
       end
     end
     context 'when a user is not logged in' do
@@ -144,6 +194,39 @@ describe InterviewsController do
       not_image = fixture_file_upload('files/text.txt', 'text/xml')
       patch :update, params: { id: interview.id, interview: { image: not_image } }
       expect(assigns[:interview].image_uid).to be nil
+    end
+  end
+
+  describe '#find' do
+    let!(:applicant) { FactoryGirl.create(:user) }
+    let!(:interviewer) { FactoryGirl.create(:user) }
+    let!(:challenge) { FactoryGirl.create(:challenge) }
+    let!(:interview) {FactoryGirl.create(:interview)}
+    before(:each) do
+      @user = interviewer
+      login_user
+    end
+    context 'Valid token' do
+      before(:each) do
+        post :find, params: { token: interview.token }
+      end
+      it 'assigns the correct interview' do
+        expect(assigns[:interview]).to eq interview
+      end
+      it 'renders the interview show page' do
+        expect(response).to render_template :show
+      end
+    end
+    context 'Invalid token' do
+      before(:each) do
+        post :find, params: { token: 'bad-token' }
+      end
+      it 'redirects to root' do
+        expect(response).to redirect_to root_path
+      end
+      it 'sets a flash alert' do
+        expect(flash[:alert]).not_to be nil
+      end
     end
   end
 end

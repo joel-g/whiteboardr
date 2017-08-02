@@ -1,19 +1,42 @@
 <% if @user.errors.any? %>
-  <% @user.errors.full_messages.each do |error| %>
-    <div>
-      <%= error %>
-    </div>
-  <% end %>
+  <div class='alert alert-danger' role='alert'>
+    <% @user.errors.full_messages.each do |error| %>
+    <p><%= error %></p>
+    <% end %>
+  </div>
 <% end %>
-
-<%= form_for @user do |f| %>
-  <%= f.label :first_name %>
-  <%= f.text_field :first_name %>
-  <%= f.label :last_name %>
-  <%= f.text_field :last_name %>
-  <%= f.label :email %>
-  <%= f.text_field :email %>
-  <%= f.label :username %>
-  <%= f.text_field :username %>
-  <%= f.submit 'Update' %>
-<% end %>
+<div class='new-user-container'>
+  <div class='container'>
+    <%= form_for @user, html: { class: 'form-horizontal' } do |f| %>
+      <div class='form-group registration'>
+        <div class='col-md-4'>
+          <%= f.text_field :first_name, placeholder: 'First Name', class: 'form-control input-md' %>
+          <span class='help-block'> </span>
+        </div>
+      </div>
+      <div class='form-group registration'>
+        <div class='col-md-4'>
+          <%= f.text_field :last_name, placeholder: 'Last Name', class: 'form-control input-md' %>
+          <span class='help-block'> </span>
+        </div>
+      </div>
+      <div class='form-group registration'>
+        <div class='col-md-4'>
+          <%= f.text_field :email, placeholder: 'Email', class: 'form-control input-md' %>
+          <span class='help-block'> </span>
+        </div>
+      </div>
+      <div class='form-group registration'>
+        <div class='col-md-4'>
+          <%= f.text_field :username, placeholder: 'Username', class: 'form-control input-md' %>
+          <span class='help-block'> </span>
+        </div>
+      </div>
+      <div class='form-group registration'>
+        <div class='col-md-4'>
+          <%= f.submit 'Update', class: 'btn btn-primary' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
