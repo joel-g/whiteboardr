@@ -24,7 +24,7 @@ class Interview < ActiveRecord::Base
 
   def generate_unique_token_per_day
     possible_token = TokenHelper.create_token(self.interviewer_id, self.applicant_id, self.challenge_id, self.created_at)
-    todays_interviews = TokenHelper.todays_interviews
+    todays_interviews = InterviewHelper.todays_interviews
     matching_interviews = TokenHelper.get_matches(todays_interviews, possible_token)
     fail_count = 0
     while matching_interviews.count > 0 && fail_count < 10
