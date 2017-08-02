@@ -66,4 +66,24 @@
 <% end %>
 </div>
 </div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Filter By Tags</h3>
+   </div>
+  <div class="panel-body">
+<%= form_tag url_for(controller: 'challenges', action: 'index'), method: 'get' do %>
+
+  <div class='easy-box'>Easy <%= check_box_tag 'difficulty[]', 'Easy', @difficulty_checked['Easy'], {multiple: true} %></div><br />
+
+  <div class='medium-box'>Medium <%= check_box_tag  'difficulty[]', 'Medium', @difficulty_checked['Medium'], {multiple: true} %></div><br />
+
+  <div class='hard-box'>Hard <%= check_box_tag  'difficulty[]', 'Hard', @difficulty_checked['Hard'], {multiple: true} %></div><br />
+
+  <div class='filter-button'><%= submit_tag 'Filter', id: 'singlebutton', name: 'singlebutton', class: 'btn btn-primary' %></div>
+<% end %>
+</div>
+</div>
+
+
 </div>

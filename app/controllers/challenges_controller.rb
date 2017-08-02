@@ -17,6 +17,12 @@ class ChallengesController < ApplicationController
         @difficulty_checked[difficulty] = true
       end
     end
+    if (params[:tags])
+      where_params = 
+      where_params.each do |tag|
+        @tags_checked[tag] = true
+      end
+    end
     @challenges = Challenge.where(where_query, where_params)
     render :index
   end
