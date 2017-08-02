@@ -2,6 +2,9 @@ class InterviewsController < ApplicationController
   skip_before_action :require_login, only: [:index]
 
   def index
+    p params
+    p flash
+    p "********************************"
     if logged_in?
       @applicant_interviews = Interview.where(applicant_id: current_user.id).order(created_at: 'DESC').limit(5)
       @interviewer_interviews = InterviewHelper.todays_interviews.where(interviewer_id: current_user.id)
@@ -41,6 +44,7 @@ class InterviewsController < ApplicationController
     if current_user == @interview.applicant || current_user == @interview.interviewer
       render :show
     else
+      flash.alert = "You do not have permission to view that interview"
       redirect_to root_path
     end
   end
@@ -59,7 +63,7 @@ class InterviewsController < ApplicationController
       @feedback = Feedback.new
       render :show
     else
-      flash[:alert] = "Could not find that interview"
+      flash.alert = "That interview could not be found"
       redirect_to root_path
     end
   end

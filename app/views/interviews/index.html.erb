@@ -3,9 +3,9 @@
     <%= render partial:'/sessions/form' %>
   <% else %>
     <div class="container">
-      <% if flash[:alert] %>
-        <div class='errors'>
-          <%= flash[:alert] %>
+      <% if flash.alert %>
+        <div class='alert alert-danger'>
+          <%= flash.alert %>
         </div>
       <% end %>
       <div class='panel panel-default'>
