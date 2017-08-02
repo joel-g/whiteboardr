@@ -2,7 +2,7 @@
 <h3>Interviewed by <%= @interview.interviewer.full_name %> on <%= @interview.date %> </h3>
 <% if current_user == @interview.interviewer || current_user == @interview.applicant %>
   <% if @interview.was_today? %>
-    The token to join this interview is: <%= @interview.token %>. This token is only valid today (<%= @interview.date %>).
+    The access code to join this interview is: <%= @interview.token %>. This code is only valid today (<%= @interview.date %>).
   <% else %>
     This interview is closed to further feedback.
   <% end %>
