@@ -10,7 +10,7 @@
       <% end %>
       <div class='panel panel-default'>
         <div class='panel-heading'>
-          <h3 class='panel-title'>My Recent Interviews:</h3>
+          <h3 class='panel-title'>My Recent Interviews</h3>
         </div>
         <div class='container panel-body'>
           <% if @applicant_interviews.empty? %>
@@ -45,27 +45,33 @@
               </div>
             <% end %>
           <% end %>
+          <span class='help-block'> </span><br />
           <span class='help-block'> </span>
           <div class='create-button'>
-            <%= link_to 'Choose a challenge to start an interview', challenges_path, class: 'btn btn-primary' %>
+            <%= link_to 'Choose a challenge to start a new interview', challenges_path, class: 'btn btn-primary' %>
           </div>
         </div>
       </div>
-      <div class='panel panel-body'>
-        <%= form_tag 'i', html: {class: 'panel panel-default'} do %>
-            Ask the interviewer for the access code
-            <span class='help-block'> </span>
-            <span class="form-group">
-              <span class="col-md-4">
-                <%= text_field_tag :token, nil, class: "form-control input-md", placeholder: 'Eg. LSAL' %>
+      <div class='panel panel-default'>
+        <div class='panel-heading'>
+          <h3 class='panel-title'>Join an Interview as a Reviewer</h3>
+        </div>
+        <div class='panel-body'>
+          <%= form_tag 'i' do %>
+              Ask the interviewer for the access code
+              <span class='help-block'> </span>
+              <span class="form-group">
+                <span class="col-md-4">
+                  <%= text_field_tag :token, nil, class: "form-control input-md", placeholder: 'Eg. LSAL' %>
+                </span>
               </span>
-            </span>
-            <span class="form-group">
-              <span class="col-md-4">
-                <%= submit_tag "Join Interview", class: "btn btn-primary" %>
+              <span class="form-group">
+                <span class="col-md-4">
+                  <%= submit_tag "Join Interview", class: "btn btn-primary" %>
+                </span>
               </span>
-            </span>
-        <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
   <% end %>
