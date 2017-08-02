@@ -17,21 +17,15 @@
     <%= render partial: '/feedbacks/legend' %>
     <br />
     <% @interview.feedbacks.each do |feedback| %>
-      <ul>
-        <li>Reviewer: <%= feedback.user.full_name %></li>
-        <li>Whiteboard Neatness and Clarity: <%= feedback.board_rating %></li>
-        <li>Poise and Presence: <%= feedback.presence_rating %></li>
-        <li>Demonstration of Knowledge: <%= feedback.knowledge_rating %></li>
-        <li>RIOT Rating: <%= feedback.riot_rating %></li>
-        <li>Comments: <%= simple_format(feedback.comments) %></li>
-      </ul>
+      <%= render partial: '/feedbacks/show', locals: { feedback: feedback } %>
     <% end %>
   </div>
 <% else %>
   <% if @interview.has_feedback_from?(current_user)%>
     <% @feedback = @interview.feedbacks.where(user_id: current_user.id) %>
-    <%= "FEEDBACK ID: #{@feedback.first.id}"  %>
-    <h5>Thank you for your <i>actionable, specific & kind</i> feedback. Click Edit Feedback if you would like to make any changes.</h5>
+    <div>
+      <%= render partial: '/feedbacks/show', locals: { feedback: @feedback[0] } %>
+    </div>
     <%= button_to "Edit Feedback", edit_interview_feedback_path( @interview, @feedback.first ), method: :get, class: 'button' %>
   <% else %>
     <h1>Give Feedback</h1>
