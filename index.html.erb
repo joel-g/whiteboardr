@@ -1,0 +1,21 @@
+<% if logged_in? %>
+  <div class='buttons'>
+    <%= link_to 'Create a Challenge', new_challenge_path %>
+  </div>
+<% else %>
+  <h4> <%= link_to "Log in", login_path %> to create challenges, start interviews or review interviews.</h4>
+<% end %>
+
+<div class='interviews-container'>
+  <ul class='interviews-list'>
+    <% @interviews.each do |interview| %>
+      <li>
+        <% if logged_in? %>
+          <%= link_to "#{interview.applicant.username}'s interview, ID: #{interview.id}", interview %>
+        <% else %>
+          <%= interview.applicant.username %>'s interview, ID: <%= interview.id %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

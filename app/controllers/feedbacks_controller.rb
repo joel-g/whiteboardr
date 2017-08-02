@@ -24,10 +24,10 @@ class FeedbacksController < ApplicationController
       p @feedback
       puts 'in update for feedback controller, about to save. @interview to follow'
       p @interview
-      @interview.assign_attributes(interview_params)
+      @feedback.assign_attributes(feedback_params)
       puts 'after assign_attributes, interview to follow'
       p @interview
-      if @interview.save
+      if @feedback.save
         redirect_to interview_path(params[:interview_id])
       else
         render :edit
