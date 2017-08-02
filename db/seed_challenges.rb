@@ -11,27 +11,30 @@ challenge_data = [
     difficulty: 'Easy',
        user_id:  1,
         },
-  {     title: 'Credit Cardd Mask',
+  {     title: 'Credit Card Mask',
          body: 'Write a function that takes a string and replaces all but the last 4 chracters with asterisks',
         notes: 'Input: 1234567890, Output: 123456****\n Input: 1234, Output: ****\n Input: abc, Output: abc\n Input: jar jar binks, Output *********inks'
    difficulty: 'Easy',
       user_id:  1,
        },
+   {     title: 'Odd or Even',
+          body: "Create a function that takes an integer as an argument and returns 'Even' for even numbers or 'Odd' for odd numbers.",
+         notes: 'Input: 12, Output: Even\n Input: -1, Output: Odd\n Input: 0, Output: Even'
+    difficulty: 'Easy',
+       user_id:  1,
+        },
 
 ]
 
 tag_data = [
-      { name: 'integers' },
-      { name: 'numbers '},
-      { name: 'arrays' },
-      { name: 'data structures'},
-      { name: 'fundamentals'},
-      { name: 'strings'},
-      { name: 'algorithms' },
-
-      { name: 'data structures'},
-      { name: 'fundamentals'},
-      { name: 'strings'},
+      { name: 'integers' }, #1
+      { name: 'numbers '}, #2
+      { name: 'arrays' }, #3
+      { name: 'data structures'}, #4
+      { name: 'fundamentals'}, #5
+      { name: 'strings'}, #6
+      { name: 'algorithms' }, #7
+      { name: 'mathematics' } #8
 
 ]
 
@@ -43,7 +46,12 @@ challengetag_data = [
   { challenge_id: 1, tag_id: 5 },
   { challenge_id: 2, tag_id: 6 },
   { challenge_id: 2, tag_id: 7 },
-  
+  { challenge_id: 3, tag_id: 6 },
+  { challenge_id: 3, tag_id: 7 },
+  { challenge_id: 4, tag_id: 1 },
+  { challenge_id: 4, tag_id: 2 },
+  # { challenge_id: 4, tag_id: 1 },
+
 ]
 
 
