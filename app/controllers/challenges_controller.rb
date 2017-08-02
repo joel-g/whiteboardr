@@ -22,7 +22,6 @@ class ChallengesController < ApplicationController
 
     # Filter by tag
     @tags_checked = {}
-    tagged_challenges = []
     Tag.all.each do |tag|
       @tags_checked[tag] = false
     end
@@ -30,7 +29,6 @@ class ChallengesController < ApplicationController
     where_tag_params = []
     where_tag_query = 'true '
     if (params[:tag])
-      p params[:tag]
       where_tag_query << ' AND tags.name in (?)'
       where_tag_params = params[:tag]
       where_tag_params.each do |tag|
