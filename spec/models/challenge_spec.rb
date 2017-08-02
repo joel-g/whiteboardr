@@ -16,5 +16,19 @@ describe Challenge, type: :model do
       challenge = FactoryGirl.create(:challenge)
       expect(challenge.title_and_difficulty).to eq "#{challenge.title} - #{challenge.difficulty}"
     end
+
+    it 'can show challenges associated with a particular tag' do
+      FactoryGirl.create(:user)
+
+      tag1 = FactoryGirl.create(:tag, name: "algorithm")
+
+      challenge1 = FactoryGirl.create(:challenge)
+
+      FactoryGirl.create(:challenge)
+
+      FactoryGirl.create(:challenge_tag, challenge_id: challenge1.id, tag_id: tag1.id)
+
+      expect(Challenge.tagged_with("algorithm")).to match_array([challenge1])
+    end
   end
 end
