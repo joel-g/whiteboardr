@@ -5,12 +5,18 @@ challenge_data = [
    difficulty: 'Easy',
       user_id:  1,
        },
-   {     title: 'Invert Values',
+   {     title: 'Triple Strings',
           body: 'Create a function that will return a string that combines all of the letters of three inputed strings in groups. Taking the first letter of all of the inputs and grouping them next to each other',
          notes: 'Input: aa, bb, cc, Output: abcabc\n You may assume all input strings are the same length.'
     difficulty: 'Easy',
        user_id:  1,
         },
+  {     title: 'Credit Cardd Mask',
+         body: 'Write a function that takes a string and replaces all but the last 4 chracters with asterisks',
+        notes: 'Input: 1234567890, Output: 123456****\n Input: 1234, Output: ****\n Input: abc, Output: abc\n Input: jar jar binks, Output *********inks'
+   difficulty: 'Easy',
+      user_id:  1,
+       },
 
 ]
 
@@ -19,8 +25,14 @@ tag_data = [
       { name: 'numbers '},
       { name: 'arrays' },
       { name: 'data structures'},
-      { name: 'fundamentals'}
-      { name: 'strings'}
+      { name: 'fundamentals'},
+      { name: 'strings'},
+      { name: 'algorithms' },
+
+      { name: 'data structures'},
+      { name: 'fundamentals'},
+      { name: 'strings'},
+
 ]
 
 challengetag_data = [
@@ -30,6 +42,8 @@ challengetag_data = [
   { challenge_id: 1, tag_id: 4 },
   { challenge_id: 1, tag_id: 5 },
   { challenge_id: 2, tag_id: 6 },
+  { challenge_id: 2, tag_id: 7 },
+  
 ]
 
 
