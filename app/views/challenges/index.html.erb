@@ -45,9 +45,11 @@
 </div>
 
 <div class='sidebar'>
-  <div class='create-button'>
-  <%= link_to 'New Challenge', new_challenge_path, name: 'singlebutton', class: 'btn btn-primary' %>
-</div>
+  <% if logged_in? %>
+    <div class='create-button'>
+      <%= link_to 'New Challenge', new_challenge_path, name: 'singlebutton', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
 
 <div class="panel panel-default">
   <div class="panel-heading">

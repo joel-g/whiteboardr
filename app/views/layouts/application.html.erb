@@ -27,27 +27,33 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <% if logged_in? %>
-              <li>
-                <%= form_tag 'i' do %>
-                  <span class="form-group">
-                    <span class="col-md-4">
-                      <%= text_field_tag :token, nil, class: "form-control input-md", placeholder: 'Eg. LSAL' %>
-                    </span>
-                  </span>
-                  <span class="form-group">
-                    <span class="col-md-4">
-                      <%= submit_tag "Join Interview", class: "btn btn-primary" %>
-                    </span>
-                  </span>
-                <% end %>
-              </li>
+              <li><%= link_to "Hi " + current_user.first_name+ "!", user_path(current_user) %></li>
             <% end %>
             <li><%= link_to 'Interview', root_path %></li>
             <li><%= link_to 'Challenges', challenges_path %></li>
             <% if logged_in? %>
               <li><%= link_to 'My Profile', user_path(current_user) %></li>
               <li><%= link_to 'Logout', logout_path, method: :delete %></li>
-              <li><%= link_to "Hi " + current_user.first_name+ "!", user_path(current_user) %></li>
+
+
+
+              <li class='token-search-nav'>
+                <%= form_tag 'i' do %>
+                  <span class="form-group">
+                    <span class="col-md-4">
+                      <%= text_field_tag :token, nil, class: "form-control input-md access-code-bar", placeholder: 'Access code' %>
+                    </span>
+                  </span>
+
+
+
+                  <span class="form-group">
+                    <span class="col-md-4">
+                      <%= submit_tag "Join Interview", class: "btn btn-primary access-code-btn" %>
+                    </span>
+                  </span>
+              </li>
+              <% end %>
             <% else %>
               <li><%= link_to 'Register', new_user_path %></li>
               <li><%= link_to 'Login', login_path %></li>
