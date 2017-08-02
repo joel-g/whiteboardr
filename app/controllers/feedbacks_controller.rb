@@ -18,7 +18,7 @@ class FeedbacksController < ApplicationController
   def update
     @interview = Interview.find(params[:interview_id])
     @feedback = Feedback.find(params[:id])
-    if current_user.id = @feedback.user_id
+    if current_user.id == @feedback.user_id
       @feedback.assign_attributes(feedback_params)
       if @feedback.save
         redirect_to interview_path(params[:interview_id])
