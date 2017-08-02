@@ -16,17 +16,10 @@ class FeedbacksController < ApplicationController
   end
 
   def update
-    if true
-      #later, put test here to see if user logged in
-      @interview = Interview.find(params[:interview_id])
-      @feedback = Feedback.find(params[:id])
-      puts 'in update for feedback controller, about to save. @feedback to follow'
-      p @feedback
-      puts 'in update for feedback controller, about to save. @interview to follow'
-      p @interview
+    @interview = Interview.find(params[:interview_id])
+    @feedback = Feedback.find(params[:id])
+    if current_user.id = @feedback.user_id
       @feedback.assign_attributes(feedback_params)
-      puts 'after assign_attributes, interview to follow'
-      p @interview
       if @feedback.save
         redirect_to interview_path(params[:interview_id])
       else
