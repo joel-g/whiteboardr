@@ -3,7 +3,7 @@ class InterviewsController < ApplicationController
 
   def index
     if logged_in?
-      @applicant_interviews = Interview.where(applicant_id: current_user.id).order(created_at: 'DESC').limit(5) 
+      @applicant_interviews = Interview.where(applicant_id: current_user.id).order(created_at: 'DESC').limit(5)
       @interviewer_interviews = InterviewHelper.todays_interviews.where(interviewer_id: current_user.id)
     end
     render :index
@@ -53,7 +53,7 @@ class InterviewsController < ApplicationController
   end
 
   def find
-    matching_interviews = TokenHelper.get_matches(TokenHelper.todays_interviews, params[:token])
+    matching_interviews = TokenHelper.get_matches(InterviewHelper.todays_interviews, params[:token])
     if matching_interviews.count == 1
       @interview = matching_interviews.first
       @feedback = Feedback.new
