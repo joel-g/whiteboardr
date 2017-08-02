@@ -8,6 +8,8 @@ describe FeedbacksController do
   let!(:interview){FactoryGirl.create(:interview, applicant_id: applicant.id, interviewer_id: interviewer.id)}
   let!(:feedback){FactoryGirl.create(:feedback, interview_id: interview.id)}
   let!(:valid_feedback_attributes) { FactoryGirl.attributes_for(:feedback) }
+  let!(:invalid_feedback_attributes) { FactoryGirl.attributes_for(:feedback, comments: '') }
+
 
   before(:each) do
     @user = interviewer
@@ -51,11 +53,23 @@ describe FeedbacksController do
   end
 
   describe '#update' do
-    it 'updates the feedback attributes' do
-      comments = feedback.comments
-      patch :update, params: {feedback: valid_feedback_attributes, interview_id: interview.id, id: feedback.id}
-      feedback.reload
-      expect(feedback.comments).not_to eq comments
+    context 'valid feedback attributes' do
+      it 'updates the feedback attributes' do
+        comments = feedback.comments
+        patch :update, params: {feedback: valid_feedback_attributes, interview_id: interview.id, id: feedback.id}
+        feedback.reload
+        expect(feedback.comments).not_to eq comments
+      end
+      it 'redirects to interview#show' do
+        patch :update, params: {feedback: valid_feedback_attributes, interview_id: interview.id, id: feedback.id}
+        expect(response).to redirect_to interview_path(interview.id)
+      end
+    end
+    context 'invalid feedback attributes' do
+      it 're-renders the edit page' do
+        patch :update, params: {feedback: invalid_feedback_attributes, interview_id: interview.id, id: feedback.id}
+        expect(response).to render_template 'feedbacks/edit'
+      end
     end
   end
 end
