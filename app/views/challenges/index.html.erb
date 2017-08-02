@@ -27,8 +27,8 @@
       </thead>
       <tbody>
         <% @challenges.each do |challenge| %>
-        <tr>
-          <td>  <%= link_to challenge.title, challenge_path(challenge) %> </th>
+          <tr>
+            <td>  <%= link_to challenge.title, challenge_path(challenge) %> </th>
             <td>  <%= challenge.difficulty %> </td>
             <td>
               <% if challenge.tags.length > 0 %>
