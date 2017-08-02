@@ -12,6 +12,7 @@ class FeedbacksController < ApplicationController
 
   def edit
     puts 'in edit for feedback controller ***********'
+    @interview = Interview.find(params[:interview_id])
     @feedback = Feedback.find(params[:id])
   end
 

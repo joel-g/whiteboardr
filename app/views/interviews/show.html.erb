@@ -83,10 +83,11 @@
           <br />
           <%= f.text_area :comments, size: "80x10", placeholder: "Make sure your feedback is actionable, specific, and kind." %>
         </div>
-        <%= f.submit 'Submit Feedback' %>
+        <%= f.submit 'Submit Changes' %>
       <% end %>
-    <% end %>
-    <div>
+    </div>
+  <% end %>
+  <div>
     <%= render partial: '/feedbacks/ask_guidelines' %>
   </div>
 <% end %>
