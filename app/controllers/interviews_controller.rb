@@ -2,7 +2,11 @@ class InterviewsController < ApplicationController
   skip_before_action :require_login, only: [:index]
 
   def index
-    @interviews = Interview.all.order(created_at: 'DESC')
+    if logged_in?
+      @applicant_interviews = Interview.where(applicant_id: current_user.id).order(created_at: 'DESC').limit(5) 
+      @interviewer_interviews = InterviewHelper.todays_interviews.where(interviewer_id: current_user.id)
+    end
+    render :index
   end
 
   def new
