@@ -18,6 +18,7 @@ class ChallengesController < ApplicationController
         @difficulty_checked[difficulty] = true
       end
     end
+    @challenges = Challenge.where(where_query, where_params)
 
     # Filter by tag
     @tags_checked = {}
@@ -25,18 +26,19 @@ class ChallengesController < ApplicationController
     Tag.all.each do |tag|
       @tags_checked[tag] = false
     end
-    # where_tag_params = []
-    # if (params[:tag])
-    #   where_tag_params = params[:tag]
-    #   where_tag_params.each do |tag|
-    #     @tags_checked[tag] = true
-    #   end
-    #   where_tag_params.each do |tag|
-    #     tagged_challenges.push(Challenge.tagged_with(tag))
-    #   end
-    # end
-    #
-    # @challenges = Challenge.where(where_query, where_params)
+
+    where_tag_params = []
+    where_tag_query = 'true '
+    if (params[:tag])
+      p params[:tag]
+      where_tag_query << ' AND tags.name in (?)'
+      where_tag_params = params[:tag]
+      where_tag_params.each do |tag|
+        @tags_checked[tag] = true
+      end
+    end
+    @challenges = @challenges.left_outer_joins(:tags).where(where_tag_query, where_tag_params).distinct
+
     render :index
   end
 
