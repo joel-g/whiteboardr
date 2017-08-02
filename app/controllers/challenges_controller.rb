@@ -21,19 +21,22 @@ class ChallengesController < ApplicationController
 
     # Filter by tag
     @tags_checked = {}
+    tagged_challenges = []
     Tag.all.each do |tag|
       @tags_checked[tag] = false
     end
-    where_tag_params = []
-    if (params[:tag])
-      where_tag_params = params[:tag]
-      where_tag_params.each do |tag|
-        @tags_checked[tag] = true
-      end
-    end
-
-
-    @challenges = Challenge.where(where_query, where_params)
+    # where_tag_params = []
+    # if (params[:tag])
+    #   where_tag_params = params[:tag]
+    #   where_tag_params.each do |tag|
+    #     @tags_checked[tag] = true
+    #   end
+    #   where_tag_params.each do |tag|
+    #     tagged_challenges.push(Challenge.tagged_with(tag))
+    #   end
+    # end
+    #
+    # @challenges = Challenge.where(where_query, where_params)
     render :index
   end
 
