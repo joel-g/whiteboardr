@@ -17,53 +17,65 @@
 
 <div class='table-container'>
   <div class='challenge-filters container'>
-  <table class="table table-bordered table-hover table-responsive">
-  <thead>
-    <tr>
-      <th scope="row">Title</th>
-      <th>Difficulty</th>
-      <th>Tags</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @challenges.each do |challenge| %>
-    <tr>
-      <td>  <%= link_to challenge.title, challenge_path(challenge) %> </th>
-      <td>  <%= challenge.difficulty %> </td>
-      <td>
-        <% if challenge.tags.length > 0 %>
-        <% challenge.tags.each do |t| %>
-          <%= t.name %>
-          <% end %>
+    <table class="table table-bordered table-hover table-responsive">
+      <thead>
+        <tr>
+          <th scope="row">Title</th>
+          <th>Difficulty</th>
+          <th>Tags</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @challenges.each do |challenge| %>
+          <tr>
+            <td>  <%= link_to challenge.title, challenge_path(challenge) %> </td>
+            <td>  <%= challenge.difficulty %> </td>
+            <td>
+              <% if challenge.tags.length > 0 %>
+                <% challenge.tags.each do |t| %>
+                  <%= t.name %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
         <% end %>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-</div>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <div class='sidebar'>
   <div class='create-button'>
-  <%= link_to 'New Challenge', new_challenge_path, name: 'singlebutton', class: 'btn btn-primary' %>
-</div>
+    <%= link_to 'New Challenge', new_challenge_path, name: 'singlebutton', class: 'btn btn-primary' %>
+  </div>
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Filter By Difficulty Level</h3>
-   </div>
-  <div class="panel-body">
-<%= form_tag url_for(controller: 'challenges', action: 'index'), method: 'get' do %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Filter By Difficulty Level</h3>
+    </div>
+    <div class="panel-body">
+      <%= form_tag url_for(controller: 'challenges', action: 'index'), method: 'get' do %>
 
-  <div class='easy-box'>Easy <%= check_box_tag 'difficulty[]', 'Easy', @difficulty_checked['Easy'], {multiple: true} %></div><br />
+      <div class='easy-box'>Easy <%= check_box_tag 'difficulty[]', 'Easy', @difficulty_checked['Easy'], {multiple: true} %></div><br />
 
-  <div class='medium-box'>Medium <%= check_box_tag  'difficulty[]', 'Medium', @difficulty_checked['Medium'], {multiple: true} %></div><br />
+      <div class='medium-box'>Medium <%= check_box_tag  'difficulty[]', 'Medium', @difficulty_checked['Medium'], {multiple: true} %></div><br />
 
-  <div class='hard-box'>Hard <%= check_box_tag  'difficulty[]', 'Hard', @difficulty_checked['Hard'], {multiple: true} %></div><br />
+      <div class='hard-box'>Hard <%= check_box_tag  'difficulty[]', 'Hard', @difficulty_checked['Hard'], {multiple: true} %></div><br />
 
-  <div class='filter-button'><%= submit_tag 'Filter', id: 'singlebutton', name: 'singlebutton', class: 'btn btn-primary' %></div>
-<% end %>
-</div>
-</div>
+    </div>
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Filter By Tags</h3>
+    </div>
+    <div class="panel-body">
+      <% Tag.all.each do |tag| %>
+
+      <div class='easy-box'> <%= tag.name %> <%= check_box_tag 'tag[]', tag.name, @tags_checked[tag.name], {multiple: true} %></div><br />
+
+      <% end %>
+
+      <div class='filter-button'><%= submit_tag 'Filter', id: 'singlebutton', name: 'singlebutton', class: 'btn btn-primary' %></div>
+      <% end %>
+    </div>
+  </div>
 </div>
