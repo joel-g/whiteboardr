@@ -1,47 +1,47 @@
 challenge_data = [
-  {     title: 'Invert Values',
+  {     title: 'Invert Values', #1
          body: 'Given a set of numbers return the inverse of the numbers.',
         notes: "invert([1, 2, 3, 4, 5]) would return [ -1, -2, -3, -4, -5]\n invert([-2, 3, 1]) would return [2, -3, -1]\n invert([]) would return []\n You may assume all numbers are integers.",
    difficulty: 'Easy',
       user_id:  1,
        },
-   {     title: 'Triple Strings',
+   {     title: 'Triple Strings', #2
           body: 'Create a function that will return a string that combines all of the letters of three inputed strings in groups. Taking the first letter of all of the inputs and grouping them next to each other',
          notes: "Input: aa, bb, cc, Output: abcabc\n You may assume all input strings are the same length.",
     difficulty: 'Easy',
        user_id:  1,
         },
-  {     title: 'Credit Card Mask',
+  {     title: 'Credit Card Mask', #3
          body: 'Write a function that takes a string and replaces all but the last 4 chracters with asterisks',
         notes: "Input: 1234567890, Output: 123456****\n Input: 1234, Output: ****\n Input: abc, Output: abc\n Input: jar jar binks, Output *********inks",
    difficulty: 'Easy',
       user_id:  1,
        },
-   {     title: 'Odd or Even',
+   {     title: 'Odd or Even', #4
           body: "Create a function that takes an integer as an argument and returns 'Even' for even numbers or 'Odd' for odd numbers.",
          notes: "Input: 12, Output: Even\n Input: -1, Output: Odd\n Input: 0, Output: Even",
     difficulty: 'Easy',
        user_id:  1,
         },
-    {     title: 'Reverse and Digitize',
+    {     title: 'Reverse and Digitize', #5
            body: "Given a number return an array of the single digits in reverse order",
           notes: "Input: 123456, Output: [6,5,4,3,2,1]\n Input: -1, Output: [-1]\n Output array should not contain strings.",
      difficulty: 'Easy',
         user_id:  1,
          },
-     {     title: 'Find the Middle',
+     {     title: 'Find the Middle', #6
             body: "Given a word, return the middle character. If the number of characters in the word is off return just one character. If the number of chracters is even return the middle two characters. ",
            notes: "Input: test, Output: st\n Input: whiteboardr, Output: b",
       difficulty: 'Easy',
          user_id:  1,
           },
-    {     title: 'Is it a square?',
+    {     title: 'Is it a square?', #7
            body: "Given a positive number determine if it is a square number. Return true if the number is a square of an interger, otherwise return false.",
           notes: "Input: 9, Output: true\n Input: 144, Output: true\n Input: 26, Output: false",
      difficulty: 'Medium',
         user_id:  1,
          },
-     {     title: 'A different kind of Fizz Buzz',
+     {     title: 'A different kind of Fizz Buzz', #8
             body: "Given a number find all the natural numbers below it that are multiples of 3 or 5 and return their sum",
            notes: "Input: 10, Output: 23 (23 is the sum of 3, 5, 6 and 9)",
       difficulty: 'Medium',
@@ -84,6 +84,9 @@ challengetag_data = [
   { challenge_id: 7, tag_id: 7 },
   { challenge_id: 7, tag_id: 8 },
   { challenge_id: 7, tag_id: 1 },
+  { challenge_id: 8, tag_id: 2 },
+  { challenge_id: 7, tag_id: 7 },
+  { challenge_id: 7, tag_id: 8 },
   # { challenge_id: 4, tag_id: 1 },
 ]
 
