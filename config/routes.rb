@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'faq' => 'faqs#index'
 
   post 'i' => 'interviews#find'
+  get 'i' => 'interviews#find'
 
   root to: 'interviews#index'
 

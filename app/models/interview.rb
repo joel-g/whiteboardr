@@ -87,7 +87,7 @@ class Interview < ActiveRecord::Base
   end
 
   def was_today?
-    self.created_at.to_date == Date.today
+    self.created_at >= Time.now.beginning_of_day && self.created_at <= Time.now.end_of_day
   end
 
 end
