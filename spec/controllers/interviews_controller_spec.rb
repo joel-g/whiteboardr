@@ -25,7 +25,7 @@ describe InterviewsController do
         get :index
         expect(assigns[:applicant_interviews]).not_to be nil
       end
-      it 'gets a maximum of 5 applicant_interviews' do
+      it 'gets all applicant_interviews' do
         user2 = FactoryGirl.create(:user)
         FactoryGirl.create(:challenge)
         FactoryGirl.create(:interview, applicant_id: @user.id, interviewer_id: user2.id)
@@ -35,7 +35,7 @@ describe InterviewsController do
         FactoryGirl.create(:interview, applicant_id: @user.id, interviewer_id: user2.id)
         FactoryGirl.create(:interview, applicant_id: @user.id, interviewer_id: user2.id)
         get :index
-        expect(assigns[:applicant_interviews].count).to eq 5
+        expect(assigns[:applicant_interviews].count).to eq 6
       end
       it 'assigns @interviewer_interviews' do
         get :index
