@@ -28,9 +28,8 @@
 </div>
 
 <div class='table-container'>
-  <div class='challenge-filters container'>
+  <div class='challenge-filters'>
     <h2>Challenges</h2>
-    <br />
     <% if logged_in? %>
       <h4>To start an interview, choose a challenge, and click the "Start Interview" button to its right.</h4>
     <% end %>
@@ -46,7 +45,6 @@
         </tr>
       </thead>
       <tbody>
-         To start an interview, pick a challenge and click "Start Interview"
         <% @challenges.each do |challenge| %>
           <tr>
             <td>  <%= link_to challenge.title, challenge_path(challenge) %> </td>
