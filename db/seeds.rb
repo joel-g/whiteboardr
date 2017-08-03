@@ -1,3 +1,5 @@
+User.create(email: 'whiteboardrhelp@gmail.com', first_name: 'Whiteboardr', last_name: 'Team', username: 'whiteboard', password: ENV[USER_PASSWORD])
+
 challenge_data = [
   {     title: 'Invert Values', #1
          body: 'Given a set of numbers return the inverse of the numbers.',
