@@ -76,7 +76,8 @@ tag_data = [
       { name: 'fundamentals'}, #5
       { name: 'strings'}, #6
       { name: 'algorithms' }, #7
-      { name: 'mathematics' } #8
+      { name: 'mathematics' }, #8
+      { name: 'recursion' } #9
 
 ]
 
@@ -107,8 +108,12 @@ challengetag_data = [
   { challenge_id: 8, tag_id: 7 },
   { challenge_id: 8, tag_id: 8 },
   { challenge_id: 9, tag_id: 7 },
-  { challenge_id: 8, tag_id: 2 },
-  { challenge_id: 8, tag_id: 6 },
+  { challenge_id: 9, tag_id: 2 },
+  { challenge_id: 9, tag_id: 6 },
+  { challenge_id: 10, tag_id: 3 },
+  { challenge_id: 10, tag_id: 9 },
+  { challenge_id: 10, tag_id: 7 },
+
   # { challenge_id: 4, tag_id: 1 },
 ]
 
