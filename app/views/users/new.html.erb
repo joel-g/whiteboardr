@@ -1,26 +1,27 @@
-<h1>Sign Up</h1>
-<h4>it's free</h4>
-<div>
-  <%= flash[:alert] %>
+
+<div class='reg-header'>
+
 </div>
+
 <% if @user.errors.any? %>
-<div class="alert alert-danger signup" role="alert">
-  <% @user.errors.full_messages.each do |error| %>
-      <p><%= error %></p>
-  <% end %>
+  <div class="alert alert-danger signup" role="alert">
+    <% @user.errors.full_messages.each do |error| %>
+        <p><%= error %></p>
+    <% end %>
   </div>
 <% end %>
 
 <div class='new-user-container'>
   <div class="container">
     <%= form_for @user, :html => { :class =>
-  'form-horizontal' } do |f| %>
+  'form-horizontal register-form-container' } do |f| %>
 
       <div class="form-group registration">
         <div class="col-md-4">
           <%= f.text_field :first_name, class: "form-control input-md", placeholder:'First Name' %>
           <span class="help-block"> </span>
         </div>
+
       </div>
 
       <div class="form-group registration">
@@ -60,7 +61,7 @@
 
       <div class="form-group registration">
         <div class="col-md-4">
-          <%= f.submit 'Register', id: 'singlebutton', name: 'singlebutton', class: 'btn btn-primary' %>
+          <%= f.submit 'Register', id: 'singlebutton', name: 'singlebutton', class: 'btn btn-primary reg-btn' %>
         </div>
       </div>
 
