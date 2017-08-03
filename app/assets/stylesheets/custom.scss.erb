@@ -23,7 +23,7 @@ textarea {
 }
 
 .wb-log {
-  height: 280%;
+  height: 276%;
   width: auto;
   margin-top: -16px;
   margin-right: -10px;
@@ -328,12 +328,13 @@ thead {
 }
 
 .new-user-container {
-  border: 1px solid red;
+  display: inline-block;
   margin: auto;
+  margin-top: 2%;
+  padding-left: 30px;
   width: 50%;
   height: 350px;
-  margin-right: auto;
-  margin-left: auto;
+  margin-left: 1%;
   align-items: center;
 }
 
@@ -344,7 +345,7 @@ thead {
 }
 
 .register-form-container {
-  display: block;
+  display: inline-block;
   width: 75%;
   margin: auto;
   vertical-align: middle;
@@ -365,16 +366,16 @@ thead {
 }
 
 .reg-header {
-  margin-right: auto;
-  margin-left: auto;
-  margin-top: 20px;
-  width: 800px;
-  display: block;
-  background: url(<%= asset_path 'dbc.jpg' %>)
+  margin-left: 3%;
+  margin-top: 1%;
+  height: 375px;
+  width: 250px;
+  display: inline-block;
+  background: url(<%= asset_path 'dbc-reg-edit.jpg' %>)
   bottom left no-repeat;
-  min-height: 400px;
   padding: 10px;
   position: relative;
+  float: left;
 }
 
 .challenge-body {
@@ -384,15 +385,66 @@ thead {
 @media(max-width: 768px) {
   .reg-header {
     background-size: 100% 100%;
-  }
+  }}
+
+  @media(min-device-width: 320px) and (max-device-width: 568px) {
+    .reg-header {
+      background: #3667A6;
+      min-width: 200px;
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }}
+
+.reg-btn {
+  margin-top: 5px;
 }
 
-@media(min-device-width: 320px) and (max-device-width: 568px) {
-  .reg-header {
-    background: #3667A6;
-    min-width: 200px;
-    max-width: 100%;
-    height: auto;
-    display: block;
-  }
+.page-header {
+  display: block;
+  margin-top: -20px;
+  margin-left: 2%;
+  width: 50%;
+  font-family: "Helvetica Neue";
+  border-bottom-width: 3px;
+}
+
+.card-block {
+  width: 350px;
+  background-color: white;
+  margin-left: 4.2%;
+  padding: 3px;
+  padding-right: 12px;
+  padding-left: 12px;
+}
+
+.challenge-container {
+  margin-left: 1.9%;
+  width: 500px;
+}
+
+.form-container {
+  margin-left: 1.9%;
+}
+
+.feedback-title {
+  margin-left: 1.9%;
+}
+
+.ask-guide {
+  margin-left: 4%;
+}
+
+.feedback-submit {
+  margin-left: 2%;
+}
+
+.card-block-fb {
+  width: 250px;
+}
+
+.card-fb {
+  width: 280px;
+  height: 218px;
+  margin-bottom: 3px;
 }
