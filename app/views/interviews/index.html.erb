@@ -1,5 +1,23 @@
 <% if !logged_in? %>
   <%= render partial:'/sessions/form' %>
+  <h1 class='center-block'>Practice and feedback are the stepping stones to confidence and competency.</h1>
+      <h3>
+        <br />
+        <div class='center-block'>Gather a Group</div>
+        <br />
+        <span class="glyphicon glyphicon-arrow-down center-block"></span>
+        <br />
+        <div>Start an Interview</div>
+        <br />
+        <span class="glyphicon glyphicon-arrow-down center-block"></span>
+        <br />
+        <div>Reviewers Leave Feedback</div>
+        <br />
+        <span class="glyphicon glyphicon-arrow-down center-block"></span>
+        <br />
+        <div>Candidate Reviews Feedback</div>
+  </h3>
+
 <% else %>
   <div class='main-content'>
     <% if flash.alert %>
