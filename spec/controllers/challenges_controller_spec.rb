@@ -92,6 +92,12 @@ describe ChallengesController do
     let! (:challenge_easy) {FactoryGirl.create(:challenge, difficulty: 'easy')}
     let! (:challenge_medium) {FactoryGirl.create(:challenge, difficulty: 'medium')}
     let! (:challenge_hard) {FactoryGirl.create(:challenge, difficulty: 'hard')}
+
+    let! (:challenge_with_tag) {FactoryGirl.create(:challenge)}
+    let! (:tag) {FactoryGirl.create(:tag, name: "hash")}
+    let! (:challenge_tag) {FactoryGirl.create(:challenge_tag, challenge_id: challenge_with_tag.id, tag_id: tag.id)}
+
+
     context 'no filters specified' do
       before(:each) do
         get :index
@@ -115,6 +121,16 @@ describe ChallengesController do
       it 'assigns @challenges to challenges matching one specified difficulties' do
         get :index, params: {difficulty: ['medium']}
         expect(assigns[:challenges]).to match_array([challenge_medium])
+      end
+    end
+    context 'tag filter specified' do
+      it 'renders the index view' do
+        get :index, params: {tag: [tag.name]}
+        expect(response).to render_template :index
+      end
+      it 'assigns @challenges to challenges matching the specified tags' do
+        get :index, params: {tag: [tag.name]}
+        expect(assigns[:challenges]).to match_array([challenge_with_tag])
       end
     end
   end
