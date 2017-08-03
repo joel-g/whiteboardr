@@ -1,5 +1,9 @@
-<div class="alert alert-danger signup" role="alert">
-  <%= flash[:alert] %>
+<div class='container'>
+  <div class='right pad-right'>
+    <div class='alert alert-danger no-bottom'>
+      <%= flash[:alert] %>
+    </div>
+  </div>
 </div>
 
 <%= render partial: 'form' %>
