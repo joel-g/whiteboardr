@@ -50,17 +50,23 @@ challenge_data = [
          user_id:  1,
           },
     {     title: 'Average Strings', #9
-           body: "You are given a string of numbers that are spelled out. Each number is 0-9 and seperated by spaces. Find the average and return it as a floored whole number.",
+           body: "You are given a string of numbers that are spelled out. Each number is 0-9 and separated by spaces. Find the average and return it as a floored whole number.",
           notes: "Input: 'zero nine five two', Output: 4\n Input: 'three, six, nine', Output: 6\n Input: 'zero zero zero', Output: 0\n Input: 'one one eight one', Output: 2",
      difficulty: 'Medium',
         user_id:  1,
          },
      {     title: 'Array Deep Count', #10
             body: "Array.length will give you the number of top-level elements in an array. Create a function that returns the number of ALL elements within an array, inluding the number of elements inside nested arrays.",
-           notes: "Input: [1, 2, 3], Output: 3\n Input: ['x', 'y', ['z']], Output: 4\n Input: [1, 2, [3, 4, [5]]], Output: 7\n Hint: You may need recursion",
+           notes: "Input: [1, 2, 3], Output: 3\n Input: ['x', 'y', ['z']], Output: 4\n Input: [1, 2, [3, 4, [5]]], Output: 7\n Hint: Consider using recursion",
       difficulty: 'Hard',
          user_id:  1,
           },
+      {     title: 'Camel Case', #11
+             body: "Given a string of lower-cased words separated by spaces return a string with the first letter of each word capitalized and the words joined together without spaces.",
+            notes: "Input: 'have you heard the legend', Output: HaveYouHeardTheLegend\n Input: 'i thought not', Output: 'IThoughtNot'",
+       difficulty: 'Medium',
+          user_id:  1,
+           },
 
 
 
@@ -78,7 +84,6 @@ tag_data = [
       { name: 'algorithms' }, #7
       { name: 'mathematics' }, #8
       { name: 'recursion' } #9
-
 ]
 
 challengetag_data = [
@@ -113,6 +118,8 @@ challengetag_data = [
   { challenge_id: 10, tag_id: 3 },
   { challenge_id: 10, tag_id: 9 },
   { challenge_id: 10, tag_id: 7 },
+  { challenge_id: 11, tag_id: 7 },
+  { challenge_id: 11, tag_id: 6 },
 
   # { challenge_id: 4, tag_id: 1 },
 ]
