@@ -17,9 +17,10 @@ describe FeedbacksController do
 
   describe '#create' do
     context 'Valid feedback' do
-      it 'redirects to interview' do
+      it 'redirects to interview via token' do
         post :create, params: { interview_id: interview.id, feedback: FactoryGirl.attributes_for(:feedback) }
-        expect(response).to redirect_to interview_path(interview)
+        interview = Interview.last
+        expect(response).to redirect_to i_path(token: interview.token)
       end
       it 'creates a new feedback' do
         expect{
@@ -59,9 +60,9 @@ describe FeedbacksController do
         feedback.reload
         expect(feedback.comments).not_to eq comments
       end
-      it 'redirects to interview#show' do
+      it 'redirects to interview via token' do
         patch :update, params: {feedback: valid_feedback_attributes, interview_id: interview.id, id: feedback.id, user_id: interviewer.id}
-        expect(response).to redirect_to interview_path(interview.id)
+        expect(response).to redirect_to i_path(token: interview.token)
       end
     end
     context 'invalid feedback attributes' do
