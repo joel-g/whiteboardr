@@ -4,6 +4,7 @@ class ChallengesController < ApplicationController
   skip_before_action :require_login, only: [:index, :show]
 
   def index
+    # Filter by difficulty
     @difficulty_checked = { 'Easy' => false,
                             'Medium' => false,
                             'Hard' => false
@@ -18,6 +19,24 @@ class ChallengesController < ApplicationController
       end
     end
     @challenges = Challenge.where(where_query, where_params)
+
+    # Filter by tag
+    @tags_checked = {}
+    Tag.all.each do |tag|
+      @tags_checked[tag] = false
+    end
+
+    where_tag_params = []
+    where_tag_query = 'true '
+    if (params[:tag])
+      where_tag_query << ' AND tags.name in (?)'
+      where_tag_params = params[:tag]
+      where_tag_params.each do |tag|
+        @tags_checked[tag] = true
+      end
+    end
+    @challenges = @challenges.left_outer_joins(:tags).where(where_tag_query, where_tag_params).distinct
+
     render :index
   end
 

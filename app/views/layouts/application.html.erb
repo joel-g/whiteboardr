@@ -3,6 +3,7 @@
   <head>
     <title>Whiteboardr</title>
     <%= csrf_meta_tags %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
@@ -26,16 +27,26 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to 'Home', root_path %></li>
+            <% if logged_in? %>
+            <li><%= link_to "Hi " + current_user.first_name+ "!", user_path(current_user) %></li>
+            <% end %>
             <li><%= link_to 'Challenges', challenges_path %></li>
+            <li class="dropdown">
+              <a href="/faq" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">FAQ <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="/faq#interview-tips">Interview Tips</a></li>
+                <li><a href="/faq#feedback">Giving Feedback</a></li>
+                <li><a href="/faq#ratings">Rating Criteria</a></li>
+              </ul>
+            </li>
             <% if logged_in? %>
               <li><%= link_to 'My Profile', user_path(current_user) %></li>
               <li><%= link_to 'Logout', logout_path, method: :delete %></li>
-              <li><%= link_to "Hi " + current_user.first_name+ "!", user_path(current_user) %></li>
             <% else %>
               <li><%= link_to 'Register', new_user_path %></li>
-              <li><%= link_to 'Login', login_path %></li>
+              <li><%= link_to 'Sign In', login_path %></li>
             <% end %>
+
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->

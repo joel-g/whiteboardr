@@ -84,7 +84,7 @@ h1, h4 {
 .jumbotron {
   margin-top: 50px;
   position: relative;
-  background: url(dbc.jpg)
+  background: url(<%= asset_path 'dbc.jpg' %>)
   bottom left no-repeat;
   min-height: 400px;
   background-size: 100%;
@@ -258,7 +258,7 @@ body {
 
 .panel-title {
   font-style: bold;
-  background-color: #fff;
+  background-color: inherit;
   font-size: 15px;
 }
 
@@ -267,7 +267,7 @@ body {
 }
 
 thead {
-  font-size: 17px;
+  font-size: 14px;
   background-color: #fff;
 }
 
@@ -290,3 +290,103 @@ thead {
   display: inline-block;
   vertical-align: middle;
 }
+
+.signin-btn {
+  display: block;
+  margin: auto !important;
+  margin-bottom: 7px !important;
+}
+
+.forgot-btn {
+  display: block;
+  margin: auto;
+  text-align: center;
+}
+
+.token-search-nav {
+  margin-top: 7px;
+  margin-bottom: 7px;
+  margin-right: -125px;
+}
+
+.access-code-bar {
+  margin-right: -9px;
+}
+
+.main-content {
+  margin-left: 25px;
+}
+
+.right {
+  float: right;		
+}
+  		  
+.interview-item {
+  font-style: bold;
+  list-style: none;		
+  padding: 5px 0;		
+}
+
+.new-user-container {
+  border: 1px solid red;
+  margin: auto;
+  width: 50%;
+  height: 350px;
+  margin-right: auto;
+  margin-left: auto;
+  align-items: center;
+}
+
+.container {
+  display: block;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.register-form-container {
+  display: block;
+  width: 75%;
+  margin: auto;
+  vertical-align: middle;
+  margin-top: 15px;
+  align-items: center;
+}
+
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-control {
+  position: relative;
+  left: 0px;
+  right: 200px;
+}
+
+.reg-header {
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 20px;
+  width: 800px;
+  display: block;
+  background: url(<%= asset_path 'dbc.jpg' %>)
+  bottom left no-repeat;
+  min-height: 400px;
+  padding: 10px;
+  position: relative;
+}
+
+@media(max-width: 768px) {
+  .reg-header {
+    background-size: 100% 100%;
+  }}
+
+  @media(min-device-width: 320px) and (max-device-width: 568px) {
+    .reg-header {
+      background: #3667A6;
+      min-width: 200px;
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }}

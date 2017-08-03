@@ -1,26 +1,37 @@
-<h1><%= @user.username %>'s Interviews</h1>
-<% if current_user == @user %>
-  <%= link_to 'Edit Profile', edit_user_path(current_user) %>
-<% end %>
-<div class='interviews-container'>
-  <ul class='interviews-list'>
-    <% @user.interviews.each do |interview| %>
-    <li>
-      <% if logged_in? && current_user == @user %>
-        <%= link_to "#{interview.challenge.title}", interview %> on <%= interview.date %>
-        <% if interview.feedbacks.length > 0 %>
-          <p class='ratings'>
-            <div class='avg-ratings'>Average Ratings</div>
-            Board: <%= interview.average_board_rating %><br />
-            Presence: <%= interview.average_presence_rating %><br />
-            Knowledge: <%= interview.average_knowledge_rating %><br />
-            RIOT: <%= interview.average_riot_rating %>
-          </p>
-        <% end %>
-      <% else %>
-        <%= link_to "#{interview.challenge.title}", interview %> on <%= interview.date %>
-      <% end %>
-    </li>
+<div class='main-content panel panel-default'>
+  <div class='panel-heading'>
+    <% if @user == current_user %>
+      My
+    <% else %>
+      <%= @user.username %>'s
     <% end %>
-  </ul>
+    Interviews
+    <% if current_user == @user %>
+      <span class='right'>
+        <%= link_to 'Edit Profile', edit_user_path(current_user) %>
+      </span>
+    <% end %>
+  </div>
+  <div class='panel panel-default'>
+    <ul class='interviews-list'>
+      <% @user.interviews.each do |interview| %>
+      <li class='interview-item panel'>
+        <% if logged_in? && current_user == @user %>
+          <%= link_to "#{interview.challenge.title}", interview %> on <%= interview.date %>
+          <% if interview.feedbacks.length > 0 %>
+            <p class='ratings'>
+              <div class='avg-ratings'>Average Ratings</div>
+              Board: <%= interview.average_board_rating %><br />
+              Presence: <%= interview.average_presence_rating %><br />
+              Knowledge: <%= interview.average_knowledge_rating %><br />
+              RIOT: <%= interview.average_riot_rating %>
+            </p>
+          <% end %>
+        <% else %>
+          <%= link_to "#{interview.challenge.title}", interview %> on <%= interview.date %>
+        <% end %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
 </div>
