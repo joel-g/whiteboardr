@@ -29,10 +29,12 @@
 
 <div class='table-container'>
   <div class='challenge-filters'>
-    <h2>Challenges</h2>
-    <% if logged_in? %>
-      <h4>To start an interview, choose a challenge, and click the "Start Interview" button to its right.</h4>
-    <% end %>
+    <div class='table'>
+      <h2>Challenges</h2>
+      <% if logged_in? %>
+        To start an interview, choose a challenge, and click the "Start Interview" button to its right.
+      <% end %>
+    </div>
     <table class="table table-bordered table-hover table-responsive">
       <thead>
         <tr>
