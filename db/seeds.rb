@@ -1,7 +1,7 @@
 challenge_data = [
   {     title: 'Invert Values',
          body: 'Write a function that given a set of numbers return the inverse of the numbers.',
-        notes: 'invert([1, 2, 3, 4, 5]) would return [ -1, -2, -3, -4, -5]\n invert([-2, 3, 1]) would return [2, -3, -1]\n invert([]) would return []\n You may assume all numbers are integers.',
+        notes: "invert([1, 2, 3, 4, 5]) would return [ -1, -2, -3, -4, -5]\n invert([-2, 3, 1]) would return [2, -3, -1]\n invert([]) would return []\n You may assume all numbers are integers.",
    difficulty: 'Easy',
       user_id:  1,
        },
