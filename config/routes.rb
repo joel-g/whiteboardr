@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
 
   post 'i' => 'interviews#find'
+  get 'i' => 'interviews#find'
 
   root to: 'interviews#index'
 
