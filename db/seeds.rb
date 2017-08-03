@@ -41,7 +41,7 @@ challenge_data = [
      difficulty: 'Medium',
         user_id:  1,
          },
-     {     title: 'A different kind of Fizz Buzz', #8
+     {     title: 'Multiples of 3 and 5 (not fizzbuzz)', #8
             body: "Given a number find all the natural numbers below it that are multiples of 3 or 5 and return their sum",
            notes: "Input: 10, Output: 23 (23 is the sum of 3, 5, 6 and 9)",
       difficulty: 'Medium',
@@ -87,6 +87,9 @@ challengetag_data = [
   { challenge_id: 8, tag_id: 2 },
   { challenge_id: 7, tag_id: 7 },
   { challenge_id: 7, tag_id: 8 },
+  { challenge_id: 8, tag_id: 2 },
+  { challenge_id: 8, tag_id: 7 },
+  { challenge_id: 8, tag_id: 8 },
   # { challenge_id: 4, tag_id: 1 },
 ]
 
