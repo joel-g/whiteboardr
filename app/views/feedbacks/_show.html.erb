@@ -1,0 +1,12 @@
+<ul>
+  <% if feedback.user == current_user %>
+    Feedback From Me:
+  <% else %>
+    <li>Reviewer: <%= feedback.user.full_name %></li>
+  <% end %>
+  <li>Whiteboard Neatness and Clarity: <%= feedback.board_rating %></li>
+  <li>Poise and Presence: <%= feedback.presence_rating %></li>
+  <li>Demonstration of Knowledge: <%= feedback.knowledge_rating %></li>
+  <li>RIOT Rating: <%= feedback.riot_rating %></li>
+  <li>Comments: <%= simple_format(feedback.comments) %></li>
+</ul>

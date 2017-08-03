@@ -11,4 +11,10 @@ class Challenge < ActiveRecord::Base
     "#{self.title} - #{self.difficulty}"
   end
 
+
+  # Takes the name of a tag and searches for challenges with that tag
+  def self.tagged_with(name)
+    Tag.find_by(name: name).challenges
+  end
+
 end

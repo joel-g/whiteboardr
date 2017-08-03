@@ -6,6 +6,6 @@ FactoryGirl.define do
     presence_rating {rand(1..5)}
     knowledge_rating {rand(1..5)}
     riot_rating {rand(1..5)}
-    comments {Faker::StarWars.quote}
+    comments {Faker::StarWars.quote + rand(999).to_s}
   end
 end

@@ -1,53 +1,80 @@
-<body>
-  <% if !logged_in? %>
-    <div class='login-jumbo'>
-      <div class="container">
-        <% if flash[:alert] %>
-          <div class='errors'>
-            <%= flash[:alert] %>
-          </div>
+<% if !logged_in? %>
+  <%= render partial:'/sessions/form' %>
+<% else %>
+  <div class='main-content'>
+    <% if flash.alert %>
+      <div class='alert alert-danger'>
+        <%= flash.alert %>
+      </div>
+    <% end %>
+    <h1>I want to...</h1>
+    <h2>Be The Interviewer</h2>
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        <h3 class='panel-title'>Interviews I'm Leading Today</h3>
+      </div>
+      <div class='container panel-body'>
+        <% if @interviewer_interviews.empty? %>
+          You are not leading any interviews today.
+        <% else %>
+          <% @interviewer_interviews.each do |interview| %>
+            <div>
+              Interviewing
+              <%= link_to interview.applicant.username, interview.applicant %>
+              on
+              <%= link_to "#{interview.challenge.title}", interview %>
+            </div>
+          <% end %>
         <% end %>
-        <div class="jumbotron">
-          <div class="jumbotron-content">
-            <h1>Welcome to Whiteboardr!</h1>
-            <p class="jumbotron-lg-only">Join our community and start practicing!</p>
-            <%= form_tag sessions_path, :method => :post, :html => {class: 'signin-block'} do %>
-              <div class="form-group login-group">
-                <label for="email">Email:</label>
-                <%= text_field_tag :email, nil, placeholder:'Email', class: "form-control" %>
-              </div>
-              <div class="form-group login-group">
-                <label for="password">Password:</label>
-                <%= password_field_tag :password, nil, placeholder:'Password', class: "form-control" %>
-              </div>
-              <%= submit_tag 'Sign In', class: 'btn btn-primary btn-large signin-btn' %>
-            <% end %>
-            <%= link_to 'Forgot Password?', new_password_reset_path, class: 'btn btn-primary btn-large forgot-btn' %>
-
-          </div>
+        <span class='help-block'> </span><br />
+        <span class='help-block'> </span>
+        <div class='create-button'>
+          <%= link_to 'Choose a Challenge to Start a New Interview', challenges_path, class: 'btn btn-primary' %>
         </div>
       </div>
     </div>
-  <% end %>
-  <% if logged_in? %>
-    <div class="container">
-      <% if flash[:alert] %>
-        <div class='errors'>
-          <%= flash[:alert] %>
-        </div>
-      <% end %>
-      <%= form_tag 'i' do %>
-        <span class="form-group">
-          <span class="col-md-4">
-            <%= text_field_tag :token, nil, class: "form-control input-md" %>
-          </span>
-        </span>
-        <span class="form-group">
-          <span class="col-md-4">
-            <%= submit_tag "Join Interview", class: "btn btn-primary" %>
-          </span>
-        </span>
-      <% end %>
+    <h2>Give Feedback</h2>
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        <h3 class='panel-title'>Join an Interview as a Reviewer</h3>
+      </div>
+      <div class='panel-body'>
+        <%= form_tag 'i' do %>
+            Ask the interviewer for the access code
+            <span class='help-block'> </span>
+            <span class="form-group">
+              <span class="col-md-4">
+                <%= text_field_tag :token, nil, class: "form-control input-md", placeholder: 'Eg. LSAL' %>
+              </span>
+            </span>
+            <span class="form-group">
+              <span class="col-md-4">
+                <%= submit_tag "Join Interview", class: "btn btn-primary" %>
+              </span>
+            </span>
+        <% end %>
+      </div>
     </div>
-  <% end %>
-</body>
+    <h2>See My Feedback</h2>
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        <h3 class='panel-title'>My Interviews</h3>
+      </div>
+      <div class='container panel-body'>
+        <% if @applicant_interviews.empty? %>
+          You have no interviews.
+        <% else %>
+          <% @applicant_interviews.each do |interview| %>
+            <div>
+              <%= link_to "#{interview.challenge.title}", interview %>
+              - Interviewed by
+              <%= link_to interview.interviewer.username, interview.interviewer %>
+              on
+              <%= interview.date %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

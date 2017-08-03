@@ -192,7 +192,7 @@ describe UsersController do
         patch :update, params: { user: missing_last_name, id: @user.id }
         expect(assigns[:user].errors).not_to be_empty
       end
-      it 'redirects to root if the currently logged in user isn\'t the user being editted' do
+      it 'redirects to root if the currently logged in user isn\'t the user being edited' do
         user = FactoryGirl.create(:user)
         get :update, params: { user: FactoryGirl.attributes_for(:user), id: user.id }
         expect(response).to redirect_to root_path
