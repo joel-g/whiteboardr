@@ -41,6 +41,7 @@
         </tr>
       </thead>
       <tbody>
+        To start an interview, pick a challenge and click "Start Interview"
         <% @challenges.each do |challenge| %>
           <tr>
             <td>  <%= link_to challenge.title, challenge_path(challenge) %> </td>
