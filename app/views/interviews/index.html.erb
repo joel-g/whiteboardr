@@ -1,5 +1,12 @@
 <% if !logged_in? %>
   <%= render partial:'/sessions/form' %>
+  <h1 class='center-block'>Practice and feedback are the stepping stones to confidence and competency.</h1>
+  <br />
+  <h3>To get started, register or sign in. </h3>
+  <br />
+  <h3>Gather a group, pick a challenge, and start an interview!</h3>
+  <br />
+  <h3>Reviewers can leave feedback that the candidate can later review.</h3>
 <% else %>
   <div class='main-content'>
     <% if flash.alert %>
