@@ -328,12 +328,13 @@ thead {
 }
 
 .new-user-container {
-  border: 1px solid red;
+  display: inline-block;
   margin: auto;
+  margin-top: 20%;
+  margin-left: 20px;
+  padding-left: 30px;
   width: 50%;
   height: 350px;
-  margin-right: auto;
-  margin-left: auto;
   align-items: center;
 }
 
@@ -344,7 +345,7 @@ thead {
 }
 
 .register-form-container {
-  display: block;
+  display: inline-block;
   width: 75%;
   margin: auto;
   vertical-align: middle;
@@ -365,16 +366,17 @@ thead {
 }
 
 .reg-header {
-  margin-right: auto;
-  margin-left: auto;
+  margin-left: 3%;
   margin-top: 20px;
-  width: 800px;
-  display: block;
-  background: url(<%= asset_path 'dbc.jpg' %>)
+  height: 700px;
+  width: 400px;
+  display: inline-block;
+  background: url(<%= asset_path 'dbc-reg-page-edit.jpg' %>)
   bottom left no-repeat;
   min-height: 400px;
   padding: 10px;
   position: relative;
+  float: left;
 }
 
 @media(max-width: 768px) {
