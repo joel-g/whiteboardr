@@ -50,7 +50,7 @@
               <li><%= link_to "Hi " + current_user.first_name+ "!", user_path(current_user) %></li>
             <% else %>
               <li><%= link_to 'Register', new_user_path %></li>
-              <li><%= link_to 'Login', login_path %></li>
+              <li><%= link_to 'Sign In', login_path %></li>
             <% end %>
           </ul>
         </div><!-- /.navbar-collapse -->
