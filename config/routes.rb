@@ -7,11 +7,14 @@ Rails.application.routes.draw do
   end
   resources :users, except: [:destroy]
   resources :sessions, only: [:new, :create, :destroy]
+  resources :faqs, only: [:index]
 
   get 'login' => 'sessions#new'
   delete 'logout' => 'sessions#destroy'
+  get 'faq' => 'faqs#index'
 
   post 'i' => 'interviews#find'
+  get 'i' => 'interviews#find'
 
   root to: 'interviews#index'
 
