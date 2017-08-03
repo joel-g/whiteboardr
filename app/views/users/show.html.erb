@@ -1,5 +1,12 @@
 <div class='main-content panel panel-default'>
   <div class='panel-heading'>
+    <div>First Name: <%= @user.first_name %></div>
+    <div>Last Name: <%= @user.first_name %></div>
+    <div>Username: <%= @user.first_name %></div>
+    <% if @user == current_user %>
+      <div>Email: <%= @user.email %></div>
+    <% end %>
+    <br />
     <% if @user == current_user %>
       My
     <% else %>
