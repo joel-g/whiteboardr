@@ -35,6 +35,12 @@ challenge_data = [
       difficulty: 'Easy',
          user_id:  1,
           },
+    {     title: 'Is it a square?',
+           body: "Given a positive number determine if it is a square number. Return true if the number is a square of an interger, otherwise return false.",
+          notes: 'Input: 9, Output: true\n Input: 144, Output: true\n Input: 26, Output: false',
+     difficulty: 'Medium',
+        user_id:  1,
+         },
 
 
 ]
@@ -68,6 +74,9 @@ challengetag_data = [
   { challenge_id: 5, tag_id: 3 },
   { challenge_id: 6, tag_id: 5 },
   { challenge_id: 6, tag_id: 6 },
+  { challenge_id: 7, tag_id: 7 },
+  { challenge_id: 7, tag_id: 8 },
+  { challenge_id: 7, tag_id: 1 },
   # { challenge_id: 4, tag_id: 1 },
 
 ]
