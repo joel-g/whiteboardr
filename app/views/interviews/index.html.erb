@@ -18,11 +18,11 @@
     <h2>Be The Interviewer</h2>
     <div class='panel panel-default'>
       <div class='panel-heading'>
-        <h3 class='panel-title'>Interviews I'm Leading Today</h3>
+        <h3 class='panel-title'>Interviews I've Led Today</h3>
       </div>
       <div class='container panel-body'>
         <% if @interviewer_interviews.empty? %>
-          You are not leading any interviews today.
+          You have not yet led any interviews today.
         <% else %>
           <% @interviewer_interviews.each do |interview| %>
             <div>
@@ -36,7 +36,7 @@
         <span class='help-block'> </span><br />
         <span class='help-block'> </span>
         <div class='create-button'>
-          <%= link_to 'Choose a Challenge to Start a New Interview', challenges_path, class: 'btn btn-primary' %>
+          <%= link_to 'Start an Interview', challenges_path, class: 'btn btn-primary' %>
         </div>
       </div>
     </div>
