@@ -29,6 +29,11 @@
 
 <div class='table-container'>
   <div class='challenge-filters container'>
+    <h2>Challenges</h2>
+    <br />
+    <% if logged_in? %>
+      <h4>To start an interview, choose a challenge, and click the "Start Interview" button to its right.</h4>
+    <% end %>
     <table class="table table-bordered table-hover table-responsive">
       <thead>
         <tr>
