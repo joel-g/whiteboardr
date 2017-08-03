@@ -1,6 +1,6 @@
 <h1>Start an Interview</h1>
 
-<div class='errors'>
+<div class="alert alert-danger">
   <% if @interview.errors.any? %>
     <% @interview.errors.full_messages.each do |error| %>
       <%= error %>
