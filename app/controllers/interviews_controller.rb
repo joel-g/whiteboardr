@@ -41,7 +41,7 @@ class InterviewsController < ApplicationController
     if current_user == @interview.applicant || current_user == @interview.interviewer
       render :show
     else
-      flash.alert = "You do not have permission to view that interview"
+      flash.alert = "You do not have permission to view the selected interview"
       redirect_to root_path
     end
   end

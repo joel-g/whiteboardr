@@ -1,16 +1,26 @@
 <div class='main-content panel panel-default'>
   <div class='panel-heading'>
+    <div>Name: <%= @user.full_name %></div>
+    <div>Username: <%= @user.username %></div>
     <% if @user == current_user %>
-      My
-    <% else %>
-      <%= @user.username %>'s
+      <div>Email: <%= @user.email %></div>
     <% end %>
-    Interviews
-    <% if current_user == @user %>
-      <span class='right'>
-        <%= link_to 'Edit Profile', edit_user_path(current_user) %>
+    <br />
+    <div>
+      <span>
+      <% if @user == current_user %>
+        My
+      <% else %>
+        <%= @user.username %>'s
+      <% end %>
+      Interviews
       </span>
-    <% end %>
+      <% if current_user == @user %>
+        <span class='right'>
+          <%= link_to 'Edit Profile', edit_user_path(current_user) %>
+        </span>
+      <% end %>
+    </div>
   </div>
   <div class='panel panel-default'>
     <ul class='interviews-list'>
