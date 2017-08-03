@@ -9,17 +9,19 @@ Dragonfly.app.configure do
 
   url_format "/media/:job/:name"
 
-  # datastore :file,
-  #   root_path: Rails.root.join('public/system/dragonfly', Rails.env),
-  #   server_root: Rails.root.join('public')
-
-  datastore :dropbox,
-    app_key:              ENV['DROPBOX_APP_KEY'],
-    app_secret:           ENV['DROPBOX_APP_SECRET'],
-    access_token:         ENV['DROPBOX_ACCESS_TOKEN'],
-    access_token_secret:  ENV['DROPBOX_ACCESS_TOKEN_SECRET'],
-    user_id:              ENV['DROPBOX_USER_ID'],
-    root_path:            Rails.env # optional
+  if Rails.env.test?
+    datastore :file,
+      root_path: Rails.root.join('public/system/dragonfly', Rails.env),
+      server_root: Rails.root.join('public')
+  else
+    datastore :dropbox,
+      app_key:              ENV['DROPBOX_APP_KEY'],
+      app_secret:           ENV['DROPBOX_APP_SECRET'],
+      access_token:         ENV['DROPBOX_ACCESS_TOKEN'],
+      access_token_secret:  ENV['DROPBOX_ACCESS_TOKEN_SECRET'],
+      user_id:              ENV['DROPBOX_USER_ID'],
+      root_path:            Rails.env # optional
+  end
 
 
 end
@@ -35,5 +37,5 @@ if defined?(ActiveRecord::Base)
   ActiveRecord::Base.extend Dragonfly::Model
   ActiveRecord::Base.extend Dragonfly::Model::Validations
 end
-# 
+#
 # Dragonfly.app.store(some_file, path: 'some/path.txt')
