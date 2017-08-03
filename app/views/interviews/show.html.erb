@@ -1,5 +1,11 @@
-<h1>Practice Interview for <%= link_to "#{@interview.applicant.full_name}", user_path(@interview.applicant_id) %></h1>
-<h3>Interviewed by <%= @interview.interviewer.full_name %> on <%= @interview.date %> </h3>
+<div class="page-header">
+  <div class="pull-left">
+    <h2>Practice Interview for <%= link_to "#{@interview.applicant.full_name}", user_path(@interview.applicant_id) %><br />
+      <small> Interviewed by <%= @interview.interviewer.full_name %> on <%= @interview.date %> </small></h2>
+  </div>
+  <div class="clearfix"></div>
+</div>
+
 <% if current_user == @interview.interviewer || current_user == @interview.applicant %>
   <% if @interview.was_today? %>
     The access code to join this interview is: <%= @interview.token %>. This code is only valid today (<%= @interview.date %>).
