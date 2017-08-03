@@ -1,16 +1,34 @@
 <div class="page-header">
   <div class="pull-left">
-    <h2>Practice Interview for <%= link_to "#{@interview.applicant.full_name}", user_path(@interview.applicant_id) %><br />
-      <small> Interviewed by <%= @interview.interviewer.full_name %> on <%= @interview.date %> </small></h2>
+    <h3>Practice Interview for <%= link_to "#{@interview.applicant.full_name}", user_path(@interview.applicant_id) %><br />
+      <small> Interviewed by <%= @interview.interviewer.full_name %> on <%= @interview.date %> </small></h3>
   </div>
   <div class="clearfix"></div>
 </div>
 
 <% if current_user == @interview.interviewer || current_user == @interview.applicant %>
   <% if @interview.was_today? %>
-    The access code to join this interview is: <%= @interview.token %>. This code is only valid today (<%= @interview.date %>).
+
+  <div class="row">
+  <div class="col-sm-6">
+  <div class="card">
+  <div class="card-block">
+    <h5 class="card-subtitle mb-2 text-muted">Access Code</h5>
+    <p class="card-text">The access code to join this interview is <b><%= @interview.token %></b>. This code is only valid today (<%= @interview.date %>).</p>
+  </div>
+</div>
+</div>
+</div>
   <% else %>
-    This interview is closed to further feedback.
+  <div class="row">
+  <div class="col-sm-6">
+  <div class="card">
+  <div class="card-block">
+    <p class="card-text">This interview is closed to further feedback.</p>
+  </div>
+</div>
+</div>
+</div>
   <% end %>
 <% end %>
 <%= render partial: '/challenges/challenge', locals: { challenge: @interview.challenge } %>
@@ -40,7 +58,7 @@
     </div>
     <%= button_to "Edit Feedback", edit_interview_feedback_path( @interview, @feedback.first ), method: :get, class: 'button' %>
   <% else %>
-    <h1>Give Feedback</h1>
+    <h4 class='feedback-title'>Give Feedback</h4>
     <%= render partial: '/feedbacks/feedback_form' %>
   <% end %>
   <div>
