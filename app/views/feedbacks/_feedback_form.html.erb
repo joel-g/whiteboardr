@@ -9,7 +9,6 @@
     </div>
     <br />
   <% end %>
-  <br />
   <h4>Please rate the candidate's performance using a scale of 1 (needs improvement) to 5 (knocked it out of the park).</h4>
   <%= form_for [@interview,@feedback] do |f| %>
     <%= f.hidden_field :user_id, value: current_user.id %>
@@ -46,6 +45,6 @@
       <br />
       <%= f.text_area :comments, size: "80x10", placeholder: "Make sure your feedback is actionable, specific, and kind." %>
     </div>
-    <%= f.submit 'Submit' %>
+    <%= f.submit 'Submit', class: 'feedback-submit' %>
   <% end %>
 </div>
