@@ -1,4 +1,6 @@
 <h1>Edit Feedback</h1>
+<h4>Candidate: <%= @feedback.interview.applicant.full_name %></h4>
+<h4> Challenge: <%= @feedback.interview.challenge.title %></h4>
 <%= render partial: 'feedback_form' %>
 <div>
   <%= render partial: 'ask_guidelines' %>
