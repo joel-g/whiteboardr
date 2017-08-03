@@ -78,7 +78,6 @@ challengetag_data = [
   { challenge_id: 7, tag_id: 8 },
   { challenge_id: 7, tag_id: 1 },
   # { challenge_id: 4, tag_id: 1 },
-
 ]
 
 
