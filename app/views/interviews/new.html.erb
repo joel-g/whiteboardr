@@ -1,21 +1,31 @@
 <h1>Start an Interview</h1>
 
+<% if @interview.errors.any? %>
 <div class="alert alert-danger">
-  <% if @interview.errors.any? %>
     <% @interview.errors.full_messages.each do |error| %>
       <%= error %>
     <% end %>
-  <% end %>
 </div>
+<% end %>
+
+
+
 
 <div class='form-container'>
   <%= form_for @interview do |f| %>
-    <%= f.hidden_field :interviewer_id, value: current_user.id %>
-    <%= f.label "Applicant's username" %>
-    <%= f.text_field :applicant_id %>
-    Challenge:
-    <%= @challenge.title %>
-    <%= f.hidden_field :challenge_id, value: @challenge.id %>
-    <%= f.submit "Start Interview" %>
-  <% end %>
+  <%= f.hidden_field :interviewer_id, value: current_user.id %>
+  <span class='help-block'> </span>
+  <span class="form-group">
+    <span class="col-md-4">
+      <%= f.text_field :applicant_id, class: "form-control input-md", placeholder: "Applicant's username" %>
+    </span>
+  </span>
+  <span class="form-group">
+    <span class="col-md-4">
+      <%= submit_tag "Start Interview", class: "btn btn-primary" %>
+    </span>
+  </span>
+  <%= @challenge.title %>
+  <%= f.hidden_field :challenge_id, value: @challenge.id %>
+<% end %>
 </div>
