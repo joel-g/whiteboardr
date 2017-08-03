@@ -65,6 +65,11 @@ GEM
       addressable (~> 2.3)
       multi_json (~> 1.0)
       rack (>= 1.3)
+    dragonfly-dropbox_data_store (0.0.1)
+      dragonfly (~> 1.0)
+      dropbox-sdk (~> 1.6)
+    dropbox-sdk (1.6.5)
+      json
     erubis (2.7.0)
     execjs (2.7.0)
     factory_girl (4.8.0)
@@ -224,6 +229,7 @@ DEPENDENCIES
   bootstrap-sass (= 3.3.7)
   byebug
   dragonfly
+  dragonfly-dropbox_data_store
   factory_girl_rails
   faker
   jbuilder (~> 2.5)
