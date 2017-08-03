@@ -1,4 +1,4 @@
-User.create(email: 'whiteboardrhelp@gmail.com', first_name: 'Whiteboardr', last_name: 'Team', username: 'whiteboard', password: ENV[USER_PASSWORD])
+User.create(email: 'whiteboardrhelp@gmail.com', first_name: 'Whiteboardr', last_name: 'Team', username: 'whiteboardr', password: ENV[USER_PASSWORD])
 
 challenge_data = [
   {     title: 'Invert Values', #1
@@ -55,6 +55,13 @@ challenge_data = [
      difficulty: 'Medium',
         user_id:  1,
          },
+     {     title: 'Array Deep Count', #10
+            body: "Array.length will give you the number of top-level elements in an array. Create a function that returns the number of ALL elements within an array, inluding the number of elements inside nested arrays.",
+           notes: "Input: [1, 2, 3], Output: 3\n Input: ['x', 'y', ['z']], Output: 4\n Input: [1, 2, [3, 4, [5]]], Output: 7\n Hint: You may need recursion",
+      difficulty: 'Hard',
+         user_id:  1,
+          },
+
 
 
 
