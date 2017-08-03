@@ -47,6 +47,13 @@ challenge_data = [
       difficulty: 'Medium',
          user_id:  1,
           },
+    {     title: 'Average Strings', #9
+           body: "You are given a string of numbers that are spelled out. Each number is 0-9 and seperated by spaces. Find the average and return it as a floored whole number.",
+          notes: "Input: 'zero nine five two', Output: 4\n Input: 'three, six, nine', Output: 6\n Input: 'zero zero zero', Output: 0\n Input: 'one one eight one', Output: 2",
+     difficulty: 'Medium',
+        user_id:  1,
+         },
+
 
 
 
@@ -90,6 +97,9 @@ challengetag_data = [
   { challenge_id: 8, tag_id: 2 },
   { challenge_id: 8, tag_id: 7 },
   { challenge_id: 8, tag_id: 8 },
+  { challenge_id: 9, tag_id: 7 },
+  { challenge_id: 8, tag_id: 2 },
+  { challenge_id: 8, tag_id: 6 },
   # { challenge_id: 4, tag_id: 1 },
 ]
 
