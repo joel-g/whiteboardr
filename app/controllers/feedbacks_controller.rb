@@ -4,7 +4,7 @@ class FeedbacksController < ApplicationController
     @interview = Interview.find(params[:interview_id])
     @feedback = @interview.feedbacks.new(feedback_params)
     if @feedback.save
-      redirect_to @interview
+      redirect_to i_path(token: @interview.token)
     else
       render "interviews/show"
     end
@@ -21,7 +21,7 @@ class FeedbacksController < ApplicationController
     if current_user.id == @feedback.user_id
       @feedback.assign_attributes(feedback_params)
       if @feedback.save
-        redirect_to interview_path(params[:interview_id])
+        redirect_to i_path(token: @interview.token)
       else
         render :edit
       end
