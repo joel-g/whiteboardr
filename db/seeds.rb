@@ -1,6 +1,6 @@
 challenge_data = [
   {     title: 'Invert Values',
-         body: 'Write a function that given a set of numbers return the inverse of the numbers.',
+         body: 'Given a set of numbers return the inverse of the numbers.',
         notes: "invert([1, 2, 3, 4, 5]) would return [ -1, -2, -3, -4, -5]\n invert([-2, 3, 1]) would return [2, -3, -1]\n invert([]) would return []\n You may assume all numbers are integers.",
    difficulty: 'Easy',
       user_id:  1,
@@ -41,6 +41,13 @@ challenge_data = [
      difficulty: 'Medium',
         user_id:  1,
          },
+     {     title: 'A different kind of Fizz Buzz',
+            body: "Given a number find all the natural numbers below it that are multiples of 3 or 5 and return their sum",
+           notes: "Input: 10, Output: 23 (23 is the sum of 3, 5, 6 and 9)",
+      difficulty: 'Medium',
+         user_id:  1,
+          },
+
 
 
 ]
