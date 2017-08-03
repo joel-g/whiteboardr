@@ -1,12 +1,32 @@
 <% if !logged_in? %>
   <%= render partial:'/sessions/form' %>
-  <h1 class='center-block'>Practice and feedback are the stepping stones to confidence and competency.</h1>
-  <br />
-  <h3>To get started, register or sign in. </h3>
-  <br />
-  <h3>Gather a group, pick a challenge, and start an interview!</h3>
-  <br />
-  <h3>Reviewers can leave feedback that the candidate can later review.</h3>
+  <h3 class='center-block'>Practice and feedback are the stepping stones to confidence and competency.</h3>
+
+  <div class="row">
+    <div class="col-sm-6 card-fb card-login">
+      <div class="card card-fb card-login">
+        <div class="card-block card-block-fb" style="height: 218px">
+          <h5 class="card-title">To get started, register or sign in.</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 card-fb card-login">
+      <div class="card card-fb card-login">
+        <div class="card-block card-block-fb" style="height: 218px">
+          <h5 class="card-title">Gather a group, pick a challenge, and start an interview!</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 card-fb card-login">
+      <div class="card card-fb card-login">
+        <div class="card-block card-block-fb" style="height: 218px">
+          <h5 class="card-title">Reviewers can leave feedback that the candidate can later review.</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 <% else %>
   <div class='main-content'>
     <% if flash.alert %>
