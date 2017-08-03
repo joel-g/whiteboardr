@@ -1,7 +1,4 @@
-
-<div>
-  <%= flash[:alert] %>
-</div><% if @user.errors.any? %>
+<% if @user.errors.any? %>
   <div class="alert alert-danger signup" role="alert">
     <% @user.errors.full_messages.each do |error| %>
         <p><%= error %></p>
