@@ -1,14 +1,11 @@
 <div class='main-content'>
   <%= render partial: 'challenge', locals: { challenge: @challenge } %>
   <% if logged_in? %>
-    <div>
-      <%= form_tag url_for(controller: 'interviews', action: 'new'), method: 'get' do %>
-        <%= hidden_field_tag :challenge_id, @challenge.id %>
-        <%= submit_tag 'Start Interview', class: 'btn btn-primary' %>
-      <% end %>
-    </div>
+    <%= form_tag url_for(controller: 'interviews', action: 'new'), method: 'get' do %>
+      <%= hidden_field_tag :challenge_id, @challenge.id %>
+      <%= submit_tag 'Start Interview', class: 'btn btn-primary' %>
+    <% end %>
   <% end %>
   <span class='help-block'></span>
   <%= link_to "Back to Challenges", challenges_path %>
-
 </div>
