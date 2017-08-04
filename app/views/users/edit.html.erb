@@ -10,24 +10,28 @@
     <%= form_for @user, html: { class: 'form-horizontal' } do |f| %>
       <div class='form-group registration'>
         <div class='col-md-4'>
+          <%= f.label :first_name %>*<br>
           <%= f.text_field :first_name, placeholder: 'First Name', class: 'form-control input-md' %>
           <span class='help-block'> </span>
         </div>
       </div>
       <div class='form-group registration'>
         <div class='col-md-4'>
+          <%= f.label :last_name %>*<br>
           <%= f.text_field :last_name, placeholder: 'Last Name', class: 'form-control input-md' %>
           <span class='help-block'> </span>
         </div>
       </div>
       <div class='form-group registration'>
         <div class='col-md-4'>
+          <%= f.label :email %>*<br>
           <%= f.text_field :email, placeholder: 'Email', class: 'form-control input-md' %>
           <span class='help-block'> </span>
         </div>
       </div>
       <div class='form-group registration'>
         <div class='col-md-4'>
+          <%= f.label :username %>*<br>
           <%= f.text_field :username, placeholder: 'Username', class: 'form-control input-md' %>
           <span class='help-block'> </span>
         </div>

@@ -1,5 +1,39 @@
-<div>
-  <%= flash[:alert] %>
+<% if flash.alert %>
+<div class='container'>
+  <div class='right pad-right'>
+    <div class='alert alert-danger no-bottom'>
+      <%= flash[:alert] %>
+    </div>
+  </div>
 </div>
+<% end %>
 
 <%= render partial: 'form' %>
+
+  <div class="row row-login">
+    <div class="col-sm-6 card-fb card-login">
+      <div class="card card-fb card-login">
+        <div class="card-block card-block-fb card-login">
+          <h5 class="card-title card-title-login" style="margin-top: 30%">To get started, register or sign in.</h5>
+        </div>
+      </div>
+    </div>
+    <div class="arrow">
+    </div>
+    <div class="col-sm-6 card-fb card-login">
+      <div class="card card-fb card-login">
+        <div class="card-block card-block-fb card-login">
+          <h5 class="card-title card-title-login">Gather a group, pick a challenge, and start an interview!</h5>
+        </div>
+      </div>
+    </div>
+    <div class="arrow">
+    </div>
+    <div class="col-sm-6 card-fb card-login">
+      <div class="card card-fb card-login">
+        <div class="card-block card-block-fb card-login">
+          <h5 class="card-title card-title-login">Reviewers can leave feedback that the candidate can later review.</h5>
+        </div>
+      </div>
+    </div>
+  </div>

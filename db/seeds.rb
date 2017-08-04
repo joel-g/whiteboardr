@@ -1,50 +1,130 @@
-Interview.destroy_all
-Challenge.destroy_all
-User.destroy_all
-
-user_data = [
-    {first_name: 'Commander', last_name: 'Shephard', username: 'earthsaver1', email: 'commander@normandy.com', password: 'pwd', password_confirmation: 'pwd'},
-    {first_name: 'Master', last_name: 'Chief', username: 'ih8covenant', email: 'john@unsc.gov', password: 'pwd', password_confirmation: 'pwd'},
-    {first_name: 'Darth', last_name: 'Vader', username: 'sithlord83', email: 'darklord@empire.com', password: 'pwd', password_confirmation: 'pwd'},
-    {first_name: 'Lara', last_name: 'Croft', username: 'tombraider', email: 'tombraider@gmail.com', password: 'pwd', password_confirmation: 'pwd'},
-    {first_name: 'Leslie', last_name: 'Knope', username: 'iluvpawnee', email: 'hillary4evah@gmail.com', password: 'pwd', password_confirmation: 'pwd'}
-]
-User.create(user_data)
+User.create(email: 'whiteboardrhelp@gmail.com', first_name: 'Whiteboardr', last_name: 'Team', username: 'whiteboardr', password: ENV['USER_PASSWORD'])
 
 challenge_data = [
-  {title: 'Sum an array', notes: 'Sample input: [1, 7, 9, 3, 4, 2, 6, -1] /n Sample output: 31', difficulty: 'Easy', user_id: User.all.sample.id, body: 'Take an array of numbers (any length) and return a single number that is the sum of all the numbers'},
-  {title: 'Fizz Buzz', notes: "Sample Input: 1, 3, 4, 5, 15 /n Sample output: 1, Fizz, 4, Buzz, FizzBuzz", difficulty: 'Medium', user_id: User.all.sample.id, body: 'Write a method that takes a single integer as an argument and returns Fizz is the number is divisible by 3, Buzz if the number is divisible by 5 and FizzBuzz if the number is divisible by both'},
-  {title: 'Reverse a String', notes: 'Take a string and reverse it', difficulty: 'Easy', user_id: User.all.sample.id, body: 'Do as stated above'}
+  {     title: 'Invert Values', #1
+         body: 'Given a set of numbers return the inverse of the numbers.',
+        notes: "invert([1, 2, 3, 4, 5]) would return [ -1, -2, -3, -4, -5]\ninvert([-2, 3, 1]) would return [2, -3, -1]\ninvert([]) would return []\nYou may assume all numbers are integers.",
+   difficulty: 'Easy',
+      user_id:  1,
+       },
+   {     title: 'Triple Strings', #2
+          body: 'Create a function that will return a string that combines all of the letters of three inputed strings in groups. Taking the first letter of all of the inputs and grouping them next to each other',
+         notes: "Input: aa, bb, cc, Output: abcabc\nYou may assume all input strings are the same length.",
+    difficulty: 'Easy',
+       user_id:  1,
+        },
+  {     title: 'Credit Card Mask', #3
+         body: 'Write a function that takes a string and replaces all but the last 4 chracters with asterisks',
+        notes: "Input: 1234567890, Output: 123456****\nInput: 1234, Output: ****\nInput: abc, Output: abc\nInput: jar jar binks, Output *********inks",
+   difficulty: 'Easy',
+      user_id:  1,
+       },
+   {     title: 'Odd or Even', #4
+          body: "Create a function that takes an integer as an argument and returns 'Even' for even numbers or 'Odd' for odd numbers.",
+         notes: "Input: 12, Output: Even\nInput: -1, Output: Odd\nInput: 0, Output: Even",
+    difficulty: 'Easy',
+       user_id:  1,
+        },
+    {     title: 'Reverse and Digitize', #5
+           body: "Given a number return an array of the single digits in reverse order",
+          notes: "Input: 123456, Output: [6,5,4,3,2,1]\nInput: -1, Output: [-1]\nOutput array should not contain strings.",
+     difficulty: 'Easy',
+        user_id:  1,
+         },
+     {     title: 'Find the Middle', #6
+            body: "Given a word, return the middle character. If the number of characters in the word is off return just one character. If the number of chracters is even return the middle two characters. ",
+           notes: "Input: test, Output: st\nInput: whiteboardr, Output: b",
+      difficulty: 'Easy',
+         user_id:  1,
+          },
+    {     title: 'Is it a square?', #7
+           body: "Given a positive number determine if it is a square number. Return true if the number is a square of an interger, otherwise return false.",
+          notes: "Input: 9, Output: true\nInput: 144, Output: true\nInput: 26, Output: false",
+     difficulty: 'Medium',
+        user_id:  1,
+         },
+     {     title: 'Multiples of 3 and 5 (not fizzbuzz)', #8
+            body: "Given a number find all the natural numbers below it that are multiples of 3 or 5 and return their sum",
+           notes: "Input: 10, Output: 23 (23 is the sum of 3, 5, 6 and 9)",
+      difficulty: 'Medium',
+         user_id:  1,
+          },
+    {     title: 'Average Strings', #9
+           body: "You are given a string of numbers that are spelled out. Each number is 0-9 and separated by spaces. Find the average and return it as a floored whole number.",
+          notes: "Input: 'zero nine five two', Output: 4\nInput: 'three, six, nine', Output: 6\nInput: 'zero zero zero', Output: 0\nInput: 'one one eight one', Output: 2",
+     difficulty: 'Medium',
+        user_id:  1,
+         },
+     {     title: 'Array Deep Count', #10
+            body: "Array.length will give you the number of top-level elements in an array. Create a function that returns the number of ALL elements within an array, inluding the number of elements inside nested arrays.",
+           notes: "Input: [1, 2, 3], Output: 3\nInput: ['x', 'y', ['z']], Output: 4\nInput: [1, 2, [3, 4, [5]]], Output: 7\nHint: Consider using recursion",
+      difficulty: 'Hard',
+         user_id:  1,
+          },
+      {     title: 'Camel Case', #11
+             body: "Given a string of lower-cased words separated by spaces return a string with the first letter of each word capitalized and the words joined together without spaces.",
+            notes: "Input: 'have you heard the legend', Output: HaveYouHeardTheLegend\nInput: 'i thought not', Output: 'IThoughtNot'",
+       difficulty: 'Medium',
+          user_id:  1,
+           },
+
+
+
+
+
 ]
+
+tag_data = [
+      { name: 'integers' }, #1
+      { name: 'numbers '}, #2
+      { name: 'arrays' }, #3
+      { name: 'data structures'}, #4
+      { name: 'fundamentals'}, #5
+      { name: 'strings'}, #6
+      { name: 'algorithms' }, #7
+      { name: 'mathematics' }, #8
+      { name: 'recursion' } #9
+]
+
+challengetag_data = [
+  { challenge_id: 1, tag_id: 1 },
+  { challenge_id: 1, tag_id: 2 },
+  { challenge_id: 1, tag_id: 3 },
+  { challenge_id: 1, tag_id: 4 },
+  { challenge_id: 1, tag_id: 5 },
+  { challenge_id: 2, tag_id: 6 },
+  { challenge_id: 2, tag_id: 7 },
+  { challenge_id: 3, tag_id: 6 },
+  { challenge_id: 3, tag_id: 7 },
+  { challenge_id: 4, tag_id: 1 },
+  { challenge_id: 4, tag_id: 2 },
+  { challenge_id: 5, tag_id: 2 },
+  { challenge_id: 5, tag_id: 5 },
+  { challenge_id: 5, tag_id: 3 },
+  { challenge_id: 6, tag_id: 5 },
+  { challenge_id: 6, tag_id: 6 },
+  { challenge_id: 7, tag_id: 7 },
+  { challenge_id: 7, tag_id: 8 },
+  { challenge_id: 7, tag_id: 1 },
+  { challenge_id: 8, tag_id: 2 },
+  { challenge_id: 7, tag_id: 7 },
+  { challenge_id: 7, tag_id: 8 },
+  { challenge_id: 8, tag_id: 2 },
+  { challenge_id: 8, tag_id: 7 },
+  { challenge_id: 8, tag_id: 8 },
+  { challenge_id: 9, tag_id: 7 },
+  { challenge_id: 9, tag_id: 2 },
+  { challenge_id: 9, tag_id: 6 },
+  { challenge_id: 10, tag_id: 3 },
+  { challenge_id: 10, tag_id: 9 },
+  { challenge_id: 10, tag_id: 7 },
+  { challenge_id: 11, tag_id: 7 },
+  { challenge_id: 11, tag_id: 6 },
+
+  # { challenge_id: 4, tag_id: 1 },
+]
+
+
 Challenge.create(challenge_data)
-
-Tag.create([{name: 'algorithm'}, {name: 'data structures'}, {name: 'arrays'}])
-tags = []
-Tag.all.each do |tag|
-  tags << tag.id
-end
-
-challenges = []
-Challenge.all.each do |challenge|
-  challenges << challenge.id
-end
-
-ChallengeTag.create([
-  {challenge_id: challenges[0], tag_id: tags[0]},
-  {challenge_id: challenges[0], tag_id: tags[1]},
-  {challenge_id: challenges[1], tag_id: tags[0]},
-  {challenge_id: challenges[0], tag_id: tags[1]}
-  ])
-
-users = []
-User.all.each do |user|
-  users << user.id
-end
-
-interview_data = [
-  {challenge_id: challenges[rand(0..2)], interviewer_id: users[0], applicant_id: users[1]},
-  {challenge_id: challenges[rand(0..2)], interviewer_id: users[1], applicant_id: users[0]},
-  {challenge_id: challenges[rand(0..2)], interviewer_id: users[2], applicant_id: users[3]},
-  {challenge_id: challenges[rand(0..2)], interviewer_id: users[4], applicant_id: users[5]},
-]
-Interview.create(interview_data)
+Tag.create(tag_data)
+ChallengeTag.create(challengetag_data)

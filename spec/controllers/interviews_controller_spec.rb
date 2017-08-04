@@ -185,7 +185,7 @@ describe InterviewsController do
       @user = interviewer
       login_user
     end
-    xit 'assigns a image_uid' do
+    it 'assigns a image_uid' do
       image = fixture_file_upload('files/wb_icon.png', 'image/png')
       patch :update, params: { id: interview.id, interview: { image: image } }
       expect(assigns[:interview].image_uid).not_to be nil

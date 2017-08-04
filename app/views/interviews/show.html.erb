@@ -1,10 +1,34 @@
-<h1>Practice Interview for <%= link_to "#{@interview.applicant.full_name}", user_path(@interview.applicant_id) %></h1>
-<h3>Interviewed by <%= @interview.interviewer.full_name %> on <%= @interview.date %> </h3>
+<div class="page-header">
+  <div class="pull-left">
+    <h3>Practice Interview for <%= link_to "#{@interview.applicant.full_name}", user_path(@interview.applicant_id) %><br />
+      <small> Interviewed by <%= @interview.interviewer.full_name %> on <%= @interview.date %> </small></h3>
+  </div>
+  <div class="clearfix"></div>
+</div>
+
 <% if current_user == @interview.interviewer || current_user == @interview.applicant %>
   <% if @interview.was_today? %>
-    The access code to join this interview is: <%= @interview.token %>. This code is only valid today (<%= @interview.date %>).
+
+  <div class="row">
+  <div class="col-sm-6">
+  <div class="card">
+  <div class="card-block">
+    <h5 class="card-subtitle mb-2 text-muted">Access Code</h5>
+    <p class="card-text">The access code to join this interview is <b><%= @interview.token %></b>. This code is only valid today (<%= @interview.date %>).</p>
+  </div>
+</div>
+</div>
+</div>
   <% else %>
-    This interview is closed to further feedback.
+  <div class="row">
+  <div class="col-sm-6">
+  <div class="card">
+  <div class="card-block">
+    <p class="card-text">This interview is closed to further feedback.</p>
+  </div>
+</div>
+</div>
+</div>
   <% end %>
 <% end %>
 <%= render partial: '/challenges/challenge', locals: { challenge: @interview.challenge } %>
@@ -12,35 +36,39 @@
   <div class='form-container'>
     <%= form_for @interview do |f| %>
       Whiteboard image:
-      <%= f.file_field :image %>
-      <%= f.submit 'Upload' %>
+      <%= f.file_field :image, class: 'btn' %>
+      <%= f.submit 'Upload', class: 'btn btn-primary' %>
     <% end %>
   </div>
 <% end %>
 <% if current_user == @interview.applicant %>
-  <div class='feedback-container'>
+  <div class='feedback-container main-content'>
     <h2>Your Feedback</h2>
     <%= render partial: '/feedbacks/legend' %>
     <br />
+    <div class="row">
     <% @interview.feedbacks.each do |feedback| %>
       <%= render partial: '/feedbacks/show', locals: { feedback: feedback } %>
     <% end %>
+    </div>
   </div>
 <% else %>
   <% if @interview.has_feedback_from?(current_user)%>
     <% @feedback = @interview.feedbacks.where(user_id: current_user.id) %>
-    <div>
+    <div class='row main-content'>
       <%= render partial: '/feedbacks/show', locals: { feedback: @feedback[0] } %>
+      <%= button_to "Edit Feedback", edit_interview_feedback_path( @interview, @feedback.first), method: :get, class: 'btn btn-primary' %>
     </div>
-    <%= button_to "Edit Feedback", edit_interview_feedback_path( @interview, @feedback.first ), method: :get, class: 'button' %>
+
+
   <% else %>
-    <h1>Give Feedback</h1>
+    <h4 class='feedback-title'>Give Feedback</h4>
     <%= render partial: '/feedbacks/feedback_form' %>
   <% end %>
-  <div>
+  <div class='ask-guide'>
     <%= render partial: '/feedbacks/ask_guidelines' %>
   </div>
 <% end %>
-<div>
+<div class='board-img'>
   <%= image_tag @interview.image.url if @interview.image_stored? %>
 </div>
