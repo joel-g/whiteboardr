@@ -36,7 +36,7 @@
   <div class='form-container'>
     <%= form_for @interview do |f| %>
       Whiteboard image:
-      <%= f.file_field :image, label_class: '', control_class: 'btn btn-primary', class: 'btn' %>
+      <%= f.file_field :image, class: 'btn' %>
       <%= f.submit 'Upload', class: 'btn btn-primary' %>
     <% end %>
   </div>
@@ -55,8 +55,12 @@
 <% else %>
   <% if @interview.has_feedback_from?(current_user)%>
     <% @feedback = @interview.feedbacks.where(user_id: current_user.id) %>
+    <div class='row main-content'>
       <%= render partial: '/feedbacks/show', locals: { feedback: @feedback[0] } %>
-    <%= button_to "Edit Feedback", edit_interview_feedback_path( @interview, @feedback.first ), method: :get, class: 'button' %>
+      <%= button_to "Edit Feedback", edit_interview_feedback_path( @interview, @feedback.first), method: :get, class: 'btn btn-primary' %>
+    </div>
+
+
   <% else %>
     <h4 class='feedback-title'>Give Feedback</h4>
     <%= render partial: '/feedbacks/feedback_form' %>
