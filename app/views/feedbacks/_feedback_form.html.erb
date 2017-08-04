@@ -18,7 +18,7 @@
     <div class="col-sm-6 card-fb">
       <div class="card card-fb">
         <div class="card-block card-block-fb">
-          <h5 class="card-title"><%= f.label "Whiteboard Neatness and Clarity" %>
+          <h5 class="card-title"><%= f.label "Whiteboard Neatness and Clarity" %><br />
           <%= f.select :board_rating, [5,4,3,2,1], prompt: "-" %></h5>
           <p class="card-text">Was printing neat and readable? Did candidate start at the top left or right of the board? Did candidate leave some space between lines of code or psuedo-code? Did candidate run out of room on the board?</p>
         </div>
@@ -27,7 +27,7 @@
     <div class="col-sm-6 card-fb">
       <div class="card card-fb">
         <div class="card-block card-block-fb" style="height: 218px">
-          <h5 class="card-title"> <%= f.label "Poise and Presence" %>
+          <h5 class="card-title"> <%= f.label "Poise and Presence" %><br />
             <%= f.select :presence_rating, [5,4,3,2,1], prompt: "-" %></h5>
           <p class="card-text">Did candidate greet the interviewer and shake hands? Was candidate friendly and personable? Did the candidate's body language communicate confidence and ease? Was candidate's volume appropriate?</p>
         </div>
@@ -36,7 +36,7 @@
     <div class="col-sm-6 card-fb">
       <div class="card card-fb">
         <div class="card-block card-block-fb">
-          <h5 class="card-title"><%= f.label "Demonstration of Knowledge" %>
+          <h5 class="card-title"><%= f.label "Demonstration of Knowledge" %><br />
           <%= f.select :knowledge_rating, [5,4,3,2,1], prompt: "-" %></h5>
           <p class="card-text">Did candidate ask questions that showed thinking process and knowledge of issues to consider? Did the candidate appear to understand the subject matter or show ability to reason while working through a solution?</p>
         </div>
@@ -45,7 +45,7 @@
     <div class="col-sm-6 card-fb">
       <div class="card card-fb">
         <div class="card-block card-block-fb" style="height: 218px">
-          <h5 class="card-title"><%= f.label( :riot_rating, "RIOT Rating") %>
+          <h5 class="card-title"><%= f.label( :riot_rating, "RIOT Rating") %><br />
           <%= f.select :riot_rating, [5,4,3,2,1], prompt: "-" %></h5>
           <p class="card-text">R = REPEAT the challenge description
           <p>I = clarify INPUTs</p>
@@ -60,6 +60,6 @@
     <br />
     <%= f.text_area :comments, size: "80x10", placeholder: "Make sure your feedback is actionable, specific, and kind." %>
   </div>
-  <%= f.submit 'Submit', class: 'feedback-submit' %>
+  <%= f.submit 'Submit', class: 'feedback-submit btn-primary btn' %>
 <% end %>
 </div>
