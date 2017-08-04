@@ -236,6 +236,7 @@ body {
   vertical-align: middle;
   width: 70%;
   margin-left: 25px;
+  margin-top: 10px;
 }
 
 .table-bordered {
@@ -281,6 +282,7 @@ thead {
   margin-left: 25px;
   display: inline-block;
   vertical-align: middle;
+  margin-top: 6%;
 }
 
 .signin-btn {
@@ -330,12 +332,14 @@ thead {
 .new-user-container {
   display: inline-block;
   margin: auto;
-  margin-top: 2%;
+  margin-top: -10px;
   padding-left: 30px;
   width: 50%;
   height: 350px;
   margin-left: 1%;
   align-items: center;
+  margin-bottom: 2%;
+  padding-bottom: 10px;
 }
 
 .container {
@@ -349,7 +353,7 @@ thead {
   width: 75%;
   margin: auto;
   vertical-align: middle;
-  margin-top: 15px;
+  margin-bottom: 4%;
   align-items: center;
 }
 
@@ -366,8 +370,8 @@ thead {
 }
 
 .reg-header {
-  margin-left: 3%;
-  margin-top: 1%;
+  margin-left: 26%;
+  margin-top: 4%;
   height: 375px;
   width: 250px;
   display: inline-block;
@@ -375,7 +379,7 @@ thead {
   bottom left no-repeat;
   padding: 10px;
   position: relative;
-  float: left;
+
 }
 
 @media(max-width: 768px) {
@@ -406,7 +410,7 @@ thead {
 }
 
 .card-block {
-  width: 350px;
+  width: 345px;
   background-color: white;
   margin-left: 4.2%;
   padding: 3px;
@@ -416,6 +420,7 @@ thead {
 
 .challenge-container {
   width: 500px;
+  margin-left: 2%;
 }
 
 .challenge-body {
@@ -471,11 +476,14 @@ thead {
 }
 .card-login {
   width: 200px;
-  height: 200px;
+  height: 160px;
   margin-bottom: 3px;
-  margin-right: 40px;
-  margin-left: 40px;
+  margin-right: 4%;
+  margin-left: 4%;
   border-radius: 15px;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .row-login {
@@ -483,6 +491,7 @@ thead {
   width: 75%;
   margin-right: auto;
   margin-left: auto;
+  margin-top: 6%;
 }
 
 .login-intro {
@@ -490,4 +499,26 @@ thead {
   width: 75%;
   text-align: center;
   margin-bottom: 20px;
+}
+
+.arrow {
+  background-image: url(<%= asset_path 'arrow.svg.png' %>);
+  width: 20px;
+}
+
+.card-title-login {
+  margin-top: 23%;
+  vertical-align: middle;
+  font-size: 17px;
+  color: #5e6160;
+  font-weight: normal;
+}
+
+.table-chall-head {
+  margin-left: -240px;
+  margin-top: -6px;
+}
+
+.challenge-filters table {
+  margin-top: 35px;
 }
