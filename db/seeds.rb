@@ -1,45 +1,45 @@
-User.create(email: 'whiteboardrhelp@gmail.com', first_name: 'Whiteboardr', last_name: 'Team', username: 'whiteboardr', password: ENV[USER_PASSWORD])
+User.create(email: 'whiteboardrhelp@gmail.com', first_name: 'Whiteboardr', last_name: 'Team', username: 'whiteboardr', password: ENV['USER_PASSWORD'])
 
 challenge_data = [
   {     title: 'Invert Values', #1
          body: 'Given a set of numbers return the inverse of the numbers.',
-        notes: "invert([1, 2, 3, 4, 5]) would return [ -1, -2, -3, -4, -5]\n invert([-2, 3, 1]) would return [2, -3, -1]\n invert([]) would return []\n You may assume all numbers are integers.",
+        notes: "invert([1, 2, 3, 4, 5]) would return [ -1, -2, -3, -4, -5]\ninvert([-2, 3, 1]) would return [2, -3, -1]\ninvert([]) would return []\nYou may assume all numbers are integers.",
    difficulty: 'Easy',
       user_id:  1,
        },
    {     title: 'Triple Strings', #2
           body: 'Create a function that will return a string that combines all of the letters of three inputed strings in groups. Taking the first letter of all of the inputs and grouping them next to each other',
-         notes: "Input: aa, bb, cc, Output: abcabc\n You may assume all input strings are the same length.",
+         notes: "Input: aa, bb, cc, Output: abcabc\nYou may assume all input strings are the same length.",
     difficulty: 'Easy',
        user_id:  1,
         },
   {     title: 'Credit Card Mask', #3
          body: 'Write a function that takes a string and replaces all but the last 4 chracters with asterisks',
-        notes: "Input: 1234567890, Output: 123456****\n Input: 1234, Output: ****\n Input: abc, Output: abc\n Input: jar jar binks, Output *********inks",
+        notes: "Input: 1234567890, Output: 123456****\nInput: 1234, Output: ****\nInput: abc, Output: abc\nInput: jar jar binks, Output *********inks",
    difficulty: 'Easy',
       user_id:  1,
        },
    {     title: 'Odd or Even', #4
           body: "Create a function that takes an integer as an argument and returns 'Even' for even numbers or 'Odd' for odd numbers.",
-         notes: "Input: 12, Output: Even\n Input: -1, Output: Odd\n Input: 0, Output: Even",
+         notes: "Input: 12, Output: Even\nInput: -1, Output: Odd\nInput: 0, Output: Even",
     difficulty: 'Easy',
        user_id:  1,
         },
     {     title: 'Reverse and Digitize', #5
            body: "Given a number return an array of the single digits in reverse order",
-          notes: "Input: 123456, Output: [6,5,4,3,2,1]\n Input: -1, Output: [-1]\n Output array should not contain strings.",
+          notes: "Input: 123456, Output: [6,5,4,3,2,1]\nInput: -1, Output: [-1]\nOutput array should not contain strings.",
      difficulty: 'Easy',
         user_id:  1,
          },
      {     title: 'Find the Middle', #6
             body: "Given a word, return the middle character. If the number of characters in the word is off return just one character. If the number of chracters is even return the middle two characters. ",
-           notes: "Input: test, Output: st\n Input: whiteboardr, Output: b",
+           notes: "Input: test, Output: st\nInput: whiteboardr, Output: b",
       difficulty: 'Easy',
          user_id:  1,
           },
     {     title: 'Is it a square?', #7
            body: "Given a positive number determine if it is a square number. Return true if the number is a square of an interger, otherwise return false.",
-          notes: "Input: 9, Output: true\n Input: 144, Output: true\n Input: 26, Output: false",
+          notes: "Input: 9, Output: true\nInput: 144, Output: true\nInput: 26, Output: false",
      difficulty: 'Medium',
         user_id:  1,
          },
@@ -51,19 +51,19 @@ challenge_data = [
           },
     {     title: 'Average Strings', #9
            body: "You are given a string of numbers that are spelled out. Each number is 0-9 and separated by spaces. Find the average and return it as a floored whole number.",
-          notes: "Input: 'zero nine five two', Output: 4\n Input: 'three, six, nine', Output: 6\n Input: 'zero zero zero', Output: 0\n Input: 'one one eight one', Output: 2",
+          notes: "Input: 'zero nine five two', Output: 4\nInput: 'three, six, nine', Output: 6\nInput: 'zero zero zero', Output: 0\nInput: 'one one eight one', Output: 2",
      difficulty: 'Medium',
         user_id:  1,
          },
      {     title: 'Array Deep Count', #10
             body: "Array.length will give you the number of top-level elements in an array. Create a function that returns the number of ALL elements within an array, inluding the number of elements inside nested arrays.",
-           notes: "Input: [1, 2, 3], Output: 3\n Input: ['x', 'y', ['z']], Output: 4\n Input: [1, 2, [3, 4, [5]]], Output: 7\n Hint: Consider using recursion",
+           notes: "Input: [1, 2, 3], Output: 3\nInput: ['x', 'y', ['z']], Output: 4\nInput: [1, 2, [3, 4, [5]]], Output: 7\nHint: Consider using recursion",
       difficulty: 'Hard',
          user_id:  1,
           },
       {     title: 'Camel Case', #11
              body: "Given a string of lower-cased words separated by spaces return a string with the first letter of each word capitalized and the words joined together without spaces.",
-            notes: "Input: 'have you heard the legend', Output: HaveYouHeardTheLegend\n Input: 'i thought not', Output: 'IThoughtNot'",
+            notes: "Input: 'have you heard the legend', Output: HaveYouHeardTheLegend\nInput: 'i thought not', Output: 'IThoughtNot'",
        difficulty: 'Medium',
           user_id:  1,
            },
