@@ -36,8 +36,8 @@
   <div class='form-container'>
     <%= form_for @interview do |f| %>
       Whiteboard image:
-      <%= f.file_field :image %>
-      <%= f.submit 'Upload' %>
+      <%= f.file_field :image, label_class: '', control_class: 'btn btn-primary', class: 'btn' %>
+      <%= f.submit 'Upload', class: 'btn btn-primary' %>
     <% end %>
   </div>
 <% end %>
@@ -65,6 +65,6 @@
     <%= render partial: '/feedbacks/ask_guidelines' %>
   </div>
 <% end %>
-<div>
+<div class='board-img'>
   <%= image_tag @interview.image.url if @interview.image_stored? %>
 </div>
