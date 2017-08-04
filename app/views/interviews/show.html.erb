@@ -36,27 +36,31 @@
   <div class='form-container'>
     <%= form_for @interview do |f| %>
       Whiteboard image:
-      <%= f.file_field :image %>
-      <%= f.submit 'Upload' %>
+      <%= f.file_field :image, class: 'btn' %>
+      <%= f.submit 'Upload', class: 'btn btn-primary' %>
     <% end %>
   </div>
 <% end %>
 <% if current_user == @interview.applicant %>
-  <div class='feedback-container'>
+  <div class='feedback-container main-content'>
     <h2>Your Feedback</h2>
     <%= render partial: '/feedbacks/legend' %>
     <br />
+    <div class="row">
     <% @interview.feedbacks.each do |feedback| %>
       <%= render partial: '/feedbacks/show', locals: { feedback: feedback } %>
     <% end %>
+    </div>
   </div>
 <% else %>
   <% if @interview.has_feedback_from?(current_user)%>
     <% @feedback = @interview.feedbacks.where(user_id: current_user.id) %>
-    <div>
+    <div class='row main-content'>
       <%= render partial: '/feedbacks/show', locals: { feedback: @feedback[0] } %>
+      <%= button_to "Edit Feedback", edit_interview_feedback_path( @interview, @feedback.first), method: :get, class: 'btn btn-primary' %>
     </div>
-    <%= button_to "Edit Feedback", edit_interview_feedback_path( @interview, @feedback.first ), method: :get, class: 'button' %>
+
+
   <% else %>
     <h4 class='feedback-title'>Give Feedback</h4>
     <%= render partial: '/feedbacks/feedback_form' %>
@@ -65,6 +69,6 @@
     <%= render partial: '/feedbacks/ask_guidelines' %>
   </div>
 <% end %>
-<div>
+<div class='board-img'>
   <%= image_tag @interview.image.url if @interview.image_stored? %>
 </div>
