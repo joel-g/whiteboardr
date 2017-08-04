@@ -33,14 +33,7 @@
               <li><%= link_to "Home", root_path %></li>
             <% end %>
             <li><%= link_to 'Challenges', challenges_path %></li>
-            <li class="dropdown">
-              <a href="/faq" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">FAQ <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="/faq#interview-tips">Interview Tips</a></li>
-                <li><a href="/faq#feedback">Giving Feedback</a></li>
-                <li><a href="/faq#ratings">Rating Criteria</a></li>
-              </ul>
-            </li>
+            <li><%= link_to "FAQ", faqs_path %></li>
             <% if logged_in? %>
               <li><%= link_to "Hi " + current_user.first_name+ "!", user_path(current_user) %></li>
               <li><%= link_to 'Logout', logout_path, method: :delete %></li>
