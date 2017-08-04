@@ -1,29 +1,29 @@
 <% if !logged_in? %>
   <%= render partial:'/sessions/form' %>
-  <h3 class='center-block row-login login-intro'>Practice and feedback are the stepping stones to confidence and competency.</h3>
 
   <div class="row row-login">
     <div class="col-sm-6 card-fb card-login">
       <div class="card card-fb card-login">
         <div class="card-block card-block-fb card-login">
-          <h5 class="card-title">To get started, register or sign in.</h5>
+          <h5 class="card-title card-title-login" style="margin-top: 30%">To get started, register or sign in.</h5>
         </div>
       </div>
     </div>
-    <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+    <div class="arrow">
+    </div>
     <div class="col-sm-6 card-fb card-login">
       <div class="card card-fb card-login">
         <div class="card-block card-block-fb card-login">
-          <h5 class="card-title">Gather a group, pick a challenge, and start an interview!</h5>
+          <h5 class="card-title card-title-login">Gather a group, pick a challenge, and start an interview!</h5>
         </div>
       </div>
     </div>
-    <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
-
+    <div class="arrow">
+    </div>
     <div class="col-sm-6 card-fb card-login">
       <div class="card card-fb card-login">
         <div class="card-block card-block-fb card-login">
-          <h5 class="card-title">Reviewers can leave feedback that the candidate can later review.</h5>
+          <h5 class="card-title card-title-login">Reviewers can leave feedback that the candidate can later review.</h5>
         </div>
       </div>
     </div>
@@ -43,7 +43,7 @@
       <div class='panel-heading'>
         <h3 class='panel-title'>Interviews I've Led Today</h3>
       </div>
-      <div class='container panel-body'>
+      <div class='panel-body'>
         <% if @interviewer_interviews.empty? %>
           You have not yet led any interviews today.
         <% else %>
@@ -57,9 +57,11 @@
           <% end %>
         <% end %>
         <span class='help-block'> </span><br />
-        <span class='help-block'> </span>
-        <div class='create-button'>
-          <%= link_to 'Start Interview', challenges_path, class: 'btn btn-primary' %>
+        <div>
+          <span class='help-block'> </span>
+          <div class='btn-container'>
+            <%= button_to 'Start Interview', challenges_path, method: 'get', class: 'btn btn-primary btn-interview right' %>
+          </div>
         </div>
       </div>
     </div>
@@ -70,18 +72,12 @@
       </div>
       <div class='panel-body'>
         <%= form_tag 'i' do %>
-            Ask the interviewer for the access code
-            <span class='help-block'> </span>
-            <span class="form-group">
-              <span class="col-md-4">
-                <%= text_field_tag :token, nil, class: "form-control input-md", placeholder: 'Eg. LSAL' %>
-              </span>
-            </span>
-            <span class="form-group">
-              <span class="col-md-4">
-                <%= submit_tag "Join Interview", class: "btn btn-primary" %>
-              </span>
-            </span>
+          Ask the interviewer for the access code
+          <span class="btn-container">
+            <%= text_field_tag :token, nil, class: "form-control input-md btn-interview", placeholder: 'Eg. LSAL' %>
+            <span class='space'></span>
+            <%= submit_tag "Join Interview", class: "btn btn-primary btn-interview right" %>
+          </span>
         <% end %>
       </div>
     </div>
